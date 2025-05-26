@@ -9,13 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     container: pandoc/latex
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4  # 최신 버전 사용
 
       - name: Install mustache (to update the date)
         run: apk add ruby && gem install mustache
 
       - name: creates output
         run: sh ./build.sh
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "output" ]; then
+            echo "Error: output directory not created"
+            exit 1
+          fi
+          if [ -z "$(ls -A output 2>/dev/null)" ]; then
+            echo "Error: output directory is empty"
+            exit 1
+          fi
+          echo "Build output verified successfully"
+          ls -la output/
 
       - name: Pushes to another repository
         id: push_directory
@@ -30,5 +43,10 @@ jobs:
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
 
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
+      - name: Verify push success
+        run: |
+          if [ -z "$DESTINATION_CLONED_DIRECTORY" ]; then
+            echo "Error: Push to destination repository may have failed"
+            exit 1
+          fi
+          echo "Push completed successfully to: $DESTINATION_CLONED_DIRECTORY"

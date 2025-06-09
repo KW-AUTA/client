@@ -14,7 +14,7 @@ export default function DashboardPage() {
 
   return (
     <div className="bg-[#F5F5F5] min-h-screen py-0">
-      <div className="w-full max-w-none mx-auto px-8">
+      <div className="w-[90%] flex flex-col m-auto">
         <OverviewSection
           overviewData={
             data

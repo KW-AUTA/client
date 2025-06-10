@@ -24,7 +24,7 @@ export const API_ENDPOINTS = {
 
     TESTS: {
       LIST: '/projects/tests',
-      DETAIL: '/projects/tests/:projectId',
+      DETAIL: '/projects/:projectId/tests/:testId',
 
       PAGES: '/pages/:pageId'
     }
@@ -46,7 +46,7 @@ export const ROUTES = {
   PROJECT_DETAIL: '/projects/:projectId',
   EDIT_PROJECT: `/projects/:projectId/edit`,
   TESTS: '/tests',
-  TEST_DETAIL: '/tests/:projectId',
+  TEST_DETAIL: '/tests/:testId',
   SETTINGS: '/settings',
   PROFILE: '/settings/profile',
   PASSWORD: '/settings/password'

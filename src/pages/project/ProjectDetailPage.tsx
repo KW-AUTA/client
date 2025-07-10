@@ -13,6 +13,7 @@ import NotStartedState from '@/pages/project/_components/projectDetail/NotStarte
 import InProgressState from '@/pages/project/_components/projectDetail/InProgressState';
 import CompletedState from '@/pages/project/_components/projectDetail/CompletedState';
 import PageLoader from '@/components/ui/loader/PageLoader';
+import ErrorState from '@/pages/project/_components/projectDetail/ErrorState';
 export default function ProjectDetailPage() {
   const { projectId } = useParams();
   const { data: projectDetail, isPending, isError } = useGetProjectDetail(Number(projectId));
@@ -62,6 +63,8 @@ export default function ProjectDetailPage() {
         return <InProgressState />;
       case 'COMPLETED':
         return <CompletedState projectDetail={projectDetail} />;
+      case 'ERROR':
+        return <ErrorState onOpenTestModal={handleOpenTestModal} isRunningTest={isRunningTest} />;
       default:
         return <NotStartedState onOpenTestModal={handleOpenTestModal} isRunningTest={isRunningTest} />;
     }
@@ -73,9 +76,7 @@ export default function ProjectDetailPage() {
       <ProjectInfo {...projectBasicInfo} />
       <span className="border border-typography-gray my-4"></span>
 
-      <section className="flex gap-6 justify-center py-4 children:shadow-custom children:rounded-15 children:w-full">
-        {renderProjectStatusSection()}
-      </section>
+      <section>{renderProjectStatusSection()}</section>
 
       {projectDetail?.projectStatus === 'COMPLETED' && (
         <ReportBrief reportSummary={projectDetail?.reportSummary} projectId={Number(projectId)} />

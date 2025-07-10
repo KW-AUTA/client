@@ -50,7 +50,7 @@ export default {
       // 떠있는 듯한 애니메이션
       floatCloud: {
         '0%, 100%': { transform: 'scale(1)' }, // 원래 크기
-        '25%': { transform: 'scale(1.02)' }, // 살짝 커짐
+        '25%': { transform: 'scale(1.01)' }, // 살짝 커짐
         '50%': { transform: 'scale(0.99)' }, // 살짝 작아짐
         '75%': { transform: 'scale(1.01)' }
       }

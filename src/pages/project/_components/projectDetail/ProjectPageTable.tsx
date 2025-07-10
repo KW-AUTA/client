@@ -7,8 +7,8 @@ interface ProjectPageTableProps {
 
 export default function ProjectPageTable({ pages = [] }: ProjectPageTableProps) {
   return (
-    <div className="p-6 basis-1/3 w-full">
-      <div className="overflow-y-auto h-full">
+    <div className="p-6 basis-1/3 w-full h-full flex flex-col">
+      <div className="overflow-y-auto flex-1">
         <table className="w-full text-center table-fixed">
           <thead>
             <tr className="text-14 text-typography-dark font-bold border-b border-b-[#CCCCCC]">
@@ -19,7 +19,7 @@ export default function ProjectPageTable({ pages = [] }: ProjectPageTableProps) 
           <tbody>
             {pages.length > 0 ? (
               pages.map((page, index) => (
-                <tr key={index} className="children:font-medium text-11 text-typography-dark">
+                <tr key={index} className="children:font-medium text-11 text-typography-dark hover:bg-pointColor/20">
                   <td className="py-2 w-1/2 overflow-hidden truncate whitespace-nowrap">{page.pageName}</td>
                   <td className="py-2 w-1/2 overflow-hidden truncate whitespace-nowrap">{page.pageBaseUrl}</td>
                 </tr>

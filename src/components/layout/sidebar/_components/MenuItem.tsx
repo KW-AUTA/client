@@ -15,6 +15,7 @@ export default function MenuItem({ item, fontSize = 'text-20', onClick }: MenuIt
   const handleClick = () => {
     navigate(item.path);
     if (onClick) onClick();
+    window.location.reload();
   };
 
   return (

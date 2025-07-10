@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { useGetProjectDetail } from '@/store/queries/project/useProjectQueries';
 import { useRunTest } from '@/store/queries/test/useTestMutations';
 import CommonModal from '@/components/modal/CommonModal';
+import PageLoader from '@/components/ui/loader/PageLoader';
 import DesignSourceSection from '@/pages/project/_components/projectForm/DesignSourceSection';
 import ProjectTitle from '@/pages/project/_components/ProjectTitle';
 import ProjectInfo from '@/pages/project/_components/projectDetail/ProjectInfo';
@@ -12,16 +13,12 @@ import ProjectControlButtons from '@/pages/project/_components/projectDetail/Pro
 import NotStartedState from '@/pages/project/_components/projectDetail/NotStartedState';
 import InProgressState from '@/pages/project/_components/projectDetail/InProgressState';
 import CompletedState from '@/pages/project/_components/projectDetail/CompletedState';
-import PageLoader from '@/components/ui/loader/PageLoader';
 import ErrorState from '@/pages/project/_components/projectDetail/ErrorState';
 export default function ProjectDetailPage() {
   const { projectId } = useParams();
-  const { data: projectDetail, isPending, isError } = useGetProjectDetail(Number(projectId));
+  const { data: projectDetail, isPending, isError, refetch } = useGetProjectDetail(Number(projectId));
   const { mutate: runTestMutation, isPending: isRunningTest } = useRunTest();
   const [isRunTestModalOpen, setIsRunTestModalOpen] = useState(false);
-
-  if (isPending) return <PageLoader />;
-  if (isError) return <div className="py-20 text-center text-red-500">오류가 발생했습니다.</div>;
 
   const projectBasicInfo = {
     projectName: projectDetail?.projectName,
@@ -32,10 +29,13 @@ export default function ProjectDetailPage() {
     testExecutionTime: projectDetail?.testExecutionTime
   };
 
+  console.log(projectDetail?.projectStatus);
+
   const handleRunTest = () => {
     runTestMutation(Number(projectId), {
       onSuccess: () => {
         toast.success('테스트 실행이 시작되었습니다.\n완료까지 몇 분 소요될 수 있습니다.');
+        refetch();
       },
       onError: () => {
         toast.error('테스트 실행 요청이 실패했습니다.\n다시 시도해주세요.');
@@ -69,6 +69,9 @@ export default function ProjectDetailPage() {
         return <NotStartedState onOpenTestModal={handleOpenTestModal} isRunningTest={isRunningTest} />;
     }
   };
+
+  if (isPending) return <PageLoader />;
+  if (isError) return <div className="py-20 text-center text-red-500">오류가 발생했습니다.</div>;
 
   return (
     <div className="w-[90%] flex flex-col m-auto">

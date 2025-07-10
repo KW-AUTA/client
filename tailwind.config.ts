@@ -46,6 +46,13 @@ export default {
         '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
         '40%': { transform: 'translateY(-4px)' },
         '60%': { transform: 'translateY(-2px)' }
+      },
+      // 떠있는 듯한 애니메이션
+      floatCloud: {
+        '0%, 100%': { transform: 'scale(1)' }, // 원래 크기
+        '25%': { transform: 'scale(1.02)' }, // 살짝 커짐
+        '50%': { transform: 'scale(0.99)' }, // 살짝 작아짐
+        '75%': { transform: 'scale(1.01)' }
       }
       // 예전 landing 배경에 적용한 애니메이션인데 지금 안 쓰여서 주석처리
       // flowAlongLine: {
@@ -57,7 +64,9 @@ export default {
       'fade-in-up': 'fade-in-up 0.8s ease-out',
       'slide-in-right': 'slide-in-right 0.8s ease-out',
       'scale-in': 'scale-in 0.6s ease-out',
-      'bounce-subtle': 'bounce-subtle 3s infinite'
+      'bounce-subtle': 'bounce-subtle 3s infinite',
+      // 떠있는 듯한 애니메이션: wobble-slow
+      'float-cloud': 'floatCloud 3s ease-in-out infinite'
       // 'flow-line': 'flowAlongLine 30s linear infinite'
     }
   },

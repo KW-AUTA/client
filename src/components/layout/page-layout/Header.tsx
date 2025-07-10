@@ -11,6 +11,7 @@ import { useGetProjectList } from '@/store/queries/project/useProjectQueries';
 import { useDebounce } from '@/hooks/useDebounce';
 import BellBadge from '@/components/ui/BellBadge';
 import { ProjectListData } from '@/types/project.type';
+// import { RootState } from '@/store/redux/store';
 
 export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   const navigate = useNavigate();
@@ -21,9 +22,21 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   const [showNotification, setShowNotification] = useState(false);
   const notificationRef = useRef<HTMLDivElement>(null);
   const debouncedInputValue = useDebounce(inputValue, 300);
-  const { data: suggestedProjects = [] } = useGetProjectList({ projectName: debouncedInputValue });
+  // const projectName = useSelector((state: RootState) => state.searchReducer.projectName);
+  const { data: suggestedProjects = [] } = useGetProjectList({
+    projectName: debouncedInputValue,
+    sortBy: '',
+    cursor: null
+  });
   // 전체 프로젝트 리스트 불러오기 (진행상태 태그용)
-  const { data: allProjects = [] }: { data?: ProjectListData[] } = useGetProjectList();
+  // const { data: allProjects = [] }: { data?: ProjectListData[] } = useGetProjectList(
+  //   {
+  //     projectName,
+  //     sortBy: '',
+  //     cursor: null
+  //   },
+  //   { enabled: !!debouncedInputValue }
+  // );
 
   useEffect(() => {
     if (!showNotification) return;
@@ -149,7 +162,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
                 <ul className="mb-2">
                   {recentSearches.map((item) => {
                     // 프로젝트명과 완전 일치하는 프로젝트 찾기
-                    const matched = allProjects.find(
+                    const matched = suggestedProjects.find(
                       (p: ProjectListData) => p.projectName.toLowerCase() === item.toLowerCase()
                     );
                     return (

@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MenuItemType } from './SidebarData';
-import { ROUTES } from '@/constants';
 
 interface MenuItemProps {
   item: MenuItemType;
@@ -16,7 +15,6 @@ export default function MenuItem({ item, fontSize = 'text-20', onClick }: MenuIt
   const handleClick = () => {
     navigate(item.path);
     if (onClick) onClick();
-    if (item.path === ROUTES.PROJECTS) return window.location.reload();
   };
 
   return (

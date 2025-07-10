@@ -96,23 +96,27 @@ export default function ProjectCreateForm({
           disabled
           className="bg-button-hover text-typography-gray"
         />
-        <Input
-          label="테스트 예상 시작일"
-          name="expectedTestExecution"
-          value={formData.expectedTestExecution}
-          onChange={handleChange}
-          type="date"
-          min={getFormattedToday()}
-        />
-        <Input
-          label="프로젝트 마감일"
-          name="projectEnd"
-          value={formData.projectEnd}
-          required
-          type="date"
-          onChange={handleChange}
-          min={getFormattedToday()}
-        />
+        <div className="flex gap-4 children:w-full">
+          <Input
+            label="테스트 예상 시작일"
+            name="expectedTestExecution"
+            className=""
+            value={formData.expectedTestExecution}
+            onChange={handleChange}
+            type="date"
+            min={getFormattedToday()}
+          />
+          <Input
+            label="프로젝트 마감일"
+            name="projectEnd"
+            className="w-full"
+            value={formData.projectEnd}
+            required
+            type="date"
+            onChange={handleChange}
+            min={getFormattedToday()}
+          />
+        </div>
         <Textarea label="설명" name="description" value={formData.description} onChange={handleChange} />
       </section>
 

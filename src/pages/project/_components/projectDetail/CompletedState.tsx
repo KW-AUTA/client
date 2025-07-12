@@ -7,9 +7,9 @@ interface CompleteStateProps {
 }
 export default function CompletedState({ projectDetail }: CompleteStateProps) {
   return (
-    <div>
+    <section className="flex gap-8 mt-4 mb-6 h-72 children:shadow-custom children:rounded-15 children:bg-transparent">
       {projectDetail.testSummary && <ProjectSummaryGraph testSummary={projectDetail.testSummary} />}
       <ProjectPageTable pages={projectDetail?.pages || []} />
-    </div>
+    </section>
   );
 }

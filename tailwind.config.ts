@@ -46,7 +46,24 @@ export default {
         '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
         '40%': { transform: 'translateY(-4px)' },
         '60%': { transform: 'translateY(-2px)' }
+      },
+      // 떠있는 듯한 애니메이션
+      floatCloud: {
+        '0%, 100%': { transform: 'scale(1)' }, // 원래 크기
+        '25%': { transform: 'scale(1.02)' }, // 살짝 커짐
+        '50%': { transform: 'scale(0.98)' }, // 살짝 작아짐
+        '75%': { transform: 'scale(1.01)' }
+      },
+      // 더 좋은 방법이 있을 듯 한데, 제 머리로는 도저히 무리.. 좋은 방법 있으면 코멘트 남겨주십쇼
+      'color-change-red': {
+        '0%, 100%': { 'background-color': '#EF4444' },
+        '50%': { 'background-color': '#FCA5A5' }
+      },
+      'color-change-blue': {
+        '0%, 100%': { 'background-color': '#3B82F6' },
+        '50%': { 'background-color': '#93C5FD' }
       }
+
       // 예전 landing 배경에 적용한 애니메이션인데 지금 안 쓰여서 주석처리
       // flowAlongLine: {
       //   '0%': { transform: 'translate(0, 0)' },
@@ -57,7 +74,11 @@ export default {
       'fade-in-up': 'fade-in-up 0.8s ease-out',
       'slide-in-right': 'slide-in-right 0.8s ease-out',
       'scale-in': 'scale-in 0.6s ease-out',
-      'bounce-subtle': 'bounce-subtle 3s infinite'
+      'bounce-subtle': 'bounce-subtle 3s infinite',
+
+      'float-cloud': 'floatCloud 3s ease-in-out infinite',
+      'color-change-red': 'color-change-red 2s ease-in-out infinite',
+      'color-change-blue': 'color-change-blue 2s ease-in-out infinite'
       // 'flow-line': 'flowAlongLine 30s linear infinite'
     }
   },

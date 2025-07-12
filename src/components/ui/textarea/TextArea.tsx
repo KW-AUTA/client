@@ -43,7 +43,7 @@ export default function Textarea({
       )}
       <textarea
         id={textareaId}
-        className={`w-full bg-background border-[0.5px] border-typography-gray rounded-15 px-4 py-3 placeholder:text-typography-gray focus:border-typography-dark focus:outline-none ${className}`}
+        className={`w-full bg-background border-[0.5px] border-typography-gray rounded-15 px-4 py-3 placeholder:text-typography-gray focus:border-none focus:shadow-custom focus:outline-none ${className}`}
         value={value}
         name={name}
         onChange={onChange}

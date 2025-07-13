@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "vercel-build": "node scripts/vercel-prepare.js && vite build",
+    "vercel-build": "node scripts/vercel-prepare.cjs && vite build",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",

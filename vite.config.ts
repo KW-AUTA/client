@@ -54,8 +54,20 @@ import path from 'path';
 import svgr from 'vite-plugin-svgr';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import fs from 'fs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+
+// ✅ Vercel 환경에서 .storybook/main.ts → main.js 복사
+if (process.env.VERCEL) {
+  const storybookDir = path.join(dirname, '.storybook');
+  const tsPath = path.join(storybookDir, 'main.ts');
+  const jsPath = path.join(storybookDir, 'main.js');
+  if (fs.existsSync(tsPath) && !fs.existsSync(jsPath)) {
+    fs.copyFileSync(tsPath, jsPath);
+    console.log('[Vercel Build] Copied main.ts → main.js');
+  }
+}
 
 export default defineConfig({
   plugins: [react(), svgr()],
@@ -70,7 +82,7 @@ export default defineConfig({
         extends: true,
         plugins: [
           storybookTest({
-            configDir: path.join(__dirname, '.storybook')
+            configDir: path.join(dirname, '.storybook')
           })
         ],
         test: {

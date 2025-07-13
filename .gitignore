@@ -44,3 +44,4 @@ next-env.d.ts
 .env
 *storybook.log
 storybook-static
+.storybook/main.js

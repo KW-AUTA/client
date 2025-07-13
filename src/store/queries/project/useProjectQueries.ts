@@ -3,7 +3,7 @@ import { API_ENDPOINTS } from '@/constants';
 import axiosInstance from '@/services/api/axios';
 import { ProjectsParams } from '@/types/project.type';
 
-export const useGetProjectList = (params: ProjectsParams = {}) => {
+export const useGetProjectList = (params: ProjectsParams = {}, options = {}) => {
   return useQuery({
     queryKey: ['projects', params],
     queryFn: async () => {
@@ -15,7 +15,8 @@ export const useGetProjectList = (params: ProjectsParams = {}) => {
       });
 
       return response.data.data.projectSummaries ?? [];
-    }
+    },
+    ...options
   });
 };
 

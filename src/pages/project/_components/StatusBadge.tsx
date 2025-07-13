@@ -1,4 +1,4 @@
-export type StatusType = 'IN_PROGRESS' | 'COMPLETED' | 'RUNNING';
+export type StatusType = 'IN_PROGRESS' | 'COMPLETED' | 'RUNNING' | 'ERROR';
 
 interface StatusBadgeProps {
   status: StatusType;
@@ -14,6 +14,8 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => 
         return `bg-green_2 text-green_1 text-11 font-medium`;
       case 'RUNNING':
         return `bg-navy_2 text-navy_1 text-11 font-medium`;
+      case 'ERROR':
+        return `bg-red_2 text-red_1 text-11 font-medium`;
       default:
         return `bg-gray_2 text-gray_1 text-11 font-medium`;
     }
@@ -27,6 +29,8 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => 
         return `완료`;
       case 'RUNNING':
         return `진행중`;
+      case 'ERROR':
+        return '에러';
       default:
         return `진행 전`;
     }
@@ -40,6 +44,8 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => 
         return `bg-green_1`;
       case 'RUNNING':
         return `bg-navy_1`;
+      case 'ERROR':
+        return `bg-red_1`;
       default:
         return `bg-gray_1`;
     }

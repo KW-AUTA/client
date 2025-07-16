@@ -11,7 +11,6 @@ import { useGetProjectList } from '@/store/queries/project/useProjectQueries';
 import { useDebounce } from '@/hooks/useDebounce';
 import BellBadge from '@/components/ui/BellBadge';
 import { ProjectListData } from '@/types/project.type';
-import Portal from './Portal';
 import StatusBadge, { StatusType } from '@/pages/project/_components/StatusBadge';
 // import { RootState } from '@/store/redux/store';
 
@@ -25,7 +24,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   const notificationRef = useRef<HTMLDivElement>(null);
   const debouncedInputValue = useDebounce(inputValue, 300);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [dropdownPos, setDropdownPos] = useState({ left: 0, top: 0, width: 0 });
+  // const [dropdownPos, setDropdownPos] = useState({ left: 0, top: 0, width: 0 });
   // const projectName = useSelector((state: RootState) => state.searchReducer.projectName);
   const { data: suggestedProjects = [] } = useGetProjectList({
     projectName: debouncedInputValue,
@@ -42,21 +41,21 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   //   { enabled: !!debouncedInputValue }
   // );
 
-  function updateDropdownPos() {
-    if (inputRef.current) {
-      const rect = inputRef.current.getBoundingClientRect();
-      setDropdownPos({ left: rect.left, top: rect.bottom, width: rect.width });
-    }
-  }
+  // function updateDropdownPos() {
+  //   if (inputRef.current) {
+  //     const rect = inputRef.current.getBoundingClientRect();
+  //     setDropdownPos({ left: rect.left, top: rect.bottom, width: rect.width });
+  //   }
+  // }
 
-  useEffect(() => {
-    if (!showRecent) return;
-    updateDropdownPos();
-    window.addEventListener('resize', updateDropdownPos);
-    return () => {
-      window.removeEventListener('resize', updateDropdownPos);
-    };
-  }, [showRecent]);
+  // useEffect(() => {
+  //   if (!showRecent) return;
+  //   updateDropdownPos();
+  //   window.addEventListener('resize', updateDropdownPos);
+  //   return () => {
+  //     window.removeEventListener('resize', updateDropdownPos);
+  //   };
+  // }, [showRecent]);
 
   const handleSearch = (keyword?: string) => {
     const searchWord = keyword ?? inputValue;
@@ -70,7 +69,6 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   };
 
   const handleInputFocus = () => {
-    updateDropdownPos();
     setShowRecent(true);
     setRecentSearches(getRecentSearches());
   };
@@ -124,89 +122,80 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
           onFocus={handleInputFocus}
         />
         {showRecent && (
-          <Portal>
-            <div
-              className="fixed z-[9999] bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto"
-              style={{
-                left: dropdownPos.left,
-                top: dropdownPos.top + 12,
-                width: dropdownPos.width,
-                minHeight: 48,
-                minWidth: dropdownPos.width,
-                maxWidth: 360
-              }}>
-              {inputValue.trim() ? (
-                suggestedProjects.length > 0 ? (
-                  <>
-                    <div className="text-xs text-blue-400 mb-1 mt-2">추천 프로젝트</div>
-                    <ul>
-                      {suggestedProjects.map((proj: ProjectListData) => (
-                        <li
-                          key={proj.projectName}
-                          className="flex items-center justify-between text-blue-700 text-sm py-1 px-2 hover:bg-blue-50 rounded cursor-pointer"
-                          onMouseDown={() => {
-                            setInputValue(proj.projectName);
-                            setTimeout(() => handleSearch(proj.projectName), 0);
-                          }}>
-                          <span>{proj.projectName}</span>
-                          <StatusBadge status={proj.projectStatus as StatusType} className="ml-2" />
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <p className="text-gray-400 text-sm text-center py-4">일치하는 프로젝트가 없습니다</p>
-                )
-              ) : recentSearches.length === 0 ? (
-                <p className="text-gray-400 text-sm text-center py-4">최근 검색어가 없습니다</p>
-              ) : (
+          <div
+            className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[360px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto sm:w-full sm:left-0 sm:right-0 sm:mx-auto z-[9999]"
+            style={{ minHeight: 48 }}>
+            {inputValue.trim() ? (
+              suggestedProjects.length > 0 ? (
                 <>
-                  <button
-                    className="block w-full text-right text-xs text-gray-400 hover:text-red-400 mb-2"
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      clearRecentSearches();
-                      setRecentSearches([]);
-                    }}>
-                    전체 삭제
-                  </button>
-                  <div className="text-xs text-gray-400 mb-1">최근 검색어</div>
-                  <ul className="mb-2">
-                    {recentSearches.map((item) => {
-                      const matched = suggestedProjects.find(
-                        (p: ProjectListData) => p.projectName.toLowerCase() === item.toLowerCase()
-                      );
-                      return (
-                        <li
-                          key={item}
-                          className="flex items-center text-gray-700 text-sm py-1 px-2 hover:bg-gray-100 rounded cursor-pointer group">
-                          <span
-                            className="flex-1"
-                            onMouseDown={() => {
-                              setInputValue(item);
-                              setTimeout(() => handleSearch(item), 0);
-                            }}>
-                            {item}
-                          </span>
-                          {matched && <StatusBadge status={matched.projectStatus as StatusType} className="ml-2" />}
-                          <button
-                            className="ml-2 text-gray-400 hover:text-red-400 opacity-70 group-hover:opacity-100 transition"
-                            onMouseDown={(e) => {
-                              e.stopPropagation();
-                              removeRecentSearch(item);
-                            }}
-                            tabIndex={-1}
-                            aria-label="검색어 삭제">
-                            ×
-                          </button>
-                        </li>
-                      );
-                    })}
+                  <div className="text-xs text-blue-400 mb-1 mt-2">추천 프로젝트</div>
+                  <ul>
+                    {suggestedProjects.map((proj: ProjectListData) => (
+                      <li
+                        key={proj.projectName}
+                        className="flex items-center justify-between text-blue-700 text-sm py-1 px-2 hover:bg-blue-50 rounded cursor-pointer"
+                        onMouseDown={() => {
+                          setInputValue(proj.projectName);
+                          setTimeout(() => handleSearch(proj.projectName), 0);
+                        }}>
+                        <span>{proj.projectName}</span>
+                        <StatusBadge status={proj.projectStatus as StatusType} className="ml-2" />
+                      </li>
+                    ))}
                   </ul>
                 </>
-              )}
-            </div>
-          </Portal>
+              ) : (
+                <p className="text-gray-400 text-sm text-center py-4">일치하는 프로젝트가 없습니다</p>
+              )
+            ) : recentSearches.length === 0 ? (
+              <p className="text-gray-400 text-sm text-center py-4">최근 검색어가 없습니다</p>
+            ) : (
+              <>
+                <button
+                  className="block w-full text-right text-xs text-gray-400 hover:text-red-400 mb-2"
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    clearRecentSearches();
+                    setRecentSearches([]);
+                  }}>
+                  전체 삭제
+                </button>
+                <div className="text-xs text-gray-400 mb-1">최근 검색어</div>
+                <ul className="mb-2">
+                  {recentSearches.map((item) => {
+                    const matched = suggestedProjects.find(
+                      (p: ProjectListData) => p.projectName.toLowerCase() === item.toLowerCase()
+                    );
+                    return (
+                      <li
+                        key={item}
+                        className="flex items-center text-gray-700 text-sm py-1 px-2 hover:bg-gray-100 rounded cursor-pointer group">
+                        <span
+                          className="flex-1"
+                          onMouseDown={() => {
+                            setInputValue(item);
+                            setTimeout(() => handleSearch(item), 0);
+                          }}>
+                          {item}
+                        </span>
+                        {matched && <StatusBadge status={matched.projectStatus as StatusType} className="ml-2" />}
+                        <button
+                          className="ml-2 text-gray-400 hover:text-red-400 opacity-70 group-hover:opacity-100 transition"
+                          onMouseDown={(e) => {
+                            e.stopPropagation();
+                            removeRecentSearch(item);
+                          }}
+                          tabIndex={-1}
+                          aria-label="검색어 삭제">
+                          ×
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            )}
+          </div>
         )}
       </div>
       <div className="flex items-center gap-2 mr-8 lg:gap-4 min-w-0">

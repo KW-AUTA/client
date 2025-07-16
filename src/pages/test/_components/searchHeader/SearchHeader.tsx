@@ -4,7 +4,6 @@ import Select from '@/components/ui/select/Select';
 import Button from '@/components/ui/button/Button';
 import searchIcon from '@/assets/icons/search.svg';
 import ResetIcon from '@/assets/icons/refresh.svg?react';
-import Portal from '@/components/layout/page-layout/Portal'; // Portal 경로에 맞게 import
 
 interface SearchHeaderProps {
   inputValue: string;
@@ -31,28 +30,23 @@ export default function SearchHeader({
   onDateSortChange
 }: SearchHeaderProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [dropdownPos, setDropdownPos] = useState({ left: 0, top: 0, width: 0 });
   const [showRecent, setShowRecent] = useState(false);
 
-  function updateDropdownPos() {
-    if (inputRef.current) {
-      const rect = inputRef.current.getBoundingClientRect();
-      setDropdownPos({ left: rect.left, top: rect.bottom, width: rect.width });
-    }
-  }
-
   const handleInputFocus = () => {
-    updateDropdownPos();
     setShowRecent(true);
     // 최근 검색어 불러오기 등 추가 로직
   };
 
   useEffect(() => {
     if (!showRecent) return;
-    updateDropdownPos();
-    window.addEventListener('resize', updateDropdownPos);
+    // updateDropdownPos(); // 제거됨
+    window.addEventListener('resize', () => {
+      // updateDropdownPos(); // 제거됨
+    });
     return () => {
-      window.removeEventListener('resize', updateDropdownPos);
+      window.removeEventListener('resize', () => {
+        // updateDropdownPos(); // 제거됨
+      });
     };
   }, [showRecent]);
 
@@ -62,7 +56,7 @@ export default function SearchHeader({
     function handleClickOutside(e: MouseEvent | TouchEvent) {
       // inputRef와 드롭다운 영역을 모두 포함해서 체크
       const input = inputRef.current;
-      const dropdown = document.getElementById('search-dropdown-portal');
+      const dropdown = document.getElementById('search-dropdown-portal'); // 제거됨
       if (input && !input.contains(e.target as Node) && dropdown && !dropdown.contains(e.target as Node)) {
         setShowRecent(false);
       }
@@ -101,20 +95,11 @@ export default function SearchHeader({
           onFocus={handleInputFocus}
         />
         {showRecent && (
-          <Portal>
-            <div
-              id="search-dropdown-portal"
-              className="fixed z-[9999] bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto"
-              style={{
-                left: dropdownPos.left,
-                top: dropdownPos.top + 8,
-                width: dropdownPos.width,
-                minWidth: 180,
-                maxWidth: 510 // 필요시 input의 max-width와 맞춤
-              }}>
-              {/* 드롭다운 내용 */}
-            </div>
-          </Portal>
+          <div
+            className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[510px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto z-[9999]"
+            style={{ minHeight: 48 }}>
+            {/* 드롭다운 내용 */}
+          </div>
         )}
       </div>
 

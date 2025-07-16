@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useUserProfile } from '@/store/queries/user/useUserQueries';
@@ -11,6 +11,7 @@ import { useGetProjectList } from '@/store/queries/project/useProjectQueries';
 import { useDebounce } from '@/hooks/useDebounce';
 import BellBadge from '@/components/ui/BellBadge';
 import { ProjectListData } from '@/types/project.type';
+import StatusBadge, { StatusType } from '@/pages/project/_components/StatusBadge';
 // import { RootState } from '@/store/redux/store';
 
 export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
@@ -22,6 +23,8 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   const [showNotification, setShowNotification] = useState(false);
   const notificationRef = useRef<HTMLDivElement>(null);
   const debouncedInputValue = useDebounce(inputValue, 300);
+  const inputRef = useRef<HTMLInputElement>(null);
+  // const [dropdownPos, setDropdownPos] = useState({ left: 0, top: 0, width: 0 });
   // const projectName = useSelector((state: RootState) => state.searchReducer.projectName);
   const { data: suggestedProjects = [] } = useGetProjectList({
     projectName: debouncedInputValue,
@@ -38,16 +41,21 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   //   { enabled: !!debouncedInputValue }
   // );
 
-  useEffect(() => {
-    if (!showNotification) return;
-    const handleClickOutside = (e: MouseEvent) => {
-      if (notificationRef.current && !notificationRef.current.contains(e.target as Node)) {
-        setShowNotification(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [showNotification]);
+  // function updateDropdownPos() {
+  //   if (inputRef.current) {
+  //     const rect = inputRef.current.getBoundingClientRect();
+  //     setDropdownPos({ left: rect.left, top: rect.bottom, width: rect.width });
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (!showRecent) return;
+  //   updateDropdownPos();
+  //   window.addEventListener('resize', updateDropdownPos);
+  //   return () => {
+  //     window.removeEventListener('resize', updateDropdownPos);
+  //   };
+  // }, [showRecent]);
 
   const handleSearch = (keyword?: string) => {
     const searchWord = keyword ?? inputValue;
@@ -100,6 +108,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
           <img src={searchIcon} alt="search button" className="absolute left-4 top-2 w-6 h-6" />
         </button>
         <input
+          ref={inputRef}
           type="text"
           placeholder="프로젝트 검색"
           className="w-full rounded-full pl-10 text-base"
@@ -114,7 +123,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
         />
         {showRecent && (
           <div
-            className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[360px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50 max-h-60 overflow-auto sm:w-full sm:left-0 sm:right-0 sm:mx-auto"
+            className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[360px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto sm:w-full sm:left-0 sm:right-0 sm:mx-auto z-[99999]"
             style={{ minHeight: 48 }}>
             {inputValue.trim() ? (
               suggestedProjects.length > 0 ? (
@@ -130,14 +139,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
                           setTimeout(() => handleSearch(proj.projectName), 0);
                         }}>
                         <span>{proj.projectName}</span>
-                        <span
-                          className={
-                            proj.projectStatus === 'COMPLETED'
-                              ? 'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700'
-                              : 'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700'
-                          }>
-                          {proj.projectStatus === 'COMPLETED' ? '완료' : '진행중'}
-                        </span>
+                        <StatusBadge status={proj.projectStatus as StatusType} className="ml-2" />
                       </li>
                     ))}
                   </ul>
@@ -161,7 +163,6 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
                 <div className="text-xs text-gray-400 mb-1">최근 검색어</div>
                 <ul className="mb-2">
                   {recentSearches.map((item) => {
-                    // 프로젝트명과 완전 일치하는 프로젝트 찾기
                     const matched = suggestedProjects.find(
                       (p: ProjectListData) => p.projectName.toLowerCase() === item.toLowerCase()
                     );
@@ -177,16 +178,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
                           }}>
                           {item}
                         </span>
-                        {matched && (
-                          <span
-                            className={
-                              matched.projectStatus === 'COMPLETED'
-                                ? 'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700'
-                                : 'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700'
-                            }>
-                            {matched.projectStatus === 'COMPLETED' ? '완료' : '진행중'}
-                          </span>
-                        )}
+                        {matched && <StatusBadge status={matched.projectStatus as StatusType} className="ml-2" />}
                         <button
                           className="ml-2 text-gray-400 hover:text-red-400 opacity-70 group-hover:opacity-100 transition"
                           onMouseDown={(e) => {

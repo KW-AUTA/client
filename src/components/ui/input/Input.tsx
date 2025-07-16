@@ -1,4 +1,4 @@
-import { ChangeEvent, InputHTMLAttributes, useId } from 'react';
+import { forwardRef, ChangeEvent, InputHTMLAttributes, useId } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -10,17 +10,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   onEnterPress?: () => void;
 }
 
-export default function Input({
-  label,
-  name,
-  value,
-  className = '',
-  labelClassName = '',
-  required = false,
-  onChange,
-  onEnterPress,
-  ...props
-}: InputProps) {
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { label, name, value, className = '', labelClassName = '', required = false, onChange, onEnterPress, ...props },
+  ref
+) {
   const inputId = useId();
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -38,6 +31,7 @@ export default function Input({
         </label>
       )}
       <input
+        ref={ref}
         id={inputId}
         type="text"
         className={`w-full bg-background border-[0.5px] border-typography-gray rounded-15 px-4 py-3 placeholder:text-typography-gray focus:border-none focus:shadow-custom focus:outline-none ${className}`}
@@ -50,4 +44,6 @@ export default function Input({
       />
     </div>
   );
-}
+});
+
+export default Input;

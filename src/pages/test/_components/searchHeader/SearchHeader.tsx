@@ -39,32 +39,15 @@ export default function SearchHeader({
 
   useEffect(() => {
     if (!showRecent) return;
-    // updateDropdownPos(); // 제거됨
-    window.addEventListener('resize', () => {
-      // updateDropdownPos(); // 제거됨
-    });
-    return () => {
-      window.removeEventListener('resize', () => {
-        // updateDropdownPos(); // 제거됨
-      });
-    };
-  }, [showRecent]);
-
-  useEffect(() => {
-    if (!showRecent) return;
-
     function handleClickOutside(e: MouseEvent | TouchEvent) {
-      // inputRef와 드롭다운 영역을 모두 포함해서 체크
       const input = inputRef.current;
-      const dropdown = document.getElementById('search-dropdown-portal'); // 제거됨
+      const dropdown = document.getElementById('search-dropdown');
       if (input && !input.contains(e.target as Node) && dropdown && !dropdown.contains(e.target as Node)) {
         setShowRecent(false);
       }
     }
-
     window.addEventListener('mousedown', handleClickOutside);
     window.addEventListener('touchstart', handleClickOutside);
-
     return () => {
       window.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('touchstart', handleClickOutside);
@@ -96,13 +79,13 @@ export default function SearchHeader({
         />
         {showRecent && (
           <div
+            id="search-dropdown"
             className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[510px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto z-[9999]"
             style={{ minHeight: 48 }}>
             {/* 드롭다운 내용 */}
           </div>
         )}
       </div>
-
       <div className="flex gap-2">
         <Button
           leftIcon={<ResetIcon className="transition-transform duration-500 ease-out group-hover:rotate-90" />}

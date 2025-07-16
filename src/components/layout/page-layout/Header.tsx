@@ -123,7 +123,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
         />
         {showRecent && (
           <div
-            className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[360px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto sm:w-full sm:left-0 sm:right-0 sm:mx-auto z-[9999]"
+            className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[360px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto sm:w-full sm:left-0 sm:right-0 sm:mx-auto z-[99999]"
             style={{ minHeight: 48 }}>
             {inputValue.trim() ? (
               suggestedProjects.length > 0 ? (

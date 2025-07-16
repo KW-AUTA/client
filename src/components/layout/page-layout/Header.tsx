@@ -12,6 +12,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import BellBadge from '@/components/ui/BellBadge';
 import { ProjectListData } from '@/types/project.type';
 import Portal from './Portal';
+import StatusBadge, { StatusType } from '@/pages/project/_components/StatusBadge';
 // import { RootState } from '@/store/redux/store';
 
 export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
@@ -148,14 +149,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
                             setTimeout(() => handleSearch(proj.projectName), 0);
                           }}>
                           <span>{proj.projectName}</span>
-                          <span
-                            className={
-                              proj.projectStatus === 'COMPLETED'
-                                ? 'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700'
-                                : 'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700'
-                            }>
-                            {proj.projectStatus === 'COMPLETED' ? '완료' : '진행중'}
-                          </span>
+                          <StatusBadge status={proj.projectStatus as StatusType} className="ml-2" />
                         </li>
                       ))}
                     </ul>
@@ -194,16 +188,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
                             }}>
                             {item}
                           </span>
-                          {matched && (
-                            <span
-                              className={
-                                matched.projectStatus === 'COMPLETED'
-                                  ? 'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700'
-                                  : 'ml-2 px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700'
-                              }>
-                              {matched.projectStatus === 'COMPLETED' ? '완료' : '진행중'}
-                            </span>
-                          )}
+                          {matched && <StatusBadge status={matched.projectStatus as StatusType} className="ml-2" />}
                           <button
                             className="ml-2 text-gray-400 hover:text-red-400 opacity-70 group-hover:opacity-100 transition"
                             onMouseDown={(e) => {

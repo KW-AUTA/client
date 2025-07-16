@@ -56,6 +56,27 @@ export default function SearchHeader({
     };
   }, [showRecent]);
 
+  useEffect(() => {
+    if (!showRecent) return;
+
+    function handleClickOutside(e: MouseEvent | TouchEvent) {
+      // inputRef와 드롭다운 영역을 모두 포함해서 체크
+      const input = inputRef.current;
+      const dropdown = document.getElementById('search-dropdown-portal');
+      if (input && !input.contains(e.target as Node) && dropdown && !dropdown.contains(e.target as Node)) {
+        setShowRecent(false);
+      }
+    }
+
+    window.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('touchstart', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [showRecent]);
+
   return (
     <section className="flex items-center justify-between w-full gap-4 pt-5 pb-9">
       <div className="relative flex-1 max-w-[510px] min-w-0">
@@ -82,6 +103,7 @@ export default function SearchHeader({
         {showRecent && (
           <Portal>
             <div
+              id="search-dropdown-portal"
               className="fixed z-[9999] bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto"
               style={{
                 left: dropdownPos.left,

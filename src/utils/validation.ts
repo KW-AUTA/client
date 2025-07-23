@@ -17,7 +17,7 @@ export function isJwtExpired(token: string): boolean {
     if (!payload.exp) return true;
     // exp는 초 단위, Date.now()는 ms 단위
     return payload.exp * 1000 < Date.now();
-  } catch (e) {
+  } catch {
     return true;
   }
 }

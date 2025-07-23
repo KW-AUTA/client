@@ -3,11 +3,16 @@ import CommonModal from './CommonModal';
 interface ErrorModalProps {
   open: boolean;
   message: string;
+  onRetry?: () => void;
 }
 
-export default function ErrorModal({ open, message }: ErrorModalProps) {
+export default function ErrorModal({ open, message, onRetry }: ErrorModalProps) {
   const handleRetry = () => {
-    window.location.reload();
+    if (onRetry) {
+      onRetry();
+    } else {
+      window.location.reload();
+    }
   };
   return (
     <CommonModal

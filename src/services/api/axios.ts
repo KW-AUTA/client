@@ -93,7 +93,8 @@ axiosInstance.interceptors.response.use(
         processQueue(refreshError, null);
         store.dispatch(logout());
 
-        alert('로그아웃되었습니다. 다시 로그인해주세요.');
+        // alert('로그아웃되었습니다. 다시 로그인해주세요.');
+        toast.error('로그아웃되었습니다. 다시 로그인해주세요.');
 
         window.location.href = ROUTES.LOGIN;
         return Promise.reject(refreshError);

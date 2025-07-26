@@ -122,7 +122,8 @@ export const useProjectFormHandler = ({ mode }: UseProjectFromHandlerProps) => {
   // mode를 나눠놨으므로 return문 밖에서 여기서 계산해서 밖에서 그냥 변수 갖다 쓰기
   const isPending = mode === 'create' ? isUserDataLoading : isUserDataLoading || isProjectLoading;
   const isError = mode === 'create' ? isUserDataError || !userData : isUserDataError || !userData || isProjectError;
-  const username = mode === 'create' ? userData?.username : projectDetail?.projectAdmin || userData?.username;
+  const username =
+    mode === 'create' ? userData?.username : projectDetail?.projectInfo?.projectAdmin || userData?.username;
   const initialValues = mode === 'modify' ? projectDetail : undefined;
 
   const isRegisterPending = mode === 'create' && isRegisterLoading;

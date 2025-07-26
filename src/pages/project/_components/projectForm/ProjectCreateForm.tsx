@@ -2,13 +2,13 @@ import Button from '@/components/ui/button/Button';
 import Input from '@/components/ui/input/Input';
 import Textarea from '@/components/ui/textarea/TextArea';
 import DesignSourceSection from '@/pages/project/_components/projectForm/DesignSourceSection';
-import { GenerateProject } from '@/types/project.type';
+import { GenerateProject, ProjectDetailData } from '@/types/project.type';
 import { getFormattedToday } from '@/utils/format';
 import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 
 interface ProjectCreateFormPropsType {
   username?: string;
-  initialValues?: GenerateProject;
+  initialValues?: GenerateProject | ProjectDetailData;
   mode?: 'create' | 'modify';
   onSubmit: (data: GenerateProject, actionType: 'register' | 'test', figmaFile: File | null) => void;
   onCancel: () => void;
@@ -39,6 +39,8 @@ export default function ProjectCreateForm({
 
   const [figmaFile, setFigmaFile] = useState<File | null>(null);
 
+  console.log('d', initialValues);
+
   // mode에 따른 텍스트 설정
   const buttonTexts = useMemo(() => {
     const baseText = mode === 'modify' ? '수정' : '등록';
@@ -48,14 +50,42 @@ export default function ProjectCreateForm({
     };
   }, [mode, isRegisterLoading, isTestLoading]);
 
+  // ProjectDetailData를 GenerateProject로 변환하는 함수
+  // 프로젝트 세부 api 응답 구조가 바껴서 매칭이 안돼 변환하는 작업이 필요해서 함수를 추가적으로 정의해주었습니다..!
+  const convertDetailToGenerate = (detail: ProjectDetailData): GenerateProject => {
+    return {
+      projectName: detail.projectInfo.projectName,
+      expectedTestExecution: detail.projectInfo.testExecutionTime,
+      projectEnd: detail.projectInfo.projectEnd,
+      description: detail.projectInfo.description,
+      figmaUrl: detail.figmaInfo.figmaUrl,
+      serviceUrl: detail.figmaInfo.serviceUrl,
+      rootFigmaPage: detail.figmaInfo.rootFigmaPage,
+      administrator: detail.projectInfo.projectAdmin,
+      fileName: detail.figmaInfo.fileName,
+      figmaFile: null
+    };
+  };
+
   // initialValue가 변경될 때 formData 업데이트
   useEffect(() => {
     if (initialValues) {
-      setFormData({
-        ...initialValues,
-        fileName: initialValues.fileName || null
-      });
-      setFigmaFile(initialValues?.figmaFile || null);
+      let convertedData: GenerateProject;
+
+      // ProjectDetailData인지 GenerateProject인지 확인
+      if ('projectInfo' in initialValues) {
+        // ProjectDetailData인 경우 변환
+        convertedData = convertDetailToGenerate(initialValues as ProjectDetailData);
+      } else {
+        // GenerateProject인 경우 그대로 사용
+        convertedData = {
+          ...(initialValues as GenerateProject),
+          fileName: (initialValues as GenerateProject).fileName || null
+        };
+      }
+
+      setFormData(convertedData);
+      setFigmaFile(convertedData.figmaFile || null);
     }
   }, [initialValues]);
 

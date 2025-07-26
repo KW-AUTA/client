@@ -1,19 +1,19 @@
-export type StatusType = 'IN_PROGRESS' | 'COMPLETED' | 'RUNNING' | 'ERROR';
+import { ProjectStatusType } from '@/types/project.type';
 
 interface StatusBadgeProps {
-  status: StatusType;
+  status: ProjectStatusType;
   className?: string;
 }
 
 const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => {
-  const getStatusStyle = (status: StatusType): string => {
+  const getStatusStyle = (status: ProjectStatusType): string => {
     switch (status) {
       case 'IN_PROGRESS':
         return `bg-navy_2 text-navy_1 text-11 font-medium`;
       case 'COMPLETED':
         return `bg-green_2 text-green_1 text-11 font-medium`;
-      case 'RUNNING':
-        return `bg-navy_2 text-navy_1 text-11 font-medium`;
+      // case 'RUNNING':
+      //   return `bg-navy_2 text-navy_1 text-11 font-medium`;
       case 'ERROR':
         return `bg-red_2 text-red_1 text-11 font-medium`;
       default:
@@ -21,14 +21,14 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => 
     }
   };
 
-  const getStatusText = (status: StatusType): string => {
+  const getStatusText = (status: ProjectStatusType): string => {
     switch (status) {
       case 'IN_PROGRESS':
         return `진행중`;
       case 'COMPLETED':
         return `완료`;
-      case 'RUNNING':
-        return `진행중`;
+      // case 'RUNNING':
+      //   return `진행중`;
       case 'ERROR':
         return '에러';
       default:
@@ -36,14 +36,14 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => 
     }
   };
 
-  const getDotColor = (status: StatusType): string => {
+  const getDotColor = (status: ProjectStatusType): string => {
     switch (status) {
       case 'IN_PROGRESS':
         return `bg-navy_1`;
       case 'COMPLETED':
         return `bg-green_1`;
-      case 'RUNNING':
-        return `bg-navy_1`;
+      // case 'RUNNING':
+      //   return `bg-navy_1`;
       case 'ERROR':
         return `bg-red_1`;
       default:

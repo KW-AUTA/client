@@ -1,3 +1,5 @@
+export type TestStatusType = 'PASSED' | 'FAILED' | 'READY' | 'RUNNING';
+
 export interface TestData {
   projectId: number;
   projectName?: string;

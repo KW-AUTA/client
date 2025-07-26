@@ -34,7 +34,7 @@
     "react-router-dom": "^7.5.3",
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
-    "recoil": "^0.7.7"
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

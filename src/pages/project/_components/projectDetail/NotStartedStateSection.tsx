@@ -5,7 +5,7 @@ interface NotStartedStateProps {
   isRunningTest?: boolean;
 }
 
-export default function NotStartedState({ onOpenTestModal, isRunningTest = false }: NotStartedStateProps) {
+export default function NotStartedStateSection({ onOpenTestModal, isRunningTest = false }: NotStartedStateProps) {
   return (
     <section className="rounded-15 w-full bg-transparent">
       <div className="flex flex-col items-center justify-center h-64 bg-blue-100/10 rounded-xl border border-blue-500 gap-4">

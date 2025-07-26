@@ -6,30 +6,30 @@ const msgPath = process.argv[2];
 const msg = fs.readFileSync(msgPath, 'utf-8').trim();
 
 type CommitType =
+  | 'Init'
   | 'Feat'
-  | 'Fix'
-  | 'Docs'
-  | 'Style'
-  | 'Refactor'
-  | 'Test'
   | 'Chore'
-  | 'Perf'
-  | 'Ci'
-  | 'Build'
-  | 'Revert';
+  | 'Style'
+  | 'Fix'
+  | 'Test'
+  | 'Deploy'
+  | 'Refactor'
+  | 'Rename'
+  | 'Docs'
+  | 'Remove';
 
 const validTypes: CommitType[] = [
+  'Init',
   'Feat',
-  'Fix',
-  'Docs',
-  'Style',
-  'Refactor',
-  'Test',
   'Chore',
-  'Perf',
-  'Ci',
-  'Build',
-  'Revert'
+  'Style',
+  'Fix',
+  'Test',
+  'Deploy',
+  'Refactor',
+  'Rename',
+  'Docs',
+  'Remove'
 ];
 
 const pattern = new RegExp(`^\\[\\s*#\\d+\\s*\\|\\s*(${validTypes.join('|')})\\s*\\]\\s*.+$`);

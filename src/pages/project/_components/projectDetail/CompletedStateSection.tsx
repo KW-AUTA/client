@@ -7,7 +7,7 @@ interface CompleteStateProps {
 }
 export default function CompletedStateSection({ projectDetail }: CompleteStateProps) {
   return (
-    <section>
+    <section className="space-y-12">
       <LLMResult projectDetail={projectDetail} />
       <TestResult projectDetail={projectDetail} />
     </section>

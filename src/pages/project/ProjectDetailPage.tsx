@@ -20,8 +20,6 @@ export default function ProjectDetailPage() {
   const { mutate: runTestMutation, isPending: isRunningTest } = useRunTest();
   const [isRunTestModalOpen, setIsRunTestModalOpen] = useState(false);
 
-  console.log(projectDetail);
-
   const handleRunTest = () => {
     runTestMutation(Number(projectId), {
       onSuccess: () => {

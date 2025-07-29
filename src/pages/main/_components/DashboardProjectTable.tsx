@@ -1,15 +1,16 @@
 import React from 'react';
 import TableItem from '@/components/ui/table/CustomTable';
-import StatusBadge, { StatusType } from '@/pages/project/_components/StatusBadge';
+import StatusBadge from '@/pages/project/_components/StatusBadge';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/constants';
+import { ProjectStatusType } from '@/types/project.type';
 
 interface DashboardProject {
   projectId: number;
   projectName: string;
   administrator: string;
   projectEnd: string;
-  projectStatus: StatusType;
+  projectStatus: ProjectStatusType;
 }
 
 const columns = [
@@ -39,7 +40,7 @@ const DashboardProjectTable: React.FC<DashboardProjectTableProps> = ({ projects 
       columns={columns}
       items={projects.map((project) => ({
         ...project,
-        projectStatus: project.projectStatus as StatusType
+        projectStatus: project.projectStatus as ProjectStatusType
       }))}
       onItemClick={handleDashboardProjectItem}
       renderCell={(column, item) => {

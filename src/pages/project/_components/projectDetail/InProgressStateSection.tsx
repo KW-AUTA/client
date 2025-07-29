@@ -1,6 +1,6 @@
 import RingLoader from 'react-spinners/RingLoader';
 
-export default function InProgressState() {
+export default function InProgressStateSection() {
   return (
     <div className="shadow-custom rounded-15 p-6 w-full bg-transparent">
       <div className="flex flex-col items-center justify-center h-64 space-y-6">

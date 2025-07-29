@@ -8,11 +8,10 @@ import PageLoader from '@/components/ui/loader/PageLoader';
 import DesignSourceSection from '@/pages/project/_components/projectForm/DesignSourceSection';
 import ProjectTitle from '@/pages/project/_components/ProjectTitle';
 import ProjectInfo from '@/pages/project/_components/projectDetail/ProjectInfo';
-import ReportBrief from '@/pages/project/_components/projectDetail/ReportBrief';
 import ProjectControlButtons from '@/pages/project/_components/projectDetail/ProjectControlButtons';
-import NotStartedState from '@/pages/project/_components/projectDetail/NotStartedState';
-import InProgressState from '@/pages/project/_components/projectDetail/InProgressState';
-import CompletedState from '@/pages/project/_components/projectDetail/CompletedState';
+import NotStartedStateSection from '@/pages/project/_components/projectDetail/NotStartedStateSection';
+import InProgressStateSection from '@/pages/project/_components/projectDetail/InProgressStateSection';
+import CompletedStateSection from '@/pages/project/_components/projectDetail/CompletedStateSection';
 import ErrorState from '@/pages/project/_components/projectDetail/ErrorState';
 
 export default function ProjectDetailPage() {
@@ -20,17 +19,6 @@ export default function ProjectDetailPage() {
   const { data: projectDetail, isPending, isError, refetch } = useGetProjectDetail(Number(projectId));
   const { mutate: runTestMutation, isPending: isRunningTest } = useRunTest();
   const [isRunTestModalOpen, setIsRunTestModalOpen] = useState(false);
-
-  const projectBasicInfo = {
-    projectName: projectDetail?.projectName,
-    projectCreatedDate: projectDetail?.projectCreatedDate,
-    projectEnd: projectDetail?.projectEnd,
-    projectAdmin: projectDetail?.projectAdmin,
-    description: projectDetail?.description,
-    testExecutionTime: projectDetail?.testExecutionTime
-  };
-
-  console.log(projectDetail?.projectStatus);
 
   const handleRunTest = () => {
     runTestMutation(Number(projectId), {
@@ -55,19 +43,19 @@ export default function ProjectDetailPage() {
 
   // projectStatus별 렌더링 함수
   const renderProjectStatusSection = () => {
-    const status = projectDetail?.projectStatus;
+    const status = projectDetail?.projectInfo?.projectStatus;
 
     switch (status) {
       case 'NOT_STARTED':
-        return <NotStartedState onOpenTestModal={handleOpenTestModal} isRunningTest={isRunningTest} />;
+        return <NotStartedStateSection onOpenTestModal={handleOpenTestModal} isRunningTest={isRunningTest} />;
       case 'IN_PROGRESS':
-        return <InProgressState />;
+        return <InProgressStateSection />;
       case 'COMPLETED':
-        return <CompletedState projectDetail={projectDetail} />;
+        return <CompletedStateSection projectDetail={projectDetail} />;
       case 'ERROR':
         return <ErrorState onOpenTestModal={handleOpenTestModal} isRunningTest={isRunningTest} />;
       default:
-        return <NotStartedState onOpenTestModal={handleOpenTestModal} isRunningTest={isRunningTest} />;
+        return <NotStartedStateSection onOpenTestModal={handleOpenTestModal} isRunningTest={isRunningTest} />;
     }
   };
 
@@ -77,28 +65,20 @@ export default function ProjectDetailPage() {
   return (
     <div className="w-[90%] flex flex-col m-auto">
       <ProjectTitle />
-      <ProjectInfo {...projectBasicInfo} />
+      <ProjectInfo {...projectDetail?.projectInfo} />
       <span className="border border-typography-gray my-4"></span>
 
       <section>{renderProjectStatusSection()}</section>
 
-      {projectDetail?.projectStatus === 'COMPLETED' && (
-        <ReportBrief reportSummary={projectDetail?.reportSummary} projectId={Number(projectId)} />
-      )}
-
       <DesignSourceSection
-        figmaUrl={projectDetail?.figmaUrl}
-        serviceUrl={projectDetail?.serviceUrl}
-        rootFigmaPage={projectDetail?.rootFigmaPage}
-        fileName={projectDetail?.fileName}
+        {...projectDetail?.figmaInfo}
         containerClassName="border-none shadow-custom rounded-15 px-6 pt-6 pb-8 space-y-4"
         disabled
       />
 
       <ProjectControlButtons
         projectId={Number(projectId)}
-        projectName={projectBasicInfo.projectName}
-        projectStatus={projectDetail?.projectStatus}
+        {...projectDetail?.projectInfo}
         onOpenTestModal={handleOpenTestModal}
       />
 
@@ -108,7 +88,7 @@ export default function ProjectDetailPage() {
         onConfirm={handleRunTest}
         title="테스트 실행"
         cancelText="취소">
-        {projectDetail?.projectName}에 대해 테스트를 실행하시겠습니까?
+        {projectDetail?.projectInfo?.projectName}에 대해 테스트를 실행하시겠습니까?
       </CommonModal>
     </div>
   );

@@ -10,8 +10,8 @@ import { saveRecentSearch, getRecentSearches, clearRecentSearches } from '@/util
 import { useGetProjectList } from '@/store/queries/project/useProjectQueries';
 import { useDebounce } from '@/hooks/useDebounce';
 import BellBadge from '@/components/ui/BellBadge';
-import { ProjectListData } from '@/types/project.type';
-import StatusBadge, { StatusType } from '@/pages/project/_components/StatusBadge';
+import { ProjectListData, ProjectStatusType } from '@/types/project.type';
+import StatusBadge from '@/pages/project/_components/StatusBadge';
 // import { RootState } from '@/store/redux/store';
 
 export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
@@ -139,7 +139,7 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
                           setTimeout(() => handleSearch(proj.projectName), 0);
                         }}>
                         <span>{proj.projectName}</span>
-                        <StatusBadge status={proj.projectStatus as StatusType} className="ml-2" />
+                        <StatusBadge status={proj.projectStatus as ProjectStatusType} className="ml-2" />
                       </li>
                     ))}
                   </ul>
@@ -178,7 +178,9 @@ export default function Header({ onMenuClick }: { onMenuClick?: () => void }) {
                           }}>
                           {item}
                         </span>
-                        {matched && <StatusBadge status={matched.projectStatus as StatusType} className="ml-2" />}
+                        {matched && (
+                          <StatusBadge status={matched.projectStatus as ProjectStatusType} className="ml-2" />
+                        )}
                         <button
                           className="ml-2 text-gray-400 hover:text-red-400 opacity-70 group-hover:opacity-100 transition"
                           onMouseDown={(e) => {

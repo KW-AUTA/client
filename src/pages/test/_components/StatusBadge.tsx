@@ -1,11 +1,11 @@
-type StatusType = 'PASSED' | 'FAILED' | 'READY' | 'RUNNING';
+import { TestStatusType } from '@/types/test.type';
 
 interface StatusBadgeProps {
   status: string;
   className?: string;
 }
 
-const statusMap: Record<string, StatusType> = {
+const statusMap: Record<string, TestStatusType> = {
   통과: 'PASSED',
   실패: 'FAILED',
   준비: 'READY',
@@ -17,9 +17,9 @@ const statusMap: Record<string, StatusType> = {
 };
 
 const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => {
-  const mappedStatus: StatusType = statusMap[status] ?? 'READY';
+  const mappedStatus: TestStatusType = statusMap[status] ?? 'READY';
 
-  const getStatusStyle = (status: StatusType): string => {
+  const getStatusStyle = (status: TestStatusType): string => {
     switch (status) {
       case 'PASSED':
         return `bg-green-100 text-green-600 text-11 font-medium`;
@@ -34,7 +34,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => 
     }
   };
 
-  const getStatusText = (status: StatusType): string => {
+  const getStatusText = (status: TestStatusType): string => {
     switch (status) {
       case 'PASSED':
         return `통과`;
@@ -49,7 +49,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => 
     }
   };
 
-  const getDotColor = (status: StatusType): string => {
+  const getDotColor = (status: TestStatusType): string => {
     switch (status) {
       case 'PASSED':
         return `bg-green-600`;

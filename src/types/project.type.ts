@@ -1,35 +1,47 @@
+export type ProjectStatusType = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERROR';
+
 export interface ProjectListData {
   projectId: number;
   projectAdmin: string;
   projectName: string;
   projectEnd: string;
   projectCreatedDate: string;
-  projectStatus: 'IN_PROGRESS' | 'COMPLETED';
+  projectStatus: ProjectStatusType;
   testRate: number;
 }
 
 export interface ProjectDetailData {
-  projectName: string;
-  projectAdmin: string;
-  projectStatus: string;
-  projectCreatedDate: string;
-  projectEnd: string;
-  testExecutionTime: string | null;
-  rootFigmaPage: string;
-  description: string;
-  fileName: string | null;
-  figmaUrl: string;
-  serviceUrl: string;
-  reportSummary: string | null;
-  testSummary: {
+  projectInfo: {
+    projectName: string;
+    projectAdmin?: string;
+    projectStatus: ProjectStatusType;
+    description: string;
+    projectCreatedDate: string;
+    projectEnd: string;
+    testExecutionTime: string;
+  };
+  uiInfo?: {
+    score: number | null;
+    uiTests: Array<{
+      UIPageUrl: string;
+      UIDescription: string;
+    }>;
+  };
+  testSummary?: {
     totalRoutingTest: number;
     totalInteractionTest: number;
     totalMappingTest: number;
-  } | null;
-  pages: Array<{
+  };
+  pages?: Array<{
     pageName: string;
     pageBaseUrl: string;
   }>;
+  figmaInfo: {
+    rootFigmaPage: string;
+    fileName: string;
+    figmaUrl: string;
+    serviceUrl: string;
+  };
 }
 
 export interface ProjectsParams {

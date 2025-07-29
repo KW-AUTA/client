@@ -3,14 +3,14 @@ import FileInput from '@/components/ui/input/FileInput';
 import { ChangeEvent } from 'react';
 
 interface DesignSourceProps {
+  rootFigmaPage: string;
+  fileName?: string | null;
   figmaUrl: string;
   serviceUrl: string;
-  rootFigmaPage: string;
   onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onFileChange?: (file: File | null) => void;
   disabled?: boolean;
   containerClassName?: string;
-  fileName?: string | null;
 }
 
 export default function DesignSourceSection({

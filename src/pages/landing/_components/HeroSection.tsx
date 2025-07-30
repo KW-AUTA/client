@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '@/constants';
 import CheckeredBackground from '@/components/CheckPatternBackground';
 import Button from '@/components/ui/button/Button';
+import { X, AlertTriangle, Check, BarChart3 } from 'lucide-react';
 
 interface HeroSectionProps {
   className?: string;
@@ -70,21 +71,33 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
                 <div className="space-y-4">
                   <div className="bg-red-100 border-2 border-red-300 rounded-lg p-4 hover:scale-105 transition-transform duration-300">
-                    <div className="text-red-600 font-semibold mb-2">❌ 불일치</div>
+                    <div className="text-red-600 font-semibold mb-2 flex items-center gap-2">
+                      <X className="w-5 h-5" />
+                      불일치
+                    </div>
                     <div className="text-sm text-red-700">Figma 디자인과 실제 구현이 다름</div>
                   </div>
                   <div className="bg-yellow-100 border-2 border-yellow-300 rounded-lg p-4 hover:scale-105 transition-transform duration-300">
-                    <div className="text-yellow-600 font-semibold mb-2">⚠️ 수동 검증</div>
+                    <div className="text-yellow-600 font-semibold mb-2 flex items-center gap-2">
+                      <AlertTriangle className="w-5 h-5" />
+                      수동 검증
+                    </div>
                     <div className="text-sm text-yellow-700">개발자가 직접 확인해야 함</div>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="bg-green-100 border-2 border-green-300 rounded-lg p-4 hover:scale-105 transition-transform duration-300">
-                    <div className="text-green-600 font-semibold mb-2">✅ 완벽 일치</div>
+                    <div className="text-green-600 font-semibold mb-2 flex items-center gap-2">
+                      <Check className="w-5 h-5" />
+                      완벽 일치
+                    </div>
                     <div className="text-sm text-green-700">AUTA가 자동으로 검증 완료</div>
                   </div>
                   <div className="bg-blue-100 border-2 border-blue-300 rounded-lg p-4 hover:scale-105 transition-transform duration-300">
-                    <div className="text-blue-600 font-semibold mb-2">📊 자동 리포트</div>
+                    <div className="text-blue-600 font-semibold mb-2 flex items-center gap-2">
+                      <BarChart3 className="w-5 h-5" />
+                      자동 리포트
+                    </div>
                     <div className="text-sm text-blue-700">문제점을 한눈에 확인</div>
                   </div>
                 </div>

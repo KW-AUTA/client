@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import FeatureBadge from './FeatureBadge';
+import { Palette, Search, RefreshCw, BarChart3, Zap, Target, TrendingUp } from 'lucide-react';
 
 interface Feature {
   title: string;
   description: string;
-  icon: string;
+  icon: React.ComponentType<{ className?: string }>;
   features: string[];
   color: string;
 }
@@ -21,7 +22,7 @@ const FeaturesSection = ({
       title: 'Figma JSON 기반 자동 테스트',
       description:
         'YOLO 모델을 통해 Figma JSON을 추출하여 실제 웹사이트와 비교합니다. 디자이너의 원본이 곧 테스트 케이스가 됩니다.',
-      icon: '🎨',
+      icon: Palette,
       features: ['YOLO모델', 'FigmaJSON추출', '자동테스트'],
       color: 'blue'
     },
@@ -29,7 +30,7 @@ const FeaturesSection = ({
       title: '컴포넌트 & 레이아웃 정합성 검증',
       description:
         'YOLO 모델을 통해 추출된 Figma JSON과 실제 웹사이트의 위치, 크기, 색상 등을 비교하여 불일치 항목을 자동으로 감지합니다.',
-      icon: '🔍',
+      icon: Search,
       features: ['JSON비교', '자동감지', '정확한분석'],
       color: 'green'
     },
@@ -37,14 +38,14 @@ const FeaturesSection = ({
       title: '사용자 플로우 (라우팅) 검증',
       description:
         '"로그인 버튼을 누르면 마이페이지로 이동한다"와 같은 페이지 간 이동 흐름이 정확하게 작동하는지 자동으로 테스트합니다.',
-      icon: '🔄',
+      icon: RefreshCw,
       features: ['라우팅검증', '플로우테스트', '인터랙션'],
       color: 'purple'
     },
     {
       title: '한눈에 보는 시각적 리포트',
       description: '어디가 어떻게 다른지 직관적으로 보여주는 리포트와 통계로 프로젝트의 UI 품질을 손쉽게 관리하세요.',
-      icon: '📊',
+      icon: BarChart3,
       features: ['시각적리포트', '통계분석', '품질관리'],
       color: 'orange'
     }
@@ -107,7 +108,9 @@ const FeaturesSection = ({
                 colorClasses[feature.color as keyof typeof colorClasses]
               } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:shadow-xl hover:scale-105`}>
               <div className="text-center mb-6">
-                <div className="text-6xl mb-4">{feature.icon}</div>
+                <div className="mb-4 flex justify-center">
+                  <feature.icon className="w-16 h-16 text-gray-700" />
+                </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
                 <p className="text-gray-600 leading-relaxed mb-6">{feature.description}</p>
               </div>
@@ -134,17 +137,23 @@ const FeaturesSection = ({
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="text-3xl mb-2">⚡</div>
+                <div className="mb-2 flex justify-center">
+                  <Zap className="w-8 h-8 text-blue-600" />
+                </div>
                 <h4 className="font-semibold text-gray-900 mb-2">빠른 설정</h4>
                 <p className="text-sm text-gray-600">3분 만에 완료</p>
               </div>
               <div className="text-center">
-                <div className="text-3xl mb-2">🎯</div>
+                <div className="mb-2 flex justify-center">
+                  <Target className="w-8 h-8 text-green-600" />
+                </div>
                 <h4 className="font-semibold text-gray-900 mb-2">정확한 분석</h4>
                 <p className="text-sm text-gray-600">픽셀 단위 비교</p>
               </div>
               <div className="text-center">
-                <div className="text-3xl mb-2">📈</div>
+                <div className="mb-2 flex justify-center">
+                  <TrendingUp className="w-8 h-8 text-orange-600" />
+                </div>
                 <h4 className="font-semibold text-gray-900 mb-2">효율성 증대</h4>
                 <p className="text-sm text-gray-600">90% 시간 절약</p>
               </div>

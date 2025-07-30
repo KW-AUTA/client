@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Code, Palette, BarChart3, Zap, Target, TrendingUp } from 'lucide-react';
 
 interface RoleContent {
   role: string;
   title: string;
   description: string;
-  icon: string;
+  icon: React.ComponentType<{ className?: string }>;
   benefits: string[];
   color: string;
 }
@@ -21,7 +22,7 @@ const ForEveryoneSection = ({
       role: 'Developers',
       title: '반복 작업은 AUTA에게 맡기고, 창의적인 코드에 집중하세요',
       description: 'YOLO 모델을 통한 정확한 UI 비교로 반복적인 테스트 작업을 자동화합니다.',
-      icon: '👨‍💻',
+      icon: Code,
       benefits: ['반복적인 UI 테스트 자동화', '정확한 픽셀 단위 비교', '핵심 기능 개발에 집중'],
       color: 'blue'
     },
@@ -29,7 +30,7 @@ const ForEveryoneSection = ({
       role: 'Designers',
       title: '더 이상 말로 설명하지 마세요',
       description: 'AUTA 리포트로 명확하게 피드백하고, 당신의 디자인 시스템이 잘 지켜지는지 직접 확인하세요.',
-      icon: '🎨',
+      icon: Palette,
       benefits: ['명확한 시각적 피드백', '디자인 시스템 검증', '의도한 디자인 구현 확인'],
       color: 'purple'
     },
@@ -37,7 +38,7 @@ const ForEveryoneSection = ({
       role: 'PMs & QAs',
       title: '프로젝트의 품질과 팀의 생산성을 동시에 높이세요',
       description: '정량적인 데이터로 UI 완성도를 관리하고, 반복 테스트 비용을 획기적으로 줄일 수 있습니다.',
-      icon: '📊',
+      icon: BarChart3,
       benefits: ['정량적 품질 관리', '테스트 비용 절약', '프로젝트 일정 단축'],
       color: 'green'
     }
@@ -127,7 +128,9 @@ const ForEveryoneSection = ({
               <div className="max-w-4xl mx-auto">
                 <div className={`p-8 rounded-2xl border-2 ${colorClasses[role.color as keyof typeof colorClasses]}`}>
                   <div className="text-center mb-8">
-                    <div className="text-6xl mb-4">{role.icon}</div>
+                    <div className="mb-4 flex justify-center">
+                      <role.icon className="w-16 h-16 text-gray-700" />
+                    </div>
                     <h3 className="text-2xl font-bold mb-4">{role.title}</h3>
                     <p className="text-lg leading-relaxed">{role.description}</p>
                   </div>
@@ -135,10 +138,10 @@ const ForEveryoneSection = ({
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {role.benefits.map((benefit, benefitIndex) => (
                       <div key={benefitIndex} className="text-center p-4 bg-white/50 rounded-lg">
-                        <div className="text-2xl mb-2">
-                          {benefitIndex === 0 && '⚡'}
-                          {benefitIndex === 1 && '🎯'}
-                          {benefitIndex === 2 && '📈'}
+                        <div className="mb-2 flex justify-center">
+                          {benefitIndex === 0 && <Zap className="w-6 h-6 text-blue-600" />}
+                          {benefitIndex === 1 && <Target className="w-6 h-6 text-green-600" />}
+                          {benefitIndex === 2 && <TrendingUp className="w-6 h-6 text-orange-600" />}
                         </div>
                         <p className="text-sm font-medium">{benefit}</p>
                       </div>

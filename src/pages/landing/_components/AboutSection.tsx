@@ -50,15 +50,17 @@ const AboutSection = ({
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{description}</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+        <div className="max-w-4xl mx-auto">
           {/* Team Members */}
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">팀원 소개</h3>
-            <div className="grid grid-cols-2 gap-6">
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">팀원 소개</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {teamMembers.map((member, index) => (
-                <div key={index} className="text-center p-6 bg-gray-50 rounded-xl">
-                  <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl">👤</span>
+                <div
+                  key={index}
+                  className="text-center p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow duration-300">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl text-white font-bold">{member.name.charAt(0)}</span>
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">{member.name}</h4>
                   <p className="text-sm text-gray-600">{member.role}</p>
@@ -67,17 +69,13 @@ const AboutSection = ({
             </div>
           </div>
 
-          {/* FAQ */}
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">자주 묻는 질문</h3>
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-gray-50 rounded-xl p-6">
-                  <h4 className="font-semibold text-gray-900 mb-3">{faq.question}</h4>
-                  <p className="text-gray-600">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
+          {/* Vision Statement */}
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 border-2 border-green-200">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">우리의 비전</h3>
+            <p className="text-gray-700 leading-relaxed text-center">
+              저희는 개발자와 디자이너의 협업 효율을 높이는 문제에 깊이 공감하며 이 프로젝트를 시작했습니다. AUTA를 통해
+              반복적인 테스트 시간을 줄이고, 모두가 더 가치 있는 일에 집중하는 문화를 만들고 싶습니다.
+            </p>
           </div>
         </div>
       </div>

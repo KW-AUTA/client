@@ -6,3 +6,8 @@ export { default as FinalCTASection } from './FinalCTASection';
 export { default as Footer } from './Footer';
 export { default as AnimatedCard } from './AnimatedCard';
 export { default as FeatureBadge } from './FeatureBadge';
+export { default as ProblemSection } from './ProblemSection';
+export { default as FeaturesSection } from './FeaturesSection';
+export { default as VideoGuideSection } from './VideoGuideSection';
+export { default as ForEveryoneSection } from './ForEveryoneSection';
+export { default as FAQSection } from './FAQSection';

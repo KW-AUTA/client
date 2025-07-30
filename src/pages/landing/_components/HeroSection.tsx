@@ -30,21 +30,20 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
           className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h1
             className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight ${isVisible ? 'animate-fade-in-up' : ''}`}>
-            <span className="block sm:inline">디자인과 코드가</span>
-            <span className="block sm:inline"> 다른가요?</span>
+            <span className="block sm:inline">당신의 디자인,</span>
+            <span className="block sm:inline"> 코드와 완벽하게</span>
             <br />
             <span className="text-green-600">
-              <span className="block sm:inline">AUTA가 자동으로</span>
-              <span className="block sm:inline"> 해결합니다.</span>
+              <span className="block sm:inline">일치하나요?</span>
             </span>
           </h1>
 
           <p
             className={`text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0 ${isVisible ? 'animate-fade-in-up' : ''}`}
             style={{ animationDelay: '200ms' }}>
-            코딩 없이 Figma 파일 업로드만으로 UI 정합성, 라우팅, 인터랙션까지 한 번에 검증하세요.
+            AUTA는 YOLO 모델을 통해 Figma JSON을 추출하고 실제 웹사이트와 비교하는 UI 테스트 솔루션입니다.
             <br className="hidden sm:block" />
-            개발자와 디자이너의 반복 작업을 끝낼 시간입니다.
+            개발자와 디자이너의 소모적인 커뮤니케이션을 끝내세요.
           </p>
 
           <div
@@ -52,14 +51,14 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
             style={{ animationDelay: '400ms' }}>
             <Link to={ROUTES.LOGIN}>
               <Button
-                text="3초 만에 무료로 시작하기"
+                text="지금 바로 무료로 시작하기"
                 className="bg-green-600 hover:bg-green-700 text-white border-green-600 hover:border-green-700 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 transition-all duration-300 hover:scale-105"
               />
             </Link>
             <button
-              onClick={() => scrollToSection('how-it-works')}
+              onClick={() => scrollToSection('video-guide-section')}
               className="text-green-600 hover:text-green-700 font-medium text-base sm:text-lg flex items-center gap-2 transition-colors duration-200 hover:scale-105">
-              AUTA가 어떻게 동작하나요? ↓
+              3분 사용법 영상 보기 ↓
             </button>
           </div>
 

@@ -23,7 +23,10 @@ export default {
       },
       colors: colors,
       borderRadius: shape.radius,
-      boxShadow: shape.boxShadow,
+      boxShadow: {
+        ...shape.boxShadow,
+        '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)'
+      },
       fontSize: typography.fontSize,
       screens: {
         xl2: '1250px'

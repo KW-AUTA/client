@@ -5,7 +5,7 @@ import Layout from '@/components/layout/page-layout/Layout';
 // 유저가 바로 보는 or 가벼운 페이지는 즉시 로딩
 import LoginPage from '@/pages/auth/LoginPage';
 import SignupPage from '@/pages/auth/SignupPage';
-import LandingPage from '@/pages/main/LandingPage';
+import LandingPage from '@/pages/landing/LandingPage';
 import DashboardPage from '@/pages/main/DashboardPage';
 import ManualPage from '@/pages/manual/ManualPage';
 import ManualPrivatePage from '@/pages/manual/ManualPrivatePage';

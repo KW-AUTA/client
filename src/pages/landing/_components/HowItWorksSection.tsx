@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import FeatureBadge from './FeatureBadge';
-import { Rocket, FileText, Search, BarChart3, Play } from 'lucide-react';
+import { Rocket, FileText, Search, BarChart3 } from 'lucide-react';
 
 interface Step {
   title: string;

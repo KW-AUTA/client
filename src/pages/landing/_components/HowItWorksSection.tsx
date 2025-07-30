@@ -63,7 +63,9 @@ const HowItWorksSection = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            단 4단계면 충분합니다. YOLO 모델로 Figma JSON을 추출하고 결과를 확인하세요.
+            AUTA는 4단계로 구성되어 있습니다.
+            <br />
+            Figma json 파일을 올리고 결과를 확인하세요.
           </h2>
         </div>
 

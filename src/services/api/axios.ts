@@ -3,6 +3,7 @@ import { API_ENDPOINTS, ROUTES } from '@/constants';
 import { store } from '@/store/redux/store';
 import { logout, setToken } from '@/store/redux/reducers/auth';
 import { toast } from 'react-toastify';
+import { RefreshTokenResponse, RefreshTokenErrorResponse } from '@/types/auth.type';
 
 // refresh 재요청 queue에 들어갈 요청 형태 정의
 type FailQueueItem = {
@@ -76,11 +77,17 @@ axiosInstance.interceptors.response.use(
       isRefreshing = true; // 토큰 refresh 시작
 
       try {
-        const response = await axiosInstance.post(API_ENDPOINTS.AUTH.REFRESH, {}, { withCredentials: true });
+        const response = await axiosInstance.post<RefreshTokenResponse>(
+          API_ENDPOINTS.AUTH.REFRESH,
+          {},
+          { withCredentials: true }
+        );
 
-        // 응답에서 새 access 호출
+        // 응답에서 새 access token 확인
         const newAccessToken = response.data.data?.accessToken;
-        if (!newAccessToken) throw new Error('accessToken 없음');
+        if (!newAccessToken) {
+          throw new Error('accessToken이 응답에 없습니다.');
+        }
 
         // 새 토큰 저장 & 상태 업데이트
         localStorage.setItem('token', newAccessToken);
@@ -90,13 +97,39 @@ axiosInstance.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
-        processQueue(refreshError, null);
-        store.dispatch(logout());
+        // 에러 타입별 처리
+        if (refreshError.response) {
+          // 서버에서 응답이 온 경우 (4xx, 5xx 에러)
+          const { status, data } = refreshError.response;
 
-        // alert('로그아웃되었습니다. 다시 로그인해주세요.');
-        toast.error('로그아웃되었습니다. 다시 로그인해주세요.');
+          if (status === 401) {
+            // 리프레시 토큰이 유효하지 않은 경우 - 로그아웃 처리
+            const errorData = data as RefreshTokenErrorResponse;
+            console.log('리프레시 토큰 만료:', errorData.message);
 
-        window.location.href = ROUTES.LOGIN;
+            processQueue(refreshError, null);
+            store.dispatch(logout());
+            toast.error('세션이 만료되었습니다. 다시 로그인해주세요.');
+            window.location.href = ROUTES.LOGIN;
+          } else if (status >= 500) {
+            // 서버 오류 - 재시도하지 않고 원래 요청 실패 처리
+            console.log('서버 오류로 인한 리프레시 토큰 요청 실패:', status);
+            processQueue(refreshError, null);
+          } else {
+            // 기타 4xx 에러 - 재시도하지 않고 원래 요청 실패 처리
+            console.log('리프레시 토큰 요청 실패:', status, data);
+            processQueue(refreshError, null);
+          }
+        } else if (refreshError.request) {
+          // 네트워크 오류 - 재시도하지 않고 원래 요청 실패 처리
+          console.log('네트워크 오류로 인한 리프레시 토큰 요청 실패');
+          processQueue(refreshError, null);
+        } else {
+          // 기타 오류 (토큰이 없는 경우 등) - 재시도하지 않고 원래 요청 실패 처리
+          console.log('리프레시 토큰 요청 중 기타 오류:', refreshError.message);
+          processQueue(refreshError, null);
+        }
+
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

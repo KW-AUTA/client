@@ -2,6 +2,7 @@ import { API_ENDPOINTS } from '@/constants';
 import axiosInstance from '@/services/api/axios';
 import { LoginRequest, LoginResponse, SignupRequest } from '@/types/auth.type';
 import { useMutation } from '@tanstack/react-query';
+import { cleanupTokenManager } from '@/utils/tokenManager';
 
 export const useSignup = () => {
   return useMutation({
@@ -27,6 +28,8 @@ export const useLogout = () => {
   return useMutation({
     mutationFn: async () => {
       await axiosInstance.post(API_ENDPOINTS.AUTH.LOGOUT);
+      // 토큰 관리자 정리
+      cleanupTokenManager();
     }
   });
 };

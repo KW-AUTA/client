@@ -11,8 +11,7 @@ import ErrorModal from '@/components/modal/ErrorModal';
 import axios from 'axios';
 import { ROUTES } from '@/constants';
 import TestTokenButton from '@/components/ui/TestTokenButton';
-import { useAppDispatch } from '@/store/redux/store';
-import { logout } from '@/store/redux/reducers/auth';
+import { initializeTokenManager } from '@/utils/tokenManager';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter(routes);
@@ -20,16 +19,11 @@ const router = createBrowserRouter(routes);
 function AppWithErrorModal({ children }: { children: React.ReactNode }) {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const dispatch = useAppDispatch();
 
-  // Redux 상태와 localStorage 동기화
+  // 토큰 관리자 초기화
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      // 토큰이 없으면 Redux 상태도 로그아웃 상태로 동기화
-      dispatch(logout());
-    }
-  }, [dispatch]);
+    initializeTokenManager();
+  }, []);
 
   // 네트워크 연결 끊김 감지
   useEffect(() => {
@@ -69,12 +63,8 @@ function AppWithErrorModal({ children }: { children: React.ReactNode }) {
   }, []);
 
   const handleModalRetry = () => {
-    // 만료 에러라면 로그인/랜딩페이지로 이동
-    if (errorMessage.includes('로그인 세션이 만료')) {
-      window.location.href = ROUTES.LANDING;
-    } else {
-      window.location.reload();
-    }
+    // 모든 에러에서 랜딩 페이지로 이동
+    window.location.href = ROUTES.LANDING;
   };
 
   return (

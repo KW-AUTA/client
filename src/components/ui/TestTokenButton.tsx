@@ -252,7 +252,7 @@ const TestTokenButton: React.FC = () => {
         style={{
           margin: '2px',
           padding: '5px',
-          backgroundColor: isLoading ? '#ccc' : '#28a745',
+          backgroundColor: isLoading ? '#ccc' : '#007bff',
           color: 'white',
           border: 'none',
           borderRadius: '3px',
@@ -278,26 +278,11 @@ const TestTokenButton: React.FC = () => {
       </button>
 
       <button
-        onClick={checkTokenInfo}
-        style={{
-          margin: '2px',
-          padding: '5px',
-          backgroundColor: '#17a2b8',
-          color: 'white',
-          border: 'none',
-          borderRadius: '3px',
-          cursor: 'pointer',
-          width: '100%'
-        }}>
-        토큰 정보 확인
-      </button>
-
-      <button
         onClick={setCookieManually}
         style={{
           margin: '2px',
           padding: '5px',
-          backgroundColor: '#007bff',
+          backgroundColor: '#6c757d',
           color: 'white',
           border: 'none',
           borderRadius: '3px',
@@ -308,6 +293,21 @@ const TestTokenButton: React.FC = () => {
       </button>
 
       <hr style={{ margin: '8px 0' }} />
+
+      <button
+        onClick={checkTokenInfo}
+        style={{
+          margin: '2px',
+          padding: '5px',
+          backgroundColor: '#6c757d',
+          color: 'white',
+          border: 'none',
+          borderRadius: '3px',
+          cursor: 'pointer',
+          width: '100%'
+        }}>
+        토큰 정보 확인
+      </button>
 
       <button
         onClick={expireAccessTokenAndRefresh}
@@ -348,8 +348,8 @@ const TestTokenButton: React.FC = () => {
         style={{
           margin: '2px',
           padding: '5px',
-          backgroundColor: '#ffc107',
-          color: 'black',
+          backgroundColor: '#6c757d',
+          color: 'white',
           border: 'none',
           borderRadius: '3px',
           cursor: 'pointer',
@@ -363,7 +363,7 @@ const TestTokenButton: React.FC = () => {
         style={{
           margin: '2px',
           padding: '5px',
-          backgroundColor: '#6f42c1',
+          backgroundColor: '#6c757d',
           color: 'white',
           border: 'none',
           borderRadius: '3px',

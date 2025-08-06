@@ -10,7 +10,9 @@ import { useEffect, useState } from 'react';
 import ErrorModal from '@/components/modal/ErrorModal';
 import axios from 'axios';
 import { isJwtExpired } from '@/utils/validation';
-import { ROUTES } from '@/constants';
+import { ROUTES, API_ENDPOINTS } from '@/constants';
+import { RefreshTokenResponse } from '@/types/auth.type';
+import TestTokenButton from '@/components/ui/TestTokenButton';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter(routes);
@@ -19,15 +21,38 @@ function AppWithErrorModal({ children }: { children: React.ReactNode }) {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // JWT 만료 체크 및 에러 모달 처리
+  // JWT 만료 체크 및 리프레시 토큰 시도
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token && isJwtExpired(token)) {
-      setErrorMessage('로그인 세션이 만료되었습니다. 다시 로그인 해주세요.');
-      setShowErrorModal(true);
-      // 토큰 삭제 및 상태 초기화
-      localStorage.removeItem('token');
-    }
+    const checkTokenAndRefresh = async () => {
+      const token = localStorage.getItem('token');
+      if (token && isJwtExpired(token)) {
+        try {
+          // 리프레시 토큰으로 새 액세스 토큰 발급 시도
+          const response = await axios.post<RefreshTokenResponse>(
+            `${import.meta.env.VITE_API_BASE_URL || 'http://219.255.242.174:8080/api/v1'}${API_ENDPOINTS.AUTH.REFRESH}`,
+            {},
+            { withCredentials: true }
+          );
+
+          const newAccessToken = response.data.data?.accessToken;
+          if (newAccessToken) {
+            // 새 토큰 저장
+            localStorage.setItem('token', newAccessToken);
+            console.log('액세스 토큰이 성공적으로 갱신되었습니다.');
+          } else {
+            throw new Error('새 액세스 토큰을 받지 못했습니다.');
+          }
+        } catch (error) {
+          // 리프레시 토큰도 만료되었거나 유효하지 않은 경우
+          console.log('리프레시 토큰 만료 또는 유효하지 않음:', error);
+          setErrorMessage('로그인 세션이 만료되었습니다. 다시 로그인 해주세요.');
+          setShowErrorModal(true);
+          localStorage.removeItem('token');
+        }
+      }
+    };
+
+    checkTokenAndRefresh();
   }, []);
 
   // 네트워크 연결 끊김 감지
@@ -79,6 +104,7 @@ function AppWithErrorModal({ children }: { children: React.ReactNode }) {
   return (
     <>
       {children}
+      <TestTokenButton />
       <ErrorModal open={showErrorModal} message={errorMessage} onRetry={handleModalRetry} />
     </>
   );

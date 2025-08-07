@@ -9,8 +9,9 @@ import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import ErrorModal from '@/components/modal/ErrorModal';
 import axios from 'axios';
-import { isJwtExpired } from '@/utils/validation';
 import { ROUTES } from '@/constants';
+import TestTokenButton from '@/components/ui/TestTokenButton';
+import { initializeTokenManager } from '@/utils/tokenManager';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter(routes);
@@ -19,15 +20,9 @@ function AppWithErrorModal({ children }: { children: React.ReactNode }) {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // JWT 만료 체크 및 에러 모달 처리
+  // 토큰 관리자 초기화
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token && isJwtExpired(token)) {
-      setErrorMessage('로그인 세션이 만료되었습니다. 다시 로그인 해주세요.');
-      setShowErrorModal(true);
-      // 토큰 삭제 및 상태 초기화
-      localStorage.removeItem('token');
-    }
+    initializeTokenManager();
   }, []);
 
   // 네트워크 연결 끊김 감지
@@ -68,17 +63,14 @@ function AppWithErrorModal({ children }: { children: React.ReactNode }) {
   }, []);
 
   const handleModalRetry = () => {
-    // 만료 에러라면 로그인/랜딩페이지로 이동
-    if (errorMessage.includes('로그인 세션이 만료')) {
-      window.location.href = ROUTES.LANDING;
-    } else {
-      window.location.reload();
-    }
+    // 모든 에러에서 랜딩 페이지로 이동
+    window.location.href = ROUTES.LANDING;
   };
 
   return (
     <>
       {children}
+      <TestTokenButton />
       <ErrorModal open={showErrorModal} message={errorMessage} onRetry={handleModalRetry} />
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { API_ENDPOINTS } from '@/constants';
 
 import { toast } from 'react-toastify';
@@ -35,14 +35,23 @@ const RefreshTokenModal: React.FC<RefreshTokenModalProps> = ({ open, onClose, on
       } else {
         throw new Error('새 액세스 토큰을 받지 못했습니다.');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('토큰 갱신 실패:', error);
 
-      if (error.response?.status === 401) {
-        toast.error('리프레시 토큰이 만료되었습니다. 다시 로그인해주세요.');
-        // 리프레시 토큰도 만료된 경우 로그아웃 처리
-        onLogout();
+      // AxiosError인지 확인하고 적절한 에러 처리
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 401) {
+          toast.error('리프레시 토큰이 만료되었습니다. 다시 로그인해주세요.');
+          // 리프레시 토큰도 만료된 경우 로그아웃 처리
+          onLogout();
+        } else {
+          toast.error('토큰 갱신에 실패했습니다. 다시 시도해주세요.');
+        }
+      } else if (error instanceof Error) {
+        // 일반 Error 객체인 경우
+        toast.error(`토큰 갱신 중 오류가 발생했습니다: ${error.message}`);
       } else {
+        // 알 수 없는 에러 타입
         toast.error('토큰 갱신에 실패했습니다. 다시 시도해주세요.');
       }
     } finally {

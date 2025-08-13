@@ -2,8 +2,13 @@ import { useState, useEffect } from 'react';
 import { getTokenStatus, manualTokenRefresh, getAutoRefreshTimer } from '@/utils/tokenManager';
 import Button from './button/Button';
 
+interface TokenStatus {
+  status: string;
+  message: string;
+}
+
 const TestTokenButton = () => {
-  const [tokenStatus, setTokenStatus] = useState<any>(null);
+  const [tokenStatus, setTokenStatus] = useState<TokenStatus | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {

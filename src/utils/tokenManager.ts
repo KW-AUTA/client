@@ -6,9 +6,6 @@ import { toast } from 'react-toastify';
 import { RefreshTokenResponse } from '@/types/auth.type';
 import { AxiosError } from 'axios';
 
-// 토큰 만료 시간 (2시간 = 7200초)
-const TOKEN_EXPIRY_TIME = 2 * 60 * 60 * 1000; // 2시간을 밀리초로
-
 // 자동 토큰 재발급 타이머
 let autoRefreshTimer: NodeJS.Timeout | null = null;
 
@@ -274,7 +271,7 @@ export const manualTokenRefresh = async (): Promise<{ success: boolean; message:
     } else {
       return { success: false, message: 'accessToken 재발급에 실패했습니다.' };
     }
-  } catch (error) {
+  } catch {
     return { success: false, message: 'accessToken 재발급 중 오류가 발생했습니다.' };
   }
 };

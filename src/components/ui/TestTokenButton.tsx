@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
-import { getTokenStatus, manualTokenRefresh, getAutoRefreshTimer } from '@/utils/tokenManager';
+import { getTokenStatus, manualTokenRefresh } from '@/utils/tokenManager';
 import Button from './button/Button';
 
+interface TokenStatus {
+  status: string;
+  message: string;
+}
+
 const TestTokenButton = () => {
-  const [tokenStatus, setTokenStatus] = useState<any>(null);
+  const [tokenStatus, setTokenStatus] = useState<TokenStatus | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const TestTokenButton = () => {
       const result = await manualTokenRefresh();
       alert(result.message);
       updateTokenStatus();
-    } catch (error) {
+    } catch {
       alert('토큰 재발급 중 오류가 발생했습니다.');
     } finally {
       setIsRefreshing(false);

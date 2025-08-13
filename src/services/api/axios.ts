@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { ROUTES } from '@/constants';
 import { store } from '@/store/redux/store';
 import { logout } from '@/store/redux/reducers/auth';
@@ -95,16 +95,29 @@ axiosInstance.interceptors.response.use(
         processQueue(null, newAccessToken); // 대기 중인 다른 요청들 처리
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest);
-      } catch (refreshError: any) {
+      } catch (refreshError: unknown) {
         // 에러 처리
         if (import.meta.env.DEV) {
           console.error('accessToken 재발급 실패:', refreshError);
         }
         processQueue(refreshError, null);
 
-        // refreshToken이 만료되었거나 유효하지 않은 경우 로그아웃 처리
-        if (refreshError.response?.status === 401) {
-          handleTokenExpiration();
+        // AxiosError인지 확인하고 적절한 에러 처리
+        if (refreshError instanceof AxiosError) {
+          if (refreshError.response?.status === 401) {
+            // refreshToken이 만료되었거나 유효하지 않은 경우 로그아웃 처리
+            handleTokenExpiration();
+          }
+        } else if (refreshError instanceof Error) {
+          // 일반 Error 객체인 경우
+          if (import.meta.env.DEV) {
+            console.error('일반 에러:', refreshError.message);
+          }
+        } else {
+          // 알 수 없는 에러 타입
+          if (import.meta.env.DEV) {
+            console.error('알 수 없는 에러 타입:', refreshError);
+          }
         }
 
         return Promise.reject(refreshError);

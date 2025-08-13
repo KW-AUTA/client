@@ -4,9 +4,7 @@ import { store } from '@/store/redux/store';
 import { setToken, logout } from '@/store/redux/reducers/auth';
 import { toast } from 'react-toastify';
 import { RefreshTokenResponse } from '@/types/auth.type';
-
-// 토큰 만료 시간 (2시간 = 7200초)
-const TOKEN_EXPIRY_TIME = 2 * 60 * 60 * 1000; // 2시간을 밀리초로
+import { AxiosError } from 'axios';
 
 // 자동 토큰 재발급 타이머
 let autoRefreshTimer: NodeJS.Timeout | null = null;
@@ -140,17 +138,30 @@ export const refreshAccessToken = async (): Promise<string | null> => {
       console.log('새 accessToken:', newAccessToken.substring(0, 20) + '...');
     }
     return newAccessToken;
-  } catch (error: any) {
+  } catch (error: unknown) {
     if (import.meta.env.DEV) {
       console.error('accessToken 재발급 실패:', error);
     }
 
-    if (error.response?.status === 401) {
-      // refreshToken이 만료되었거나 유효하지 않은 경우
-      if (import.meta.env.DEV) {
-        console.log('refreshToken이 만료되었거나 유효하지 않습니다.');
+    // AxiosError인지 확인하고 적절한 에러 처리
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 401) {
+        // refreshToken이 만료되었거나 유효하지 않은 경우
+        if (import.meta.env.DEV) {
+          console.log('refreshToken이 만료되었거나 유효하지 않습니다.');
+        }
+        handleTokenExpiration();
       }
-      handleTokenExpiration();
+    } else if (error instanceof Error) {
+      // 일반 Error 객체인 경우
+      if (import.meta.env.DEV) {
+        console.error('일반 에러:', error.message);
+      }
+    } else {
+      // 알 수 없는 에러 타입
+      if (import.meta.env.DEV) {
+        console.error('알 수 없는 에러 타입:', error);
+      }
     }
 
     return null;
@@ -260,7 +271,7 @@ export const manualTokenRefresh = async (): Promise<{ success: boolean; message:
     } else {
       return { success: false, message: 'accessToken 재발급에 실패했습니다.' };
     }
-  } catch (error) {
+  } catch {
     return { success: false, message: 'accessToken 재발급 중 오류가 발생했습니다.' };
   }
 };

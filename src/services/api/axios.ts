@@ -86,10 +86,10 @@ axiosInstance.interceptors.response.use(
           return Promise.reject(new Error('Refresh Token 쿠키가 없습니다.'));
         }
 
-        // 토큰 재발급 시도
+        // accessToken 재발급 시도 (reissue API 호출)
         const newAccessToken = await refreshAccessToken();
         if (!newAccessToken) {
-          throw new Error('토큰 재발급에 실패했습니다.');
+          throw new Error('accessToken 재발급에 실패했습니다.');
         }
 
         processQueue(null, newAccessToken); // 대기 중인 다른 요청들 처리
@@ -98,11 +98,11 @@ axiosInstance.interceptors.response.use(
       } catch (refreshError: any) {
         // 에러 처리
         if (import.meta.env.DEV) {
-          console.error('토큰 재발급 실패:', refreshError);
+          console.error('accessToken 재발급 실패:', refreshError);
         }
         processQueue(refreshError, null);
 
-        // 리프레시 토큰이 만료된 경우 로그아웃 처리
+        // refreshToken이 만료되었거나 유효하지 않은 경우 로그아웃 처리
         if (refreshError.response?.status === 401) {
           handleTokenExpiration();
         }

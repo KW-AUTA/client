@@ -5,8 +5,8 @@ import { setToken, logout } from '@/store/redux/reducers/auth';
 import { toast } from 'react-toastify';
 import { RefreshTokenResponse } from '@/types/auth.type';
 
-// 토큰 만료 시간 (1시간 = 3600초)
-const TOKEN_EXPIRY_TIME = 60 * 60 * 1000; // 1시간을 밀리초로
+// 토큰 만료 시간 (2시간 = 7200초)
+const TOKEN_EXPIRY_TIME = 2 * 60 * 60 * 1000; // 2시간을 밀리초로
 
 // 자동 토큰 재발급 타이머
 let autoRefreshTimer: NodeJS.Timeout | null = null;
@@ -61,7 +61,38 @@ export const hasRefreshTokenCookie = (): boolean => {
 };
 
 /**
- * 토큰 재발급 함수
+ * 리프레시 토큰 쿠키 값을 가져오는 함수
+ */
+export const getRefreshTokenFromCookie = (): string | null => {
+  const cookies = document.cookie.split(';');
+  for (const cookie of cookies) {
+    const [name, value] = cookie.trim().split('=');
+    if (name === 'refreshToken' && value) {
+      return value;
+    }
+  }
+  return null;
+};
+
+/**
+ * 쿠키에서 리프레시 토큰 만료 시간을 확인하는 함수
+ */
+export const isRefreshTokenExpired = (): boolean => {
+  const cookies = document.cookie.split(';');
+  for (const cookie of cookies) {
+    const [name, value] = cookie.trim().split('=');
+    if (name === 'refreshToken' && value) {
+      // 쿠키의 만료 시간을 확인 (Max-Age 또는 Expires)
+      // 실제로는 서버에서 설정한 만료 시간을 확인해야 하지만,
+      // 클라이언트에서는 쿠키 존재 여부로만 판단
+      return false;
+    }
+  }
+  return true;
+};
+
+/**
+ * accessToken 재발급 함수 (reissue API 호출)
  */
 export const refreshAccessToken = async (): Promise<string | null> => {
   try {
@@ -70,13 +101,29 @@ export const refreshAccessToken = async (): Promise<string | null> => {
       if (import.meta.env.DEV) {
         console.log('리프레시 토큰 쿠키가 없습니다.');
       }
+      // refreshToken이 없으면 팝업창 띄우기
+      handleTokenExpiration();
+      return null;
+    }
+
+    // 리프레시 토큰이 만료되었는지 확인
+    if (isRefreshTokenExpired()) {
+      if (import.meta.env.DEV) {
+        console.log('리프레시 토큰이 만료되었습니다.');
+      }
+      handleTokenExpiration();
       return null;
     }
 
     const response = await axiosInstance.post<RefreshTokenResponse>(
       API_ENDPOINTS.AUTH.REFRESH,
       {},
-      { withCredentials: true }
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
     );
 
     const newAccessToken = response.data.data?.accessToken;
@@ -84,23 +131,24 @@ export const refreshAccessToken = async (): Promise<string | null> => {
       throw new Error('새 액세스 토큰을 받지 못했습니다.');
     }
 
-    // 새 토큰 저장
+    // 새 accessToken 저장
     localStorage.setItem('token', newAccessToken);
     store.dispatch(setToken(newAccessToken));
 
     if (import.meta.env.DEV) {
-      console.log('토큰 재발급 성공:', new Date().toLocaleString());
+      console.log('accessToken 재발급 성공:', new Date().toLocaleString());
+      console.log('새 accessToken:', newAccessToken.substring(0, 20) + '...');
     }
     return newAccessToken;
   } catch (error: any) {
     if (import.meta.env.DEV) {
-      console.error('토큰 재발급 실패:', error);
+      console.error('accessToken 재발급 실패:', error);
     }
 
     if (error.response?.status === 401) {
-      // 리프레시 토큰이 만료된 경우
+      // refreshToken이 만료되었거나 유효하지 않은 경우
       if (import.meta.env.DEV) {
-        console.log('리프레시 토큰이 만료되었습니다.');
+        console.log('refreshToken이 만료되었거나 유효하지 않습니다.');
       }
       handleTokenExpiration();
     }
@@ -120,29 +168,14 @@ export const handleTokenExpiration = () => {
 };
 
 /**
- * 자동 토큰 재발급 타이머 설정
+ * 자동 토큰 재발급 타이머 설정 (사용하지 않음)
+ * @deprecated 자동 재발급은 사용하지 않습니다. 필요할 때만 수동으로 호출하세요.
  */
 export const startAutoTokenRefresh = () => {
-  // 기존 타이머가 있다면 제거
-  stopAutoTokenRefresh();
-
-  // 1시간마다 토큰 재발급
-  autoRefreshTimer = setInterval(async () => {
-    const currentToken = localStorage.getItem('token');
-
-    if (currentToken && hasRefreshTokenCookie()) {
-      console.log('자동 토큰 재발급 시작:', new Date().toLocaleString());
-      await refreshAccessToken();
-    } else {
-      if (import.meta.env.DEV) {
-        console.log('토큰이 없거나 리프레시 토큰 쿠키가 없어 자동 재발급을 건너뜁니다.');
-      }
-    }
-  }, TOKEN_EXPIRY_TIME);
-
   if (import.meta.env.DEV) {
-    console.log('자동 토큰 재발급 타이머가 시작되었습니다. (1시간 간격)');
+    console.log('자동 토큰 재발급은 사용하지 않습니다. 필요할 때만 수동으로 호출하세요.');
   }
+  // 자동 재발급을 사용하지 않음
 };
 
 /**
@@ -159,25 +192,25 @@ export const stopAutoTokenRefresh = () => {
 };
 
 /**
- * 토큰 상태 초기화 및 자동 재발급 시작
+ * 토큰 상태 초기화 (자동 재발급 없음)
  */
 export const initializeTokenManager = () => {
   const currentToken = localStorage.getItem('token');
 
   if (currentToken && hasRefreshTokenCookie()) {
-    // 토큰이 있고 쿠키도 있으면 자동 재발급 시작
-    startAutoTokenRefresh();
+    if (import.meta.env.DEV) {
+      console.log('토큰이 유효합니다. 필요할 때만 수동으로 재발급하세요.');
+    }
 
-    // 토큰이 곧 만료될 예정이면 즉시 재발급
+    // 토큰이 곧 만료될 예정이면 경고만 표시 (자동 재발급하지 않음)
     if (isTokenExpiringSoon(currentToken)) {
       if (import.meta.env.DEV) {
-        console.log('토큰이 곧 만료될 예정입니다. 즉시 재발급합니다.');
+        console.log('토큰이 곧 만료될 예정입니다. 필요시 수동으로 재발급하세요.');
       }
-      refreshAccessToken();
     }
   } else {
     if (import.meta.env.DEV) {
-      console.log('토큰이나 리프레시 토큰이 없어 자동 재발급을 시작하지 않습니다.');
+      console.log('토큰이나 리프레시 토큰이 없습니다.');
     }
   }
 };
@@ -188,4 +221,46 @@ export const initializeTokenManager = () => {
 export const cleanupTokenManager = () => {
   stopAutoTokenRefresh();
   localStorage.removeItem('token');
+};
+
+/**
+ * 토큰 상태를 확인하는 함수
+ */
+export const getTokenStatus = () => {
+  const currentToken = localStorage.getItem('token');
+  const hasRefreshCookie = hasRefreshTokenCookie();
+
+  if (!currentToken) {
+    return { status: 'NO_TOKEN', message: '액세스 토큰이 없습니다.' };
+  }
+
+  if (!hasRefreshCookie) {
+    return { status: 'NO_REFRESH_TOKEN', message: '리프레시 토큰 쿠키가 없습니다.' };
+  }
+
+  if (isTokenExpired(currentToken)) {
+    return { status: 'EXPIRED', message: '액세스 토큰이 만료되었습니다. 필요시 수동으로 재발급하세요.' };
+  }
+
+  if (isTokenExpiringSoon(currentToken)) {
+    return { status: 'EXPIRING_SOON', message: '액세스 토큰이 곧 만료될 예정입니다. 필요시 수동으로 재발급하세요.' };
+  }
+
+  return { status: 'VALID', message: '액세스 토큰이 유효합니다.' };
+};
+
+/**
+ * 수동으로 accessToken 재발급을 시도하는 함수
+ */
+export const manualTokenRefresh = async (): Promise<{ success: boolean; message: string }> => {
+  try {
+    const newToken = await refreshAccessToken();
+    if (newToken) {
+      return { success: true, message: 'accessToken 재발급이 완료되었습니다.' };
+    } else {
+      return { success: false, message: 'accessToken 재발급에 실패했습니다.' };
+    }
+  } catch (error) {
+    return { success: false, message: 'accessToken 재발급 중 오류가 발생했습니다.' };
+  }
 };

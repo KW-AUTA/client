@@ -30,8 +30,6 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
   const { data: projectDetail } = useGetProjectDetail(Number(projectId));
   const { data: issueData, isLoading: isPending, isError } = useGetPageIssue(pageId);
 
-  console.log('테스트 이슈', issueData);
-
   if (isPending) {
     return <PageLoader />;
   }

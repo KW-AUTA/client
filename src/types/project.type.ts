@@ -1,4 +1,4 @@
-export type ProjectStatusType = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERROR';
+export type ProjectStatusType = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED' | 'ERROR' | string;
 
 export interface ProjectListData {
   projectId: number;

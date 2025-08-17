@@ -50,7 +50,7 @@ export default function LLMResult({ projectDetail }: TestResultProps) {
               modules={[Navigation, Pagination, Mousewheel, Keyboard]}>
               {projectDetail.uiInfo.uiTests.map((uiTest, index) => (
                 <SwiperSlide key={index}>
-                  <div className="p-7 grid grid-cols-5 gap-8 w-full h-full">
+                  <div className="p-7 grid grid-cols-5 gap-8 w-full h-[98%]">
                     <div className="bg-[#E5EBF2] place-items-center mx-4 col-span-3 flex items-center justify-center group relative">
                       <img
                         src={uiTest?.UIPageUrl}

@@ -2,15 +2,26 @@ import Footer from '@/components/layout/page-layout/Footer';
 import Header from '@/components/layout/page-layout/Header';
 import Sidebar from '@/components/layout/sidebar/Sidebar';
 import { ROUTES } from '@/constants';
-import { useAppSelector } from '@/store/redux/store';
+import { useAppSelector, useAppDispatch } from '@/store/redux/store';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
+import { logout } from '@/store/redux/reducers/auth';
 import PageLoader from '@/components/ui/loader/PageLoader';
 
 export default function Layout() {
   const location = useLocation();
   const { isLoggedIn } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Redux 상태와 localStorage 동기화
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token && isLoggedIn) {
+      // 토큰이 없는데 로그인 상태라면 로그아웃 처리
+      dispatch(logout());
+    }
+  }, [dispatch, isLoggedIn]);
 
   // 현재 경로
   const currentPath = location.pathname;

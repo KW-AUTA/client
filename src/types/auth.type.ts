@@ -34,3 +34,20 @@ export interface AuthState {
 export interface RefreshTokenResponseData {
   accessToken: string;
 }
+
+// 토큰 재발급 응답 타입
+export interface RefreshTokenResponse {
+  status: string;
+  message: string;
+  data: {
+    accessToken: string;
+  };
+  code: number;
+}
+
+// 토큰 재발급 에러 응답 타입
+export interface RefreshTokenErrorResponse {
+  status: string;
+  message: string;
+  code: number;
+}

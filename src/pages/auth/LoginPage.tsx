@@ -5,6 +5,7 @@ import { useLogin } from '@/store/queries/auth/useAuthMutations';
 import { ROUTES } from '@/constants';
 import { useAppDispatch } from '@/store/redux/store';
 import { setToken } from '@/store/redux/reducers/auth';
+import { initializeTokenManager } from '@/utils/tokenManager';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -18,6 +19,9 @@ export default function LoginPage() {
         if (response.data && response.data.accessToken) {
           dispatch(setToken(response.data.accessToken));
         }
+
+        // 토큰 관리자 초기화 (자동 재발급 시작)
+        initializeTokenManager();
 
         navigate(ROUTES.HOME);
       },

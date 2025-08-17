@@ -1,8 +1,9 @@
-import axios from 'axios';
-import { API_ENDPOINTS, ROUTES } from '@/constants';
+import axios, { AxiosError } from 'axios';
+import { ROUTES } from '@/constants';
 import { store } from '@/store/redux/store';
-import { logout, setToken } from '@/store/redux/reducers/auth';
+import { logout } from '@/store/redux/reducers/auth';
 import { toast } from 'react-toastify';
+import { refreshAccessToken, handleTokenExpiration, hasRefreshTokenCookie } from '@/utils/tokenManager';
 
 // refresh 재요청 queue에 들어갈 요청 형태 정의
 type FailQueueItem = {
@@ -10,7 +11,7 @@ type FailQueueItem = {
   reject: (error: unknown) => void;
 };
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://219.255.242.174:8080/api/v1';
+const baseURL = import.meta.env.VITE_API_BASE_URL || 'https://api.auta.com/api/v1';
 
 const axiosInstance = axios.create({
   baseURL,
@@ -76,27 +77,49 @@ axiosInstance.interceptors.response.use(
       isRefreshing = true; // 토큰 refresh 시작
 
       try {
-        const response = await axiosInstance.post(API_ENDPOINTS.AUTH.REFRESH, {}, { withCredentials: true });
+        // 리프레시 토큰 쿠키 확인
+        if (!hasRefreshTokenCookie()) {
+          if (import.meta.env.DEV) {
+            console.log('리프레시 토큰 쿠키가 없습니다.');
+          }
+          handleTokenExpiration();
+          return Promise.reject(new Error('Refresh Token 쿠키가 없습니다.'));
+        }
 
-        // 응답에서 새 access 호출
-        const newAccessToken = response.data.data?.accessToken;
-        if (!newAccessToken) throw new Error('accessToken 없음');
+        // accessToken 재발급 시도 (reissue API 호출)
+        const newAccessToken = await refreshAccessToken();
+        if (!newAccessToken) {
+          throw new Error('accessToken 재발급에 실패했습니다.');
+        }
 
-        // 새 토큰 저장 & 상태 업데이트
-        localStorage.setItem('token', newAccessToken);
-        store.dispatch(setToken(newAccessToken)); // redux 상태 갱신
         processQueue(null, newAccessToken); // 대기 중인 다른 요청들 처리
-
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest);
-      } catch (refreshError) {
+      } catch (refreshError: unknown) {
+        // 에러 처리
+        if (import.meta.env.DEV) {
+          console.error('accessToken 재발급 실패:', refreshError);
+        }
         processQueue(refreshError, null);
-        store.dispatch(logout());
 
-        // alert('로그아웃되었습니다. 다시 로그인해주세요.');
-        toast.error('로그아웃되었습니다. 다시 로그인해주세요.');
+        // AxiosError인지 확인하고 적절한 에러 처리
+        if (refreshError instanceof AxiosError) {
+          if (refreshError.response?.status === 401) {
+            // refreshToken이 만료되었거나 유효하지 않은 경우 로그아웃 처리
+            handleTokenExpiration();
+          }
+        } else if (refreshError instanceof Error) {
+          // 일반 Error 객체인 경우
+          if (import.meta.env.DEV) {
+            console.error('일반 에러:', refreshError.message);
+          }
+        } else {
+          // 알 수 없는 에러 타입
+          if (import.meta.env.DEV) {
+            console.error('알 수 없는 에러 타입:', refreshError);
+          }
+        }
 
-        window.location.href = ROUTES.LOGIN;
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
@@ -105,9 +128,10 @@ axiosInstance.interceptors.response.use(
 
     // 403(권한 부족) 에러도 강제 로그아웃 처리 (이건 혹시나 해서...)
     if (error.response?.status === 403) {
+      localStorage.removeItem('token'); // localStorage에서 토큰 삭제
       store.dispatch(logout());
       toast.error('접근 권한이 없습니다. 다시 로그인해주세요.');
-      window.location.href = ROUTES.LOGIN;
+      window.location.href = ROUTES.LANDING;
       return Promise.reject(error);
     }
 

@@ -13,25 +13,21 @@ import NotStartedStateSection from '@/pages/project/_components/projectDetail/No
 import InProgressStateSection from '@/pages/project/_components/projectDetail/InProgressStateSection';
 import CompletedStateSection from '@/pages/project/_components/projectDetail/CompletedStateSection';
 import ErrorState from '@/pages/project/_components/projectDetail/ErrorState';
-import { useDispatch } from 'react-redux';
-import { setActiveProjectId } from '@/store/redux/reducers/project';
 
 export default function ProjectDetailPage() {
   const { projectId } = useParams();
   const { data: projectDetail, isPending, isError, refetch } = useGetProjectDetail(Number(projectId));
   const { mutate: runTestMutation, isPending: isRunningTest } = useRunTest();
   const [isRunTestModalOpen, setIsRunTestModalOpen] = useState(false);
-  const dispatch = useDispatch();
   const handleRunTest = () => {
     runTestMutation(Number(projectId), {
       onSuccess: () => {
-        toast.success('테스트 실행이 시작되었습니다.\n완료까지 몇 분 소요될 수 있습니다.');
-        dispatch(setActiveProjectId(String(projectId)));
+        toast.success('테스트 실행이 시작되었습니다.\n완료까지 몇 분 소요될 수 있습니다.', { autoClose: 1000 });
         sessionStorage.setItem('activeProjectId', String(projectId));
         refetch();
       },
       onError: () => {
-        toast.error('테스트 실행 요청이 실패했습니다.\n다시 시도해주세요.');
+        toast.error('테스트 실행 요청이 실패했습니다.\n다시 시도해주세요.', { autoClose: 1000 });
       }
     });
     setIsRunTestModalOpen(false);

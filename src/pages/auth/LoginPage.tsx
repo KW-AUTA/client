@@ -23,6 +23,9 @@ export default function LoginPage() {
         // 토큰 관리자 초기화 (자동 재발급 시작)
         initializeTokenManager();
 
+        // 토큰 관리자 초기화 (자동 재발급 시작)
+        initializeTokenManager();
+
         navigate(ROUTES.HOME);
       },
       onError: (error) => {

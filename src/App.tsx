@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import ErrorModal from '@/components/modal/ErrorModal';
 import axios from 'axios';
 import { ROUTES } from '@/constants';
-import TestTokenButton from '@/components/ui/TestTokenButton';
+// import TestTokenButton from '@/components/ui/TestTokenButton';
 import { initializeTokenManager } from '@/utils/tokenManager';
 
 const queryClient = new QueryClient();
@@ -70,7 +70,7 @@ function AppWithErrorModal({ children }: { children: React.ReactNode }) {
   return (
     <>
       {children}
-      <TestTokenButton />
+      {/* <TestTokenButton /> */}
       <ErrorModal open={showErrorModal} message={errorMessage} onRetry={handleModalRetry} />
     </>
   );

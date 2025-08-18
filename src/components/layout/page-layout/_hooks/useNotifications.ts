@@ -10,7 +10,7 @@ const MAX_NOTIFICATIONS = 20;
 export const useNotifications = () => {
   const token = localStorage.getItem('token');
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://219.255.242.174:8080/api/v1/';
+  const baseUrl = (import.meta.env.VITE_API_BASE_URL || 'http://219.255.242.174:8080/api/v1/').replace(/\/$/, '') + '/';
 
   // ------------------------------ localStorage에서 알림 불러오기 ------------------------------
   const getNotifications = () => {

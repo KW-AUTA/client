@@ -8,8 +8,9 @@ export const formatDate = (date: Date | string): string => {
 };
 
 export const formatDateTime = (date: Date | string): string => {
-  const d = new Date(date);
-  return d.toLocaleString('ko-KR', {
+  const utcDate = new Date(date + 'Z'); // 강제로 utc로 해석해서 KST로 바꾸기
+  return utcDate.toLocaleString('ko-KR', {
+    timeZone: 'Asia/Seoul',
     year: 'numeric',
     month: 'long',
     day: 'numeric',

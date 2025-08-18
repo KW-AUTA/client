@@ -29,6 +29,6 @@ export const useGetProjectDetail = (projectId: number) => {
       return response.data.data;
     },
     enabled: !!projectId,
-    refetchInterval: 10000
+    refetchInterval: 5000
   });
 };

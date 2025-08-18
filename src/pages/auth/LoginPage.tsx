@@ -5,7 +5,6 @@ import { useLogin } from '@/store/queries/auth/useAuthMutations';
 import { ROUTES } from '@/constants';
 import { useAppDispatch } from '@/store/redux/store';
 import { setToken } from '@/store/redux/reducers/auth';
-import { toast } from 'react-toastify';
 import { initializeTokenManager } from '@/utils/tokenManager';
 
 export default function LoginPage() {
@@ -24,7 +23,9 @@ export default function LoginPage() {
         // 토큰 관리자 초기화 (자동 재발급 시작)
         initializeTokenManager();
 
-        toast.success(response.message);
+        // 토큰 관리자 초기화 (자동 재발급 시작)
+        initializeTokenManager();
+
         navigate(ROUTES.HOME);
       },
       onError: (error) => {

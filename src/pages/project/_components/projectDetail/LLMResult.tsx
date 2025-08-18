@@ -18,7 +18,7 @@ export default function LLMResult({ projectDetail }: TestResultProps) {
     <>
       <div className="my-6 flex flex-col gap-4">
         <p className="font-bold text-14 text-typography-dark pl-4">LLM UX/UI 평가 결과</p>
-        <div className="grid grid-cols-5 grid-rows-3 gap-4 children:shadow-custom children:rounded-15 max-xl2:flex flex-col">
+        <div className="grid grid-cols-5 grid-rows-2 gap-4 children:shadow-custom children:rounded-15 max-xl2:flex flex-col">
           {projectDetail?.uiInfo?.score && (
             <div className="flex flex-col items-center justify-center gap-2 border-pointColor border-2 bg-pointColor/30 children:cursor-default aspect-square max-w-[200px] max-h-[200px]">
               <p className="font-bold text-[48px] text-[#3C69EE]">{projectDetail.uiInfo.score}</p>
@@ -31,7 +31,7 @@ export default function LLMResult({ projectDetail }: TestResultProps) {
 
           {projectDetail?.uiInfo?.uiTests && projectDetail?.uiInfo?.uiTests?.length > 0 ? (
             <Swiper
-              className="col-span-4 row-span-3"
+              className="col-span-4 row-span-2 max-h-[500px]"
               style={
                 {
                   width: '100%',
@@ -42,18 +42,20 @@ export default function LLMResult({ projectDetail }: TestResultProps) {
               }
               cssMode={true}
               navigation={true}
-              pagination={true}
+              pagination={{
+                type: 'fraction'
+              }}
               mousewheel={true}
               keyboard={true}
               modules={[Navigation, Pagination, Mousewheel, Keyboard]}>
               {projectDetail.uiInfo.uiTests.map((uiTest, index) => (
                 <SwiperSlide key={index}>
-                  <div className="p-7 grid grid-cols-5 gap-8 w-full h-full">
+                  <div className="p-7 grid grid-cols-5 gap-8 w-full h-[98%]">
                     <div className="bg-[#E5EBF2] place-items-center mx-4 col-span-3 flex items-center justify-center group relative">
                       <img
                         src={uiTest?.UIPageUrl}
                         alt="uipageUrl"
-                        className="object-contain max-w-full max-h-full cursor-pointer hover:opacity-80 transition-opacity"
+                        className="object-contain max-w-full h-full cursor-pointer hover:opacity-80 transition-opacity"
                         onClick={() => handleImageClick(uiTest?.UIPageUrl)}
                       />
                       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">

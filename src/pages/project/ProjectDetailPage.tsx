@@ -23,7 +23,6 @@ export default function ProjectDetailPage() {
     runTestMutation(Number(projectId), {
       onSuccess: () => {
         toast.success('테스트 실행이 시작되었습니다.\n완료까지 몇 분 소요될 수 있습니다.', { autoClose: 1000 });
-        sessionStorage.setItem('activeProjectId', String(projectId));
         refetch();
       },
       onError: () => {

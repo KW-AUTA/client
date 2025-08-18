@@ -69,7 +69,7 @@ export const useNotifications = () => {
       // 새로운 알림만 toast 표시 (전체 배열이 응답으로 넘어와서 구분해줘야 함)
       newOnes.forEach((project) => {
         const isCompleted = project.projectStatus === 'COMPLETED';
-        const message = `${project.projectName} 프로젝트가 ${isCompleted ? '완료' : '오류 발생'}되었습니다.`;
+        const message = `${project.projectName} 프로젝트 ${isCompleted ? '가 완료 되었습니다.' : '에서 오류가 발생했습니다.'}`;
 
         if (isCompleted) {
           toast.success(message, { autoClose: 2000 });

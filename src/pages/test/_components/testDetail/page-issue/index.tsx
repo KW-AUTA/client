@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import type { FailComponent, InteractionFail, RoutingFail, TestDetail } from '@/types/test.type';
+import type { TestDetail } from '@/types/test.type';
 import { useGetPageIssue } from '@/store/queries/test/useTestQueries';
 import { useGetProjectDetail } from '@/store/queries/project/useProjectQueries';
 import CheckBoxes, { Filters } from '@/pages/test/_components/testDetail/page-issue/CheckBoxes';
-import { TabMeta } from '@/pages/test/_components/testDetail/page-issue/IssueDropdown';
 import PageButtons from '@/pages/test/_components/testDetail/page-issue/PageButtons';
 import GoToFigmaButton from '@/pages/test/_components/testDetail/page-issue/GoToFigmaButton';
 import PageLoader from '@/components/ui/loader/PageLoader';
 import IssueDropdown from '@/pages/test/_components/testDetail/page-issue/IssueDropdown';
+import { useIssueData } from '@/pages/test/_hooks/useIssueData';
 
 interface PageIssueSectionProps {
   testDetail: TestDetail;
@@ -30,7 +30,7 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
   const { data: projectDetail } = useGetProjectDetail(Number(projectId));
   const { data: issueData, isLoading: isPending, isError } = useGetPageIssue(pageId);
 
-  console.log('이슈', issueData);
+  const { issueCounts, tabMeta } = useIssueData(issueData || {}, filters);
 
   if (isPending) {
     return <PageLoader />;
@@ -39,42 +39,6 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
     return <div className="py-20 text-center text-red-500">페이지 이슈 불러오기 실패</div>;
   }
 
-  // 카테고리별 이슈 개수 계산
-  const issueCounts = {
-    routing: issueData?.routingTest?.fail?.length || 0,
-    mapping: issueData?.mappingTest?.failComponents?.length || 0,
-    interaction: issueData?.interactionTest?.fail?.length || 0
-  };
-
-  const tabMeta: TabMeta[] = [];
-
-  if (filters.routing && issueData.routingTest?.fail) {
-    issueData.routingTest.fail.forEach((_: RoutingFail, index: number) => {
-      tabMeta.push({
-        category: 'routing',
-        index,
-        label: `라우팅 이슈 ${index + 1}`
-      });
-    });
-  }
-  if (filters.mapping && issueData.mappingTest?.failComponents) {
-    issueData.mappingTest.failComponents.forEach((_: FailComponent, index: number) => {
-      tabMeta.push({
-        category: 'mapping',
-        index,
-        label: `컴포넌트 매핑 이슈 ${index + 1}`
-      });
-    });
-  }
-  if (filters.interaction && issueData.interactionTest?.fail) {
-    issueData.interactionTest.fail.forEach((_: InteractionFail, index: number) => {
-      tabMeta.push({
-        category: 'interaction',
-        index,
-        label: `인터렉션 이슈 ${index + 1}`
-      });
-    });
-  }
   if (tabMeta.length === 0) {
     return (
       <div>

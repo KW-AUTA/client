@@ -4,11 +4,11 @@ import type { FailComponent, InteractionFail, RoutingFail, TestDetail } from '@/
 import { useGetPageIssue } from '@/store/queries/test/useTestQueries';
 import { useGetProjectDetail } from '@/store/queries/project/useProjectQueries';
 import CheckBoxes, { Filters } from '@/pages/test/_components/testDetail/page-issue/CheckBoxes';
-import IssueContents from '@/pages/test/_components/testDetail/page-issue/IssueContents';
-import IssueTabBar, { TabMeta } from '@/pages/test/_components/testDetail/page-issue/IssueTabBar';
+import { TabMeta } from '@/pages/test/_components/testDetail/page-issue/IssueDropdown';
 import PageButtons from '@/pages/test/_components/testDetail/page-issue/PageButtons';
 import GoToFigmaButton from '@/pages/test/_components/testDetail/page-issue/GoToFigmaButton';
 import PageLoader from '@/components/ui/loader/PageLoader';
+import IssueDropdown from '@/pages/test/_components/testDetail/page-issue/IssueDropdown';
 
 interface PageIssueSectionProps {
   testDetail: TestDetail;
@@ -18,7 +18,7 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
   const params = useParams();
   const projectId = params.projectId;
   const pages = testDetail.pages;
-  const [activeTab, setActiveTab] = useState(0); // 현재 선택된 이슈 인덱스
+  const [selectedIssueIndex, setSelectedIssueIndex] = useState(0); // 현재 선택된 이슈 인덱스
   const [activePageIndex, setActivePageIndex] = useState(0); // 현재 선택된 페이지 인덱스
   const [filters, setFilters] = useState<Filters>({
     routing: true,
@@ -53,7 +53,7 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
       tabMeta.push({
         category: 'routing',
         index,
-        label: item.failReason
+        label: `라우팅 이슈 ${index + 1}`
       });
     });
   }
@@ -62,7 +62,7 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
       tabMeta.push({
         category: 'mapping',
         index,
-        label: item.failReason
+        label: `컴포넌트 매핑 이슈 ${index + 1}`
       });
     });
   }
@@ -71,7 +71,7 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
       tabMeta.push({
         category: 'interaction',
         index,
-        label: item.failReason
+        label: `인터렉션 이슈 ${index + 1}`
       });
     });
   }
@@ -107,8 +107,12 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
       <CheckBoxes filters={filters} onChange={setFilters} issueCounts={issueCounts} />
 
       <section className="shadow-custom rounded-15 pt-7 px-10 pb-4 space-y-4">
-        <IssueTabBar tabMeta={tabMeta} activeTab={activeTab} onSelectTab={(idx) => setActiveTab(idx)} />
-        <IssueContents issueData={issueData} tabMeta={tabMeta[activeTab]} />
+        <IssueDropdown
+          tabMeta={tabMeta}
+          selectedIssueIndex={selectedIssueIndex}
+          onSelectIssue={(index: number) => setSelectedIssueIndex(index)}
+          issueData={issueData}
+        />
         <GoToFigmaButton figmaUrl={projectDetail?.figmaUrl} />
       </section>
     </div>

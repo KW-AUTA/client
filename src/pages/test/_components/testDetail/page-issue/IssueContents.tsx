@@ -1,5 +1,5 @@
 import type { PageIssue } from '@/types/test.type';
-import type { TabMeta } from './IssueTabBar';
+import type { TabMeta } from './IssueDropdown';
 
 interface IssueContentsProps {
   issueData: PageIssue;

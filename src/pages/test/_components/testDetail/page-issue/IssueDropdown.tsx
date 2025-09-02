@@ -43,18 +43,18 @@ export default function IssueDropdown({ tabMeta, selectedIssueIndex, onSelectIss
     switch (category) {
       case 'routing':
         return {
-          backgroundColor: colors.TEST_TYPE_DOT.ROUTING,
-          color: 'white'
+          backgroundColor: 'transparent',
+          border: `1px solid ${colors.TEST_TYPE_DOT.ROUTING}`
         };
       case 'mapping':
         return {
-          backgroundColor: colors.TEST_TYPE_DOT.MAPPING,
-          color: 'white'
+          backgroundColor: 'transparent',
+          border: `1px solid ${colors.TEST_TYPE_DOT.MAPPING}`
         };
       case 'interaction':
         return {
-          backgroundColor: colors.TEST_TYPE_DOT.INTERACTION,
-          color: 'white'
+          backgroundColor: 'transparent',
+          border: `1px solid ${colors.TEST_TYPE_DOT.INTERACTION}`
         };
       default:
         return {
@@ -89,7 +89,7 @@ export default function IssueDropdown({ tabMeta, selectedIssueIndex, onSelectIss
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full flex items-center justify-between px-4 py-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#AF97AF] focus:border-transparent transition-colors">
+          className="w-full flex items-center justify-between px-4 py-3 bg-white border border-gray_2 rounded-lg shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#AF97AF] focus:border-transparent transition-colors">
           <div className="flex items-center space-x-2">
             <span className="px-2 py-1 rounded text-xs font-medium" style={getCategoryColor(selectedItem.category)}>
               {getCategoryLabel(selectedItem.category)}
@@ -114,8 +114,8 @@ export default function IssueDropdown({ tabMeta, selectedIssueIndex, onSelectIss
                 <button
                   key={`${meta.category}-${meta.index}`}
                   onClick={() => handleSelectItem(idx)}
-                  className={`w-full flex items-center space-x-2 px-4 py-3 text-left hover:bg-gray-50 transition-colors
-                    ${isSelected ? 'bg-[#AF97AF] bg-opacity-10 border-r-4 border-[#AF97AF]' : ''}
+                  className={`w-full flex items-center space-x-2 px-4 py-3 text-left hover:bg-[#AF97AF] hover:bg-opacity-25
+                    ${isSelected ? 'bg-[#AF97AF] bg-opacity-20 border-[#AF97AF]' : ''}
                     ${idx === tabMeta.length - 1 ? '' : 'border-b border-gray-100'}
                   `}>
                   <span className="px-2 py-1 rounded text-xs font-medium" style={getCategoryColor(meta.category)}>

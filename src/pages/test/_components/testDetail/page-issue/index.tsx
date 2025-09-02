@@ -49,7 +49,7 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
   const tabMeta: TabMeta[] = [];
 
   if (filters.routing && issueData.routingTest?.fail) {
-    issueData.routingTest.fail.forEach((item: RoutingFail, index: number) => {
+    issueData.routingTest.fail.forEach((_: RoutingFail, index: number) => {
       tabMeta.push({
         category: 'routing',
         index,
@@ -58,7 +58,7 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
     });
   }
   if (filters.mapping && issueData.mappingTest?.failComponents) {
-    issueData.mappingTest.failComponents.forEach((item: FailComponent, index: number) => {
+    issueData.mappingTest.failComponents.forEach((_: FailComponent, index: number) => {
       tabMeta.push({
         category: 'mapping',
         index,
@@ -67,7 +67,7 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
     });
   }
   if (filters.interaction && issueData.interactionTest?.fail) {
-    issueData.interactionTest.fail.forEach((item: InteractionFail, index: number) => {
+    issueData.interactionTest.fail.forEach((_: InteractionFail, index: number) => {
       tabMeta.push({
         category: 'interaction',
         index,

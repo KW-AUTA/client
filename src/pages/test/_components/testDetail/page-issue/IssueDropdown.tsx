@@ -132,7 +132,6 @@ export default function IssueDropdown({ tabMeta, selectedIssueIndex, onSelectIss
         )}
       </div>
 
-      {/* 선택된 이슈의 상세 내용 */}
       <div className="mt-4">
         <IssueContents issueData={issueData} tabMeta={selectedItem} />
       </div>

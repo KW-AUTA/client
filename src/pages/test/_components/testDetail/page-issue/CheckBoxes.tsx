@@ -7,12 +7,19 @@ export interface Filters {
   mapping: boolean;
 }
 
+export interface IssueCounts {
+  routing: number;
+  interaction: number;
+  mapping: number;
+}
+
 interface CheckBoxesProps {
   filters: Filters;
   onChange: (newFilters: Filters) => void;
+  issueCounts: IssueCounts;
 }
 
-export default function CheckBoxes({ filters, onChange }: CheckBoxesProps) {
+export default function CheckBoxes({ filters, onChange, issueCounts }: CheckBoxesProps) {
   const masterRef = useRef<HTMLInputElement>(null);
 
   const allChecked = filters.routing && filters.interaction && filters.mapping;
@@ -40,11 +47,15 @@ export default function CheckBoxes({ filters, onChange }: CheckBoxesProps) {
     key: keyof Filters;
     label: string;
     checked: boolean;
+    count: number;
   }> = [
-    { key: 'routing', label: '라우팅 이슈', checked: filters.routing },
-    { key: 'interaction', label: '인터랙션 이슈', checked: filters.interaction },
-    { key: 'mapping', label: '컴포넌트 이슈', checked: filters.mapping }
+    { key: 'routing', label: '라우팅 이슈', checked: filters.routing, count: issueCounts.routing },
+    { key: 'interaction', label: '인터랙션 이슈', checked: filters.interaction, count: issueCounts.interaction },
+    { key: 'mapping', label: '컴포넌트 이슈', checked: filters.mapping, count: issueCounts.mapping }
   ];
+
+  // 전체 이슈 개수 계산하기
+  const totalIssueCount = issueCounts.routing + issueCounts.interaction + issueCounts.mapping;
 
   return (
     <div className="flex items-center space-x-2 px-8 pb-5 all:max-sm:text-[10px]">
@@ -69,12 +80,12 @@ export default function CheckBoxes({ filters, onChange }: CheckBoxesProps) {
             <img src={checkIcon} alt="check" className="absolute top-0 left-0 w-[15px] h-[15px] pointer-events-none" />
           )}
         </div>
-        <span>전체 보기</span>
+        <span>전체 보기 ({totalIssueCount})</span>
       </label>
 
       <span className="text-[#D9D9D9]">ㅣ</span>
 
-      {items.map(({ key, label, checked }) => (
+      {items.map(({ key, label, checked, count }) => (
         <label key={key} className="flex items-center gap-2 text-typography-dark font-medium text-11 select-none">
           <div className="relative flex items-center">
             <input
@@ -100,7 +111,9 @@ export default function CheckBoxes({ filters, onChange }: CheckBoxesProps) {
               />
             )}
           </div>
-          <span>{label}</span>
+          <span>
+            {label} ({count})
+          </span>
         </label>
       ))}
     </div>

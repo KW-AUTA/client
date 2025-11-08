@@ -63,6 +63,7 @@ export interface RoutingFail {
   expectedDestination: string;
   actualDestination: string;
   failReason: string;
+  detailInfo: string;
 }
 
 export interface MappingTest {
@@ -78,6 +79,7 @@ export interface ComponentName {
 export interface FailComponent {
   componentName: string;
   failReason: string;
+  detailInfo: string;
 }
 
 export interface InteractionTest {
@@ -94,6 +96,7 @@ export interface InteractionFail {
   expectedAction: string;
   actualAction: string;
   failReason: string;
+  detailInfo: string;
 }
 
 // useGetPageIssue 훅이 반환하는 data.data 에 해당하는 타입

@@ -39,8 +39,6 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
     return <div className="py-20 text-center text-red-500">페이지 이슈 불러오기 실패</div>;
   }
 
-  console.log(issueData);
-
   if (tabMeta.length === 0) {
     return (
       <div>

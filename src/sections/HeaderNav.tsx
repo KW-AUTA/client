@@ -49,7 +49,7 @@ export const HeaderNav = () => {
         role="banner">
         <nav className="max-w-[1120px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between" aria-label="메인 네비게이션">
           <Link to={ROUTES.LANDING} aria-label="AUTA 홈" className="flex items-center">
-            <img src={autaLogo} alt="AUTA" className="h-14 md:h-16 w-auto" />
+            <img src={autaLogo} alt="AUTA" className="h-16 w-auto" />
           </Link>
 
           {/* 데스크톱 메뉴 */}

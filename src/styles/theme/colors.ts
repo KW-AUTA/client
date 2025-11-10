@@ -3,20 +3,20 @@ export const colors = {
   background: '#F5F5F5',
   pointColor: '#97AF8F',
 
-  // AUTA v4 Brand Colors
+  // AUTA v4 Brand Colors (연두색 톤)
   brand: {
-    blue: '#1E9AF7',
-    orange: '#FF7A2F',
-    sage: '#A6B6A1'
+    blue: '#5FD84A', // 메인 연두색 (기존 blue 대체, 채도/명도 유지)
+    orange: '#B8D84A', // 옐로우 그린 (보조 색상)
+    sage: '#97AF8F' // 원래 서비스 포인트 컬러
   },
 
-  // Neutral palette for v4 landing
+  // Neutral palette for v4 landing (연두색 톤에 맞춤)
   neutral: {
-    50: '#F8F9FB',
-    100: '#EEF1F5',
-    300: '#D5DBE4',
-    700: '#2E3238',
-    900: '#191B1F'
+    50: '#F7FBF8', // 약간 녹색 틴트
+    100: '#EFF5EE', // 연두색 힌트
+    300: '#D5E4D8', // 세이지 그린 틴트
+    700: '#2E3832', // 다크 그린 틴트
+    900: '#1B1F1B' // 매우 다크 그린
   },
 
   // 텍스트 색상

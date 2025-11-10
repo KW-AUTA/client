@@ -16,13 +16,13 @@ export const Hero = () => {
       id="hero" 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       style={{
-        background: 'linear-gradient(135deg, #F8F9FB 0%, #E8F0FE 50%, #F0F4F8 100%)'
+        background: 'linear-gradient(135deg, #F7FBF8 0%, #E8F5E9 50%, #F0F8F1 100%)'
       }}>
       
       {/* 배경 블러 효과 */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-sage/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-brand-blue/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-sage/20 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-[1120px] mx-auto px-5 md:px-8 py-20">

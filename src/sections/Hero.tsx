@@ -16,13 +16,16 @@ export const Hero = () => {
   const dashboardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // 초기 로드 시 즉시 표시
+    setIsVisible(true);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.01 }
     );
 
     if (dashboardRef.current) {
@@ -39,7 +42,7 @@ export const Hero = () => {
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
+      className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-24 pb-32"
       style={{
         background: 'linear-gradient(135deg, #F7FBF8 0%, #E8F5E9 50%, #F0F8F1 100%)'
       }}>
@@ -51,8 +54,8 @@ export const Hero = () => {
         <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-[1120px] mx-auto px-5 md:px-8 py-20">
-        <div className="text-center max-w-4xl mx-auto relative">
+      <div className="relative z-10 max-w-[1120px] mx-auto px-5 md:px-8 py-20 w-full">
+        <div className="text-center max-w-4xl mx-auto relative w-full">
           {/* Badges (2개) */}
           <div className="flex flex-wrap justify-center gap-3 mb-6">
             <Badge variant="brand" className="inline-flex">
@@ -93,7 +96,7 @@ export const Hero = () => {
           {/* 글래스모피즘 대시보드 위젯 (스크롤 뉘앙스) */}
           <div 
             ref={dashboardRef}
-            className={`relative min-h-[600px] mt-20 hidden lg:block transition-all duration-1000 ${
+            className={`relative min-h-[600px] mt-20 hidden md:block transition-all duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >

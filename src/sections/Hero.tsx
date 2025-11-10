@@ -158,15 +158,15 @@ export const Hero = () => {
             >
               {/* 슬라이드 1: 대시보드 (이미지 1) */}
               <SwiperSlide>
-                <div className="flex flex-col items-center gap-4 h-[600px] justify-center">
-                  <div className="text-center mb-2">
+                <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
+                  <div className="text-center mb-1">
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">대시보드</h3>
                     <p className="text-sm text-neutral-600">전체 프로젝트와 테스트 현황을 한눈에 확인하세요</p>
                   </div>
-                  <div className="w-full space-y-3 flex-1 flex flex-col justify-center">
+                  <div className="w-full space-y-2 flex-1 flex flex-col justify-center">
                     {/* Overview 카드 3개 */}
-                    <div className="grid grid-cols-3 gap-3">
-                      <GlassCard className="p-4 h-full" hoverEffect>
+                    <div className="grid grid-cols-3 gap-2">
+                      <GlassCard className="p-6 h-full min-h-[200px]" hoverEffect>
                         <div className="flex flex-col justify-between h-full">
                           <div className="flex items-center gap-3 mb-3">
                             <div className="p-2 rounded-lg bg-[#D5B8D5]">
@@ -175,12 +175,12 @@ export const Hero = () => {
                             <h3 className="text-[14px] font-bold text-neutral-900">진행 중인 프로젝트</h3>
                           </div>
                           <div className="flex items-end gap-2">
-                            <span className="text-3xl font-extrabold text-neutral-900">4</span>
+                            <span className="text-4xl font-extrabold text-neutral-900">4</span>
                             <span className="text-base font-bold text-neutral-600 mb-1">개</span>
                           </div>
                         </div>
                       </GlassCard>
-                      <GlassCard className="p-4 h-full" hoverEffect>
+                      <GlassCard className="p-6 h-full min-h-[200px]" hoverEffect>
                         <div className="flex flex-col justify-between h-full">
                           <div className="flex items-center gap-3 mb-3">
                             <div className="p-2 rounded-lg bg-[#D5B8D5]">
@@ -189,12 +189,12 @@ export const Hero = () => {
                             <h3 className="text-[14px] font-bold text-neutral-900">완료된 테스트</h3>
                           </div>
                           <div className="flex items-end gap-2">
-                            <span className="text-3xl font-extrabold text-neutral-900">160</span>
+                            <span className="text-4xl font-extrabold text-neutral-900">160</span>
                             <span className="text-base font-bold text-neutral-600 mb-1">개</span>
                           </div>
                         </div>
                       </GlassCard>
-                      <GlassCard className="p-4 h-full" hoverEffect>
+                      <GlassCard className="p-6 h-full min-h-[200px]" hoverEffect>
                         <div className="flex flex-col justify-between h-full">
                           <div className="flex items-center gap-3 mb-3">
                             <div className="p-2 rounded-lg bg-[#D5B8D5]">
@@ -203,7 +203,7 @@ export const Hero = () => {
                             <h3 className="text-[14px] font-bold text-neutral-900">미완료 테스트</h3>
                           </div>
                           <div className="flex items-end gap-2">
-                            <span className="text-3xl font-extrabold text-neutral-900">23</span>
+                            <span className="text-4xl font-extrabold text-neutral-900">23</span>
                             <span className="text-base font-bold text-neutral-600 mb-1">개</span>
                           </div>
                         </div>
@@ -211,10 +211,10 @@ export const Hero = () => {
                     </div>
 
                     {/* 프로젝트 관리 & 테스트 관리 테이블 */}
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-4">
                       {/* 프로젝트 관리 */}
                       <GlassCard className="p-4 h-full" hoverEffect>
-                        <h3 className="text-[14px] font-bold text-neutral-900 mb-3">프로젝트 관리</h3>
+                        <h3 className="text-[14px] font-bold text-neutral-900 mb-2">프로젝트 관리</h3>
                         <div className="overflow-hidden rounded-lg">
                           <div className="grid grid-cols-4 bg-[#e9f3ef]/50 p-2 gap-2 text-xs font-bold text-neutral-900">
                             <div className="text-center">프로젝트 명</div>
@@ -264,7 +264,7 @@ export const Hero = () => {
                       </GlassCard>
 
                       {/* 테스트 관리 */}
-                      <GlassCard className="p-3 h-full" hoverEffect>
+                      <GlassCard className="p-4 h-full" hoverEffect>
                         <h3 className="text-[14px] font-bold text-neutral-900 mb-2">테스트 관리</h3>
                         <div className="overflow-hidden rounded-lg">
                           <div className="grid grid-cols-4 bg-[#e9f3ef]/50 p-2 gap-2 text-xs font-bold text-neutral-900">
@@ -340,8 +340,8 @@ export const Hero = () => {
 
               {/* 슬라이드 2: 프로젝트 상세 페이지 */}
               <SwiperSlide>
-                <div className="flex flex-col items-center gap-4 h-[600px] justify-center">
-                  <div className="text-center mb-2">
+                <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
+                  <div className="text-center mb-1">
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">프로젝트 상세 페이지</h3>
                     <p className="text-sm text-neutral-600">LLM 평가 결과와 테스트 결과를 확인하세요</p>
                   </div>
@@ -466,16 +466,16 @@ export const Hero = () => {
 
               {/* 슬라이드 3: 테스트 상세 페이지 */}
               <SwiperSlide>
-                <div className="flex flex-col items-center gap-4 h-[600px] justify-center">
-                  <div className="text-center mb-2">
+                <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
+                  <div className="text-center mb-1">
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">테스트 상세 페이지</h3>
                     <p className="text-sm text-neutral-600">테스트 통계와 상세 이슈 정보를 확인하세요</p>
                   </div>
                   <div className="w-full space-y-2 flex-1 flex flex-col justify-center">
                     {/* 테스트 통계 */}
-                    <GlassCard className="p-3 flex-shrink-0" hoverEffect>
+                    <GlassCard className="p-6 flex-shrink-0" hoverEffect>
                       <div className="flex flex-col">
-                        <h4 className="text-[14px] font-bold text-neutral-900 mb-2">테스트 통계</h4>
+                        <h4 className="text-[14px] font-bold text-neutral-900 mb-5">테스트 통계</h4>
                         <div className="grid grid-cols-4 gap-3 items-center">
                           {testStatsData.map((stat, idx) => (
                             <CircleProgressBar
@@ -483,25 +483,25 @@ export const Hero = () => {
                               value={stat.value}
                               label={stat.label}
                               color={stat.color}
-                              size={60}
-                              thickness={5}
+                              size={75}
+                              thickness={6}
                             />
                           ))}
                         </div>
                       </div>
                     </GlassCard>
                     {/* 컴포넌트 이슈 상세 */}
-                    <GlassCard className="p-3 flex-shrink-0" hoverEffect>
+                    <GlassCard className="p-5 flex-shrink-0" hoverEffect>
                       <div className="flex flex-col">
-                        <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center justify-between mb-3">
                           <h4 className="text-[14px] font-bold text-neutral-900">컴포넌트 매핑 이슈 1</h4>
                           <button className="text-[16px] text-neutral-600 hover:text-neutral-900">
                             <ChevronRight className="w-3 h-3" />
                           </button>
                         </div>
-                        <div className="flex flex-row gap-2 mb-2">
+                        <div className="flex flex-row gap-2 mb-3">
                           {/* 이슈 상세 */}
-                          <div className="bg-red-50/80 border border-red-200/50 rounded-lg p-2 backdrop-blur-sm flex-1 flex flex-col justify-center max-h-[100px]">
+                          <div className="bg-red-50/80 border border-red-200/50 rounded-lg p-3 backdrop-blur-sm flex-1 flex flex-col justify-center max-h-[100px]">
                             <div className="text-[14px] font-bold text-red-800 mb-0.5">interaction 작동 안됨</div>
                             <div className="text-[12px] text-red-700 space-y-0">
                               <div>컴포넌트 이름: notice봉사</div>
@@ -509,7 +509,7 @@ export const Hero = () => {
                             </div>
                           </div>
                           {/* 해결 제안 */}
-                          <div className="bg-blue-50/80 border border-blue-200/50 rounded-lg p-2 backdrop-blur-sm flex-1 flex flex-col justify-center max-h-[100px]">
+                          <div className="bg-blue-50/80 border border-blue-200/50 rounded-lg p-3 backdrop-blur-sm flex-1 flex flex-col justify-center max-h-[100px]">
                             <div className="text-[14px] font-bold text-blue-800 mb-0.5">해결 제안</div>
                             <div className="text-[11px] text-blue-700 space-y-0">
                               <div>피그마 요소가 Y축으로 14.5px 아래에 있습니다</div>

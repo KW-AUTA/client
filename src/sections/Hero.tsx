@@ -8,6 +8,9 @@ import translations from '@/locales/ko-v4.json';
 import LinearProgressBar2 from '@/components/ui/progressBar/LinearProgressBar2';
 import CircleProgressBar from '@/components/ui/progressBar/CircleProgressBar';
 import { colors } from '@/styles/theme/colors';
+import ProjectIcon from '@/assets/icons/dash-project.svg?react';
+import TestIcon from '@/assets/icons/dash-projecting.svg?react';
+import IncompleteIcon from '@/assets/icons/dash-test.svg?react';
 
 /**
  * v4 Hero 섹션 (Above the fold, Glassmorphism 대시보드)
@@ -124,20 +127,21 @@ export const Hero = () => {
           >
             {/* 대시보드 그리드 레이아웃 */}
             <div className="grid grid-cols-12 gap-4">
+              {/* 상단 행: LLM UX/UI 평가, 진행 중인 프로젝트, 완료된 테스트 (높이 줄임) */}
               {/* LLM UX/UI 평가 (좌측 상단) */}
               <div className={`col-span-3 transition-all duration-700 delay-100 ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}>
-                <GlassCard className="p-6 h-full" hoverEffect>
-                  <div className="flex items-center gap-3 mb-4">
+                <GlassCard className="p-4" hoverEffect>
+                  <div className="flex items-center gap-3 mb-3">
                     <div className="p-2 rounded-lg bg-[#5CA585]/20">
-                      <TrendingUp className="w-5 h-5 text-[#5CA585]" />
+                      <TrendingUp className="w-4 h-4 text-[#5CA585]" />
                     </div>
-                    <h3 className="text-sm font-bold text-neutral-900">LLM UX/UI 평가</h3>
+                    <h3 className="text-xs font-bold text-neutral-900">LLM UX/UI 평가</h3>
                   </div>
-                  <div className="flex flex-col items-center justify-center py-6 border-2 border-[#5CA585] rounded-xl bg-[#5CA585]/10">
-                    <p className="text-5xl font-bold text-[#5CA585] mb-2">85</p>
-                    <div className="text-xs text-center">
+                  <div className="flex flex-col items-center justify-center py-4 border-2 border-[#5CA585] rounded-xl bg-[#5CA585]/10">
+                    <p className="text-4xl font-bold text-[#5CA585] mb-1">85</p>
+                    <div className="text-[10px] text-center">
                       <p className="font-semibold text-neutral-900">점수</p>
                       <p className="text-neutral-600">100점 만점</p>
                     </div>
@@ -145,41 +149,163 @@ export const Hero = () => {
                 </GlassCard>
               </div>
 
-              {/* Overview 카드들 (중앙 상단) */}
-              <div className={`col-span-6 grid grid-cols-2 gap-4 transition-all duration-700 delay-200 ${
+              {/* 진행 중인 프로젝트 (중앙 상단) */}
+              <div className={`col-span-3 transition-all duration-700 delay-200 ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}>
-                {/* 진행 중인 프로젝트 */}
-                <GlassCard className="p-6" hoverEffect>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-lg bg-[#5CA585]/20">
-                      <BarChart3 className="w-5 h-5 text-[#5CA585]" />
+                <GlassCard className="p-4" hoverEffect>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 rounded-lg bg-[#D5B8D5]">
+                      <ProjectIcon className="w-4 h-4 text-neutral-900" />
                     </div>
-                    <h3 className="text-sm font-bold text-neutral-900">진행 중인 프로젝트</h3>
+                    <h3 className="text-xs font-bold text-neutral-900">진행 중인 프로젝트</h3>
                   </div>
                   <div className="flex items-end gap-2">
-                    <span className="text-4xl font-extrabold text-neutral-900">4</span>
-                    <span className="text-lg font-bold text-neutral-600 mb-1">개</span>
-                  </div>
-                </GlassCard>
-
-                {/* 완료된 테스트 */}
-                <GlassCard className="p-6" hoverEffect>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-lg bg-[#5CA585]/20">
-                      <CheckCircle2 className="w-5 h-5 text-[#5CA585]" />
-                    </div>
-                    <h3 className="text-sm font-bold text-neutral-900">완료된 테스트</h3>
-                  </div>
-                  <div className="flex items-end gap-2">
-                    <span className="text-4xl font-extrabold text-neutral-900">160</span>
-                    <span className="text-lg font-bold text-neutral-600 mb-1">개</span>
+                    <span className="text-3xl font-extrabold text-neutral-900">4</span>
+                    <span className="text-base font-bold text-neutral-600 mb-1">개</span>
                   </div>
                 </GlassCard>
               </div>
 
-              {/* 테스트 통계 (우측 상단) */}
-              <div className={`col-span-3 transition-all duration-700 delay-300 ${
+              {/* 완료된 테스트 (우측 상단) */}
+              <div className={`col-span-3 transition-all duration-700 delay-200 ${
+                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}>
+                <GlassCard className="p-4" hoverEffect>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 rounded-lg bg-[#D5B8D5]">
+                      <TestIcon className="w-4 h-4 text-neutral-900" />
+                    </div>
+                    <h3 className="text-xs font-bold text-neutral-900">완료된 테스트 수</h3>
+                  </div>
+                  <div className="flex items-end gap-2">
+                    <span className="text-3xl font-extrabold text-neutral-900">160</span>
+                    <span className="text-base font-bold text-neutral-600 mb-1">개</span>
+                  </div>
+                </GlassCard>
+              </div>
+
+              {/* 미완료 테스트 (우측 상단 끝) */}
+              <div className={`col-span-3 transition-all duration-700 delay-200 ${
+                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}>
+                <GlassCard className="p-4" hoverEffect>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 rounded-lg bg-[#D5B8D5]">
+                      <IncompleteIcon className="w-4 h-4 text-neutral-900" />
+                    </div>
+                    <h3 className="text-xs font-bold text-neutral-900">미완료된 테스트 수</h3>
+                  </div>
+                  <div className="flex items-end gap-2">
+                    <span className="text-3xl font-extrabold text-neutral-900">0</span>
+                    <span className="text-base font-bold text-neutral-600 mb-1">개</span>
+                  </div>
+                </GlassCard>
+              </div>
+
+              {/* 중간 행: 프로젝트 관리, 테스트 관리 테이블 */}
+              {/* 프로젝트 관리 테이블 (좌측 중간) */}
+              <div className={`col-span-4 transition-all duration-700 delay-300 ${
+                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}>
+                <GlassCard className="p-4" hoverEffect>
+                  <h3 className="text-xs font-bold text-neutral-900 mb-3">프로젝트 관리</h3>
+                  <div className="overflow-hidden rounded-lg">
+                    <div className="grid grid-cols-2 bg-[#e9f3ef]/50 p-2 gap-2 text-[10px] font-bold text-neutral-900">
+                      <div className="text-center">프로젝트 명</div>
+                      <div className="text-center">상태</div>
+                    </div>
+                    <div className="space-y-0">
+                      <div className="grid grid-cols-2 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-[10px]">
+                        <div className="text-center font-medium text-neutral-900 truncate">AUTA 테스트</div>
+                        <div className="text-center font-medium text-neutral-900">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span>
+                          완료
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-[10px]">
+                        <div className="text-center font-medium text-neutral-900 truncate">Jane의 프로젝트</div>
+                        <div className="text-center font-medium text-neutral-900">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span>
+                          완료
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </GlassCard>
+              </div>
+
+              {/* 테스트 관리 테이블 (우측 중간) */}
+              <div className={`col-span-8 transition-all duration-700 delay-400 ${
+                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}>
+                <GlassCard className="p-4" hoverEffect>
+                  <h3 className="text-xs font-bold text-neutral-900 mb-3">테스트 관리</h3>
+                  <div className="overflow-hidden rounded-lg">
+                    <div className="grid grid-cols-3 bg-[#e9f3ef]/50 p-2 gap-2 text-[10px] font-bold text-neutral-900">
+                      <div className="text-center">프로젝트 명</div>
+                      <div className="text-center">유형</div>
+                      <div className="text-center">성공 여부</div>
+                    </div>
+                    <div className="space-y-0">
+                      <div className="grid grid-cols-3 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-[10px]">
+                        <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지</div>
+                        <div className="text-center font-medium text-neutral-900">
+                          <span className="inline-flex items-center font-bold">
+                            <span className="w-2 h-2 rounded-sm mr-1 bg-yellow-400"></span>
+                            MAPPING
+                          </span>
+                        </div>
+                        <div className="text-center font-medium text-neutral-900">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-500 mr-1"></span>
+                          실패
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-3 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-[10px]">
+                        <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지</div>
+                        <div className="text-center font-medium text-neutral-900">
+                          <span className="inline-flex items-center font-bold">
+                            <span className="w-2 h-2 rounded-sm mr-1 bg-yellow-400"></span>
+                            MAPPING
+                          </span>
+                        </div>
+                        <div className="text-center font-medium text-neutral-900">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span>
+                          통과
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </GlassCard>
+              </div>
+
+              {/* 하단 행: 테스트 결과 그래프, 테스트 통계, 컴포넌트 이슈 */}
+              {/* 테스트 결과 그래프 카드 (중앙 하단, Routing/Interaction/Component) */}
+              <div className={`col-span-8 transition-all duration-700 delay-500 ${
+                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}>
+                <GlassCard className="p-6" hoverEffect>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-lg bg-[#5CA585]/20">
+                      <BarChart3 className="w-5 h-5 text-[#5CA585]" />
+                    </div>
+                    <h3 className="text-sm font-bold text-neutral-900">테스트 결과</h3>
+                  </div>
+                  <div className="flex flex-col gap-5">
+                    {testResultsData.map((result, idx) => (
+                      <LinearProgressBar2
+                        key={idx}
+                        value={result.value}
+                        label={result.label}
+                        color={result.color}
+                      />
+                    ))}
+                  </div>
+                </GlassCard>
+              </div>
+
+              {/* 테스트 통계 (우측 하단) */}
+              <div className={`col-span-4 transition-all duration-700 delay-600 ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}>
                 <GlassCard className="p-6 h-full" hoverEffect>
@@ -204,42 +330,18 @@ export const Hero = () => {
                 </GlassCard>
               </div>
 
-              {/* 테스트 결과 그래프 카드 (중앙, Routing/Interaction/Component) */}
-              <div className={`col-span-8 transition-all duration-700 delay-400 ${
+              {/* 컴포넌트 이슈 (하단 끝) */}
+              <div className={`col-span-12 transition-all duration-700 delay-700 ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}>
                 <GlassCard className="p-6" hoverEffect>
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="p-2 rounded-lg bg-[#5CA585]/20">
-                      <BarChart3 className="w-5 h-5 text-[#5CA585]" />
-                    </div>
-                    <h3 className="text-sm font-bold text-neutral-900">테스트 결과</h3>
-                  </div>
-                  <div className="flex flex-col gap-5">
-                    {testResultsData.map((result, idx) => (
-                      <LinearProgressBar2
-                        key={idx}
-                        value={result.value}
-                        label={result.label}
-                        color={result.color}
-                      />
-                    ))}
-                  </div>
-                </GlassCard>
-              </div>
-
-              {/* 컴포넌트 이슈 (우측 중앙) */}
-              <div className={`col-span-4 transition-all duration-700 delay-500 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}>
-                <GlassCard className="p-6 h-full" hoverEffect>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="p-2 rounded-lg bg-[#5CA585]/20">
                       <AlertCircle className="w-5 h-5 text-[#5CA585]" />
                     </div>
                     <h3 className="text-sm font-bold text-neutral-900">컴포넌트 이슈</h3>
                   </div>
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
                     <div className="bg-red-50/80 border border-red-200/50 rounded-lg p-3 backdrop-blur-sm">
                       <div className="text-xs font-bold text-red-800 mb-1">X, Y 좌표 오차</div>
                       <div className="text-[10px] text-red-700">컴포넌트 이름: 협력기관1</div>
@@ -247,81 +349,6 @@ export const Hero = () => {
                     <div className="bg-blue-50/80 border border-blue-200/50 rounded-lg p-3 backdrop-blur-sm">
                       <div className="text-xs font-bold text-blue-800 mb-1">해결 제안</div>
                       <div className="text-[10px] text-blue-700">Figma 프레임 확인 필요</div>
-                    </div>
-                  </div>
-                </GlassCard>
-              </div>
-
-              {/* 프로젝트 관리 테이블 (하단 좌측) */}
-              <div className={`col-span-4 transition-all duration-700 delay-600 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}>
-                <GlassCard className="p-6" hoverEffect>
-                  <h3 className="text-sm font-bold text-neutral-900 mb-4">프로젝트 관리</h3>
-                  <div className="overflow-hidden rounded-lg">
-                    <div className="grid grid-cols-2 bg-[#e9f3ef]/50 p-2 gap-2 text-xs font-bold text-neutral-900">
-                      <div className="text-center">프로젝트 명</div>
-                      <div className="text-center">상태</div>
-                    </div>
-                    <div className="space-y-0">
-                      <div className="grid grid-cols-2 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                        <div className="text-center font-medium text-neutral-900 truncate">AUTA 테스트</div>
-                        <div className="text-center font-medium text-neutral-900">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span>
-                          완료
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-2 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                        <div className="text-center font-medium text-neutral-900 truncate">Jane의 프로젝트</div>
-                        <div className="text-center font-medium text-neutral-900">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span>
-                          완료
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </GlassCard>
-              </div>
-
-              {/* 테스트 관리 테이블 (하단 중앙) */}
-              <div className={`col-span-8 transition-all duration-700 delay-700 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}>
-                <GlassCard className="p-6" hoverEffect>
-                  <h3 className="text-sm font-bold text-neutral-900 mb-4">테스트 관리</h3>
-                  <div className="overflow-hidden rounded-lg">
-                    <div className="grid grid-cols-3 bg-[#e9f3ef]/50 p-2 gap-2 text-xs font-bold text-neutral-900">
-                      <div className="text-center">프로젝트 명</div>
-                      <div className="text-center">유형</div>
-                      <div className="text-center">성공 여부</div>
-                    </div>
-                    <div className="space-y-0">
-                      <div className="grid grid-cols-3 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                        <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지</div>
-                        <div className="text-center font-medium text-neutral-900">
-                          <span className="inline-flex items-center font-bold">
-                            <span className="w-2 h-2 rounded-sm mr-1 bg-yellow-400"></span>
-                            MAPPING
-                          </span>
-                        </div>
-                        <div className="text-center font-medium text-neutral-900">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-500 mr-1"></span>
-                          실패
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-3 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                        <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지</div>
-                        <div className="text-center font-medium text-neutral-900">
-                          <span className="inline-flex items-center font-bold">
-                            <span className="w-2 h-2 rounded-sm mr-1 bg-yellow-400"></span>
-                            MAPPING
-                          </span>
-                        </div>
-                        <div className="text-center font-medium text-neutral-900">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span>
-                          통과
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </GlassCard>

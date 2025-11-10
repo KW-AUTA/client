@@ -95,19 +95,19 @@ export const Hero = () => {
             </a>
           </div>
 
-          {/* 실제 대시보드 위젯 (스크롤 뉘앙스 - 실제 AUTA 서비스 내용, 자연스럽게 겹침) */}
+          {/* 실제 대시보드 위젯 (스크롤 뉘앙스 - 실제 AUTA 서비스 내용, 중앙 집중 겹침) */}
           <div 
             ref={dashboardRef}
-            className={`relative w-full max-w-6xl mx-auto mt-20 mb-12 hidden md:block h-[550px] transition-all duration-1000 ${
+            className={`relative w-full max-w-5xl mx-auto mt-20 mb-12 hidden md:block h-[500px] transition-all duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            {/* Overview 카드 2개 (상단 중앙, 더 가깝게 겹쳐짐) */}
+            {/* Overview 카드 2개 (상단 중앙, 거의 완전히 겹침) */}
             <div className={`absolute top-0 left-1/2 -translate-x-1/2 flex transition-all duration-700 delay-100 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}>
               {/* 진행 중인 프로젝트 */}
-              <div className="flex flex-col items-center md:items-start justify-between w-[180px] h-[160px] px-5 py-4 rounded-[20px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.18)] z-30 transform translate-y-[-12px] translate-x-[-15px] rotate-[-2deg]">
+              <div className="flex flex-col items-center md:items-start justify-between w-[180px] h-[160px] px-5 py-4 rounded-[20px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.18)] z-30 transform translate-y-[-8px] translate-x-[-30px] rotate-[-3deg]">
                 <div className="mb-0 flex items-center justify-center w-12 h-12 rounded-[16px] bg-[#D5B8D5]">
                   <ProjectIcon width={30} height={30} />
                 </div>
@@ -119,7 +119,7 @@ export const Hero = () => {
               </div>
 
               {/* 완료된 테스트 */}
-              <div className="flex flex-col items-center md:items-start justify-between w-[180px] h-[160px] px-5 py-4 rounded-[20px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.18)] z-40 transform translate-y-[8px] translate-x-[15px] rotate-[2deg]">
+              <div className="flex flex-col items-center md:items-start justify-between w-[180px] h-[160px] px-5 py-4 rounded-[20px] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.18)] z-40 transform translate-y-[8px] translate-x-[30px] rotate-[3deg]">
                 <div className="mb-0 flex items-center justify-center w-12 h-12 rounded-[16px] bg-[#D5B8D5]">
                   <TestIcon width={30} height={30} />
                 </div>
@@ -131,9 +131,9 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* LLM UX/UI 평가 결과 (좌측 상단, 더 튀어나오게) */}
-            <div className={`absolute top-12 left-0 bg-white rounded-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] w-48 z-50 transform translate-x-[-20px] translate-y-[-15px] rotate-[3deg] transition-all duration-700 delay-200 ${
-              isVisible ? 'translate-x-[-20px] translate-y-[-15px] opacity-100' : '-translate-x-10 opacity-0'
+            {/* LLM UX/UI 평가 결과 (좌측 상단, 중앙으로 더 가깝게) */}
+            <div className={`absolute top-8 left-1/2 -translate-x-[280px] bg-white rounded-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] w-48 z-50 transform translate-x-[-15px] translate-y-[-10px] rotate-[2deg] transition-all duration-700 delay-200 ${
+              isVisible ? 'translate-x-[-15px] translate-y-[-10px] opacity-100' : '-translate-x-10 opacity-0'
             }`}>
               <p className="text-xs font-bold text-[#191919] mb-3 px-4 pt-4">LLM UX/UI 평가</p>
               <div className="flex flex-col items-center justify-center gap-2 border-[#97AF8F] border-2 bg-[#97AF8F]/30 mx-4 mb-4 aspect-square">
@@ -145,9 +145,9 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* 테스트 결과 막대 그래프 (중앙 상단, Overview 카드와 겹침) */}
-            <div className={`absolute top-8 left-1/2 -translate-x-1/2 bg-white rounded-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] p-5 w-64 z-35 transform translate-y-[20px] rotate-[-1.5deg] transition-all duration-700 delay-300 ${
-              isVisible ? 'translate-y-[20px] opacity-100' : 'translate-y-10 opacity-0'
+            {/* 테스트 결과 막대 그래프 (중앙 상단, Overview 카드 바로 아래 겹침) */}
+            <div className={`absolute top-24 left-1/2 -translate-x-1/2 bg-white rounded-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] p-5 w-64 z-35 transform translate-y-[0px] rotate-[-1deg] transition-all duration-700 delay-300 ${
+              isVisible ? 'translate-y-[0px] opacity-100' : 'translate-y-10 opacity-0'
             }`}>
               <p className="text-xs font-bold text-[#191919] mb-4">테스트 결과</p>
               <div className="space-y-3">
@@ -184,9 +184,9 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* 원형 진행률 바 - Test Statistics (우측 상단, 더 튀어나오게) */}
-            <div className={`absolute top-12 right-0 bg-white rounded-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] p-5 w-56 z-50 transform translate-x-[-25px] translate-y-[-15px] rotate-[3deg] transition-all duration-700 delay-400 ${
-              isVisible ? 'translate-x-[-25px] translate-y-[-15px] opacity-100' : 'translate-x-10 opacity-0'
+            {/* 원형 진행률 바 - Test Statistics (우측 상단, 중앙으로 더 가깝게) */}
+            <div className={`absolute top-8 left-1/2 translate-x-[280px] bg-white rounded-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] p-5 w-56 z-50 transform translate-x-[15px] translate-y-[-10px] rotate-[2deg] transition-all duration-700 delay-400 ${
+              isVisible ? 'translate-x-[15px] translate-y-[-10px] opacity-100' : 'translate-x-10 opacity-0'
             }`}>
               <p className="text-xs font-bold text-[#191919] mb-3">테스트 통계</p>
               <div className="grid grid-cols-2 gap-3">
@@ -285,9 +285,9 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* 프로젝트 관리 테이블 (좌측 하단, 더 튀어나오게) */}
-            <div className={`absolute bottom-0 left-0 bg-white rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] w-64 z-40 transform translate-x-[-20px] translate-y-[15px] rotate-[-2deg] transition-all duration-700 delay-500 ${
-              isVisible ? 'translate-x-[-20px] translate-y-[15px] opacity-100' : 'translate-y-10 opacity-0'
+            {/* 프로젝트 관리 테이블 (좌측 하단, 중앙으로 더 가깝게) */}
+            <div className={`absolute bottom-0 left-1/2 -translate-x-[320px] bg-white rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] w-64 z-40 transform translate-x-[-15px] translate-y-[10px] rotate-[-2deg] transition-all duration-700 delay-500 ${
+              isVisible ? 'translate-x-[-15px] translate-y-[10px] opacity-100' : 'translate-y-10 opacity-0'
             }`}>
               <div className="text-xs font-extrabold text-[#222] mb-2 px-3 pt-3">프로젝트 관리</div>
               <div className="overflow-hidden">
@@ -315,8 +315,8 @@ export const Hero = () => {
             </div>
 
             {/* 테스트 관리 테이블 (중앙 하단, 다른 위젯과 겹침) */}
-            <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 bg-white rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] w-80 z-30 transform translate-y-[10px] rotate-[-1.5deg] transition-all duration-700 delay-600 ${
-              isVisible ? 'translate-y-[10px] opacity-100' : 'translate-y-10 opacity-0'
+            <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 bg-white rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] w-80 z-30 transform translate-y-[0px] rotate-[-1deg] transition-all duration-700 delay-600 ${
+              isVisible ? 'translate-y-[0px] opacity-100' : 'translate-y-10 opacity-0'
             }`}>
               <div className="text-xs font-extrabold text-[#222] mb-2 px-3 pt-3">테스트 관리</div>
               <div className="overflow-hidden">
@@ -356,9 +356,9 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* 테스트 세부 관리 - 이슈 카드 (우측 하단, 더 튀어나오게) */}
-            <div className={`absolute bottom-0 right-0 bg-white rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] w-64 z-50 transform translate-x-[-20px] translate-y-[15px] rotate-[2deg] transition-all duration-700 delay-700 ${
-              isVisible ? 'translate-x-[-20px] translate-y-[15px] opacity-100' : 'translate-y-10 opacity-0'
+            {/* 테스트 세부 관리 - 이슈 카드 (우측 하단, 중앙으로 더 가깝게) */}
+            <div className={`absolute bottom-0 left-1/2 translate-x-[320px] bg-white rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] w-64 z-50 transform translate-x-[15px] translate-y-[10px] rotate-[2deg] transition-all duration-700 delay-700 ${
+              isVisible ? 'translate-x-[15px] translate-y-[10px] opacity-100' : 'translate-y-10 opacity-0'
             }`}>
               <div className="text-xs font-extrabold text-[#222] mb-2 px-3 pt-3">컴포넌트 이슈</div>
               <div className="px-3 pb-3 space-y-2">

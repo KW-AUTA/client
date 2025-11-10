@@ -29,10 +29,15 @@ export const Hero = () => {
 
       <div className="relative z-10 max-w-[1120px] mx-auto px-5 md:px-8 py-20">
         <div className="text-center max-w-4xl mx-auto relative">
-          {/* Badge */}
-          <Badge variant="brand" className="mb-6 inline-flex">
-            {hero.badge}
-          </Badge>
+          {/* Badges (2개) */}
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
+            <Badge variant="brand" className="inline-flex">
+              {hero.badge1}
+            </Badge>
+            <Badge variant="brand" className="inline-flex">
+              {hero.badge2}
+            </Badge>
+          </div>
 
           {/* 메인 헤드라인 */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-neutral-900 mb-6 leading-tight">

@@ -110,13 +110,13 @@ export const HeaderNav = () => {
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}>
         <div className="flex flex-col h-full">
-          <div className="flex justify-between items-center p-6 border-b">
-            <img src={autaLogo} alt="AUTA" className="h-14 w-auto" />
+          <div className="flex justify-between items-center px-4 py-3 border-b w-full">
+            <img src={autaLogo} alt="AUTA" className="h-16 w-auto flex-shrink-0" />
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 hover:bg-neutral-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-neutral-100 rounded-lg transition-colors flex-shrink-0"
               aria-label={translations.nav.closeMenu}>
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
           </div>
 

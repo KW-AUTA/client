@@ -3,6 +3,22 @@ export const colors = {
   background: '#F5F5F5',
   pointColor: '#97AF8F',
 
+  // AUTA v4 Brand Colors
+  brand: {
+    blue: '#1E9AF7',
+    orange: '#FF7A2F',
+    sage: '#A6B6A1'
+  },
+
+  // Neutral palette for v4 landing
+  neutral: {
+    50: '#F8F9FB',
+    100: '#EEF1F5',
+    300: '#D5DBE4',
+    700: '#2E3238',
+    900: '#191B1F'
+  },
+
   // 텍스트 색상
   typography: {
     dark: '#191919',

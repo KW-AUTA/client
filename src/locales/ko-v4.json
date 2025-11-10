@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "product": "제품",
+    "how": "작동방식",
+    "features": "기능",
+    "faq": "FAQ",
+    "login": "로그인",
+    "start": "무료로 시작",
+    "menu": "메뉴",
+    "closeMenu": "메뉴 닫기"
+  },
+  "hero": {
+    "badge": "디자인↔코드 불일치, AI로 5분 진단",
+    "title": "UI 불일치, AI가 자동으로 찾아내고 고쳐줍니다",
+    "subtitle": "AUTA는 Figma와 실제 서비스 UI를 시각·시맨틱으로 비교해 드리프트를 정량화하고, Nielsen 10원칙 기반 개선안을 우선순위로 제안합니다.",
+    "primary": "지금 무료로 시작하기",
+    "secondary": "3분 데모 보기",
+    "stats": {
+      "testsDone": {
+        "label": "완료된 테스트",
+        "value": "N/A",
+        "note": "AUTA 포스터 값 필요"
+      },
+      "dailyVisitors": {
+        "label": "일일 방문자",
+        "value": "N/A",
+        "note": "AUTA 포스터 값 필요"
+      },
+      "avgTime": {
+        "label": "평균 검증 시간",
+        "value": "2분",
+        "note": "포스터 근거"
+      }
+    }
+  },
+  "proof": {
+    "title": "검증된 근거와 지표로 말합니다",
+    "subtitle": "모든 수치는 AUTA 포스터 기반",
+    "compare": {
+      "title": "효율 비교",
+      "headers": ["항목", "기존 QA", "AUTA"],
+      "rows": [
+        ["소요 시간(페이지당)", "약 30분", "2분"],
+        ["테스트 커버리지", "화면 단위 일부", "전체 UI 단위 커버"],
+        ["실행 인원", "최소 1명", "0명(자동화)"]
+      ],
+      "source": "*AUTA 포스터 근거"
+    },
+    "metrics": {
+      "title": "모델 성능 (포스터 값 그대로)",
+      "note": "값이 불확실하면 N/A로 표기. YOLO 모델 기반 성능 지표",
+      "items": [
+        {
+          "label": "mAP@50",
+          "value": "N/A",
+          "desc": "포스터 수치 필요",
+          "source": "AUTA 포스터"
+        },
+        {
+          "label": "mAP@50-95",
+          "value": "N/A",
+          "desc": "포스터 수치 필요",
+          "source": "AUTA 포스터"
+        },
+        {
+          "label": "Precision",
+          "value": "N/A",
+          "desc": "포스터 수치 필요",
+          "source": "AUTA 포스터"
+        },
+        {
+          "label": "Recall",
+          "value": "N/A",
+          "desc": "포스터 수치 필요",
+          "source": "AUTA 포스터"
+        }
+      ]
+    },
+    "flow": {
+      "title": "작동 구조 (요약)",
+      "subtitle": "YOLO + OCR + LLM 기반 자동 검증",
+      "items": [
+        {
+          "step": "1",
+          "text": "Figma 페이지 → Plugin JSON 추출"
+        },
+        {
+          "step": "2",
+          "text": "UI 컴포넌트 탐지 & OCR 텍스트 추출"
+        },
+        {
+          "step": "3",
+          "text": "오류 발견 및 저장"
+        }
+      ],
+      "source": "*AUTA 포스터 근거"
+    }
+  },
+  "how": {
+    "title": "3단계로 끝나는 자동 검증",
+    "subtitle": "코드 작성 없이 디자인 기준 테스트",
+    "steps": [
+      {
+        "num": "1",
+        "title": "연동",
+        "desc": "Figma/웹 프로젝트 연결(디자인 데이터 기준 테스트)",
+        "icon": "link"
+      },
+      {
+        "num": "2",
+        "title": "자동 비교",
+        "desc": "YOLO + OCR + LLM으로 화면·컴포넌트 일치 검증",
+        "icon": "search"
+      },
+      {
+        "num": "3",
+        "title": "리포트",
+        "desc": "Nielsen 10원칙 기반 권고 + 증거 캡처/지표(논블로킹)",
+        "icon": "report"
+      }
+    ]
+  },
+  "video": {
+    "title": "5분 만에 AUTA 셋업 & 첫 테스트",
+    "subtitle": "설치부터 리포트 해석까지 한 번에",
+    "url": "https://youtu.be/c4ozICaCZWA",
+    "note": "URL 고정됨"
+  },
+  "final": {
+    "title": "지금, 내 프로젝트로 정확히 검증해 보세요",
+    "subtitle": "무료로 시작하고, 5분 안에 첫 테스트 완료",
+    "primary": "무료로 시작하기",
+    "secondary": "가이드 보며 5분 설치"
+  },
+  "footer": {
+    "product": "제품",
+    "docs": "문서",
+    "support": "지원",
+    "terms": "약관",
+    "contact": "연락처",
+    "copyright": "© 2025 AUTA. All rights reserved.",
+    "university": "광운대학교 인공지능융합대학 정보융합학부 캡스톤 프로젝트"
+  },
+  "accessibility": {
+    "skipToContent": "본문으로 건너뛰기",
+    "skipToNav": "네비게이션으로 건너뛰기"
+  },
+  "_meta": {
+    "version": "v4-lean-evidence",
+    "lastUpdated": "2025-01-10",
+    "principle": "거짓정보 금지. 불확실한 수치는 N/A 표기. 출처 AUTA 포스터 근거"
+  }
+}
+

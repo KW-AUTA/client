@@ -23,7 +23,7 @@ export const HowItWorks = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:ml-auto md:mr-0 md:max-w-[90%]">
           {how.steps.map((step, idx) => {
             const Icon = icons[idx];
             return (

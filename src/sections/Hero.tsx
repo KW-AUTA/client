@@ -93,194 +93,190 @@ export const Hero = () => {
             </a>
           </div>
 
-          {/* 글래스모피즘 대시보드 위젯 (스크롤 뉘앙스) */}
+          {/* 글래스모피즘 대시보드 위젯 (스크롤 뉘앙스 - 겹쳐진 레이아웃) */}
           <div 
             ref={dashboardRef}
-            className={`relative min-h-[600px] mt-20 hidden md:block transition-all duration-1000 ${
+            className={`relative w-full max-w-6xl mx-auto mt-16 mb-8 hidden md:block h-[500px] transition-all duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            {/* Overview 카드 3개 (상단) */}
-            <div className={`flex justify-center gap-4 mb-8 transition-all duration-700 delay-100 ${
+            {/* Overview 카드 3개 (상단 중앙, 겹쳐짐) */}
+            <div className={`absolute top-0 left-1/2 -translate-x-1/2 flex gap-3 transition-all duration-700 delay-100 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}>
-              <GlassCard className="p-6 w-64 hoverEffect">
+              <GlassCard className="p-5 w-48 hoverEffect z-10">
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                    <BarChart3 className="w-8 h-8 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-3">
+                    <BarChart3 className="w-6 h-6 text-white" />
                   </div>
-                  <p className="text-sm text-neutral-700 mb-2">진행 중인 프로젝트 수</p>
-                  <p className="text-3xl font-bold text-neutral-900">4개</p>
+                  <p className="text-xs text-neutral-700 mb-1">진행 중인 프로젝트</p>
+                  <p className="text-2xl font-bold text-neutral-900">4개</p>
                 </div>
               </GlassCard>
 
-              <GlassCard className="p-6 w-64 hoverEffect">
+              <GlassCard className="p-5 w-48 hoverEffect z-20">
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 bg-gradient-to-br from-brand-blue to-brand-orange rounded-xl flex items-center justify-center mb-4">
-                    <CheckCircle className="w-8 h-8 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-brand-blue to-brand-orange rounded-xl flex items-center justify-center mb-3">
+                    <CheckCircle className="w-6 h-6 text-white" />
                   </div>
-                  <p className="text-sm text-neutral-700 mb-2">완료된 테스트 수</p>
-                  <p className="text-3xl font-bold text-neutral-900">160개</p>
+                  <p className="text-xs text-neutral-700 mb-1">완료된 테스트</p>
+                  <p className="text-2xl font-bold text-neutral-900">160개</p>
                 </div>
               </GlassCard>
 
-              <GlassCard className="p-6 w-64 hoverEffect">
+              <GlassCard className="p-5 w-48 hoverEffect z-10">
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mb-4">
-                    <Target className="w-8 h-8 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mb-3">
+                    <Target className="w-6 h-6 text-white" />
                   </div>
-                  <p className="text-sm text-neutral-700 mb-2">미완료된 테스트 수</p>
-                  <p className="text-3xl font-bold text-neutral-900">0개</p>
+                  <p className="text-xs text-neutral-700 mb-1">미완료 테스트</p>
+                  <p className="text-2xl font-bold text-neutral-900">0개</p>
                 </div>
               </GlassCard>
             </div>
 
-            {/* 통계 위젯 4개 (중앙 상단) */}
-            <div className={`grid grid-cols-4 gap-4 mb-8 transition-all duration-700 delay-300 ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            {/* 통계 위젯 4개 (좌측 상단) */}
+            <div className={`absolute top-16 left-0 grid grid-cols-2 gap-3 w-64 transition-all duration-700 delay-200 ${
+              isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
             }`}>
-              <GlassCard className="p-5 hoverEffect">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs text-neutral-700 font-medium">Total Users</p>
+              <GlassCard className="p-4 hoverEffect">
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-xs text-neutral-700">Total Users</p>
                   <span className="text-xs text-green-600 font-bold">+1.2%</span>
                 </div>
-                <p className="text-2xl font-bold text-neutral-900">332</p>
+                <p className="text-xl font-bold text-neutral-900">332</p>
               </GlassCard>
 
-              <GlassCard className="p-5 hoverEffect">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs text-neutral-700 font-medium">New Users</p>
+              <GlassCard className="p-4 hoverEffect">
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-xs text-neutral-700">New Users</p>
                   <span className="text-xs text-red-600 font-bold">-0.5%</span>
                 </div>
-                <p className="text-2xl font-bold text-neutral-900">162</p>
+                <p className="text-xl font-bold text-neutral-900">162</p>
               </GlassCard>
 
-              <GlassCard className="p-5 hoverEffect">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs text-neutral-700 font-medium">Avg. Time</p>
+              <GlassCard className="p-4 hoverEffect">
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-xs text-neutral-700">Avg. Time</p>
                   <span className="text-xs text-green-600 font-bold">+0.8%</span>
                 </div>
-                <p className="text-2xl font-bold text-neutral-900">00:13:12</p>
+                <p className="text-lg font-bold text-neutral-900">13:12</p>
               </GlassCard>
 
-              <GlassCard className="p-5 hoverEffect">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs text-neutral-700 font-medium">Revenue</p>
+              <GlassCard className="p-4 hoverEffect">
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-xs text-neutral-700">Revenue</p>
                   <span className="text-xs text-red-600 font-bold">-0.2%</span>
                 </div>
-                <p className="text-2xl font-bold text-neutral-900">$6.18K</p>
+                <p className="text-xl font-bold text-neutral-900">$6.18K</p>
               </GlassCard>
             </div>
 
-            {/* 차트 영역 (하단) */}
-            <div className={`grid grid-cols-3 gap-6 transition-all duration-700 delay-500 ${
+            {/* 도넛 차트 (우측 상단) */}
+            <GlassCard className={`absolute top-16 right-0 p-5 w-56 hoverEffect transition-all duration-700 delay-300 ${
+              isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+            }`}>
+              <p className="text-xs font-bold text-neutral-900 mb-3">Conversion Rate</p>
+              <div className="flex items-center justify-center mb-3">
+                <div className="w-24 h-24 relative">
+                  <svg className="w-full h-full -rotate-90">
+                    <circle cx="48" cy="48" r="42" fill="none" stroke="#EFF5EE" strokeWidth="10" />
+                    <circle 
+                      cx="48" 
+                      cy="48" 
+                      r="42" 
+                      fill="none" 
+                      stroke="#5FD84A" 
+                      strokeWidth="10"
+                      strokeDasharray="264"
+                      strokeDashoffset="53"
+                      strokeLinecap="round"
+                    />
+                    <circle 
+                      cx="48" 
+                      cy="48" 
+                      r="42" 
+                      fill="none" 
+                      stroke="#B8D84A" 
+                      strokeWidth="10"
+                      strokeDasharray="264"
+                      strokeDashoffset="105"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-xl font-bold text-neutral-900">80%</span>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-brand-blue"></div>
+                  <span className="text-xs text-neutral-700">5.4%</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-brand-orange"></div>
+                  <span className="text-xs text-neutral-700">2.1%</span>
+                </div>
+              </div>
+            </GlassCard>
+
+            {/* 막대 차트 (중앙 하단) */}
+            <GlassCard className={`absolute bottom-0 left-1/2 -translate-x-1/2 p-5 w-80 hoverEffect transition-all duration-700 delay-400 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}>
-              {/* 도넛 차트 - Conversion Rate */}
-              <GlassCard className="p-6 hoverEffect">
-                <p className="text-sm font-bold text-neutral-900 mb-4">Conversion Rate</p>
-                <div className="flex items-center justify-center mb-4">
-                  <div className="w-32 h-32 relative">
-                    <svg className="w-full h-full -rotate-90">
-                      <circle cx="64" cy="64" r="56" fill="none" stroke="#EFF5EE" strokeWidth="12" />
-                      <circle 
-                        cx="64" 
-                        cy="64" 
-                        r="56" 
-                        fill="none" 
-                        stroke="#5FD84A" 
-                        strokeWidth="12"
-                        strokeDasharray="352"
-                        strokeDashoffset="70"
-                        strokeLinecap="round"
-                      />
-                      <circle 
-                        cx="64" 
-                        cy="64" 
-                        r="56" 
-                        fill="none" 
-                        stroke="#B8D84A" 
-                        strokeWidth="12"
-                        strokeDasharray="352"
-                        strokeDashoffset="140"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-neutral-900">80%</span>
-                    </div>
+              <div className="flex justify-between items-center mb-3">
+                <p className="text-xs font-bold text-neutral-900">Data Analytics</p>
+                <span className="text-xs text-brand-blue font-bold">+34%</span>
+              </div>
+              <div className="h-24 flex items-end space-x-1.5">
+                {[40, 60, 45, 75, 55, 80, 65].map((height, idx) => (
+                  <div key={idx} className="flex-1">
+                    <div 
+                      className="w-full bg-gradient-to-t from-brand-blue to-brand-blue/50 rounded-t transition-all duration-300 hover:opacity-80"
+                      style={{ height: `${height}%` }}
+                    />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-brand-blue"></div>
-                    <span className="text-xs text-neutral-700">5.4%</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-brand-orange"></div>
-                    <span className="text-xs text-neutral-700">2.1%</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-brand-sage"></div>
-                    <span className="text-xs text-neutral-700">1.0%</span>
-                  </div>
-                </div>
-              </GlassCard>
+                ))}
+              </div>
+            </GlassCard>
 
-              {/* 막대 차트 - Data Analytics */}
-              <GlassCard className="p-6 hoverEffect">
-                <div className="flex justify-between items-center mb-4">
-                  <p className="text-sm font-bold text-neutral-900">Data Analytics</p>
-                  <span className="text-xs text-brand-blue font-bold">+34%</span>
+            {/* KPI 카드 (우측 하단) */}
+            <GlassCard className={`absolute bottom-0 right-0 p-5 w-56 hoverEffect transition-all duration-700 delay-500 ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            }`}>
+              <p className="text-xs font-bold text-neutral-900 mb-3">Test Stats</p>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                    <span className="text-xs text-neutral-700">TOTAL</span>
+                  </div>
+                  <span className="text-base font-bold text-neutral-900">89%</span>
                 </div>
-                <div className="h-32 flex items-end space-x-2">
-                  {[40, 60, 45, 75, 55, 80, 65].map((height, idx) => (
-                    <div key={idx} className="flex-1 flex flex-col items-center gap-1">
-                      <div 
-                        className="w-full bg-gradient-to-t from-brand-blue to-brand-blue/50 rounded-t-lg transition-all duration-300 hover:opacity-80"
-                        style={{ height: `${height}%` }}
-                      />
-                      <div className="w-2 h-2 rounded-full bg-brand-blue/30"></div>
-                    </div>
-                  ))}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-cyan-500"></div>
+                    <span className="text-xs text-neutral-700">ROUTING</span>
+                  </div>
+                  <span className="text-base font-bold text-neutral-900">100%</span>
                 </div>
-              </GlassCard>
-
-              {/* KPI 카드 - Test Stats */}
-              <GlassCard className="p-6 hoverEffect">
-                <p className="text-sm font-bold text-neutral-900 mb-4">Test Statistics</p>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-orange-500"></div>
-                      <span className="text-xs text-neutral-700">TOTAL</span>
-                    </div>
-                    <span className="text-lg font-bold text-neutral-900">89%</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                    <span className="text-xs text-neutral-700">INTERACTION</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-cyan-500"></div>
-                      <span className="text-xs text-neutral-700">ROUTING</span>
-                    </div>
-                    <span className="text-lg font-bold text-neutral-900">100%</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                      <span className="text-xs text-neutral-700">INTERACTION</span>
-                    </div>
-                    <span className="text-lg font-bold text-neutral-900">80%</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <span className="text-xs text-neutral-700">COMPONENT</span>
-                    </div>
-                    <span className="text-lg font-bold text-neutral-900">90%</span>
-                  </div>
+                  <span className="text-base font-bold text-neutral-900">80%</span>
                 </div>
-              </GlassCard>
-            </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                    <span className="text-xs text-neutral-700">COMPONENT</span>
+                  </div>
+                  <span className="text-base font-bold text-neutral-900">90%</span>
+                </div>
+              </div>
+            </GlassCard>
           </div>
 
           {/* 모바일용 간단한 통계 */}

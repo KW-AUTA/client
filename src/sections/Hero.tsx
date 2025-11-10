@@ -93,18 +93,18 @@ export const Hero = () => {
             </a>
           </div>
 
-          {/* 글래스모피즘 대시보드 위젯 (스크롤 뉘앙스 - 겹쳐진 레이아웃) */}
+          {/* 글래스모피즘 대시보드 위젯 (스크롤 뉘앙스 - 예시처럼 겹쳐진 레이아웃) */}
           <div 
             ref={dashboardRef}
-            className={`relative w-full max-w-6xl mx-auto mt-16 mb-8 hidden md:block h-[500px] transition-all duration-1000 ${
+            className={`relative w-full max-w-5xl mx-auto mt-20 mb-12 hidden md:block h-[550px] transition-all duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >
             {/* Overview 카드 3개 (상단 중앙, 겹쳐짐) */}
-            <div className={`absolute top-0 left-1/2 -translate-x-1/2 flex gap-3 transition-all duration-700 delay-100 ${
+            <div className={`absolute top-0 left-1/2 -translate-x-1/2 flex gap-2 transition-all duration-700 delay-100 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}>
-              <GlassCard className="p-5 w-48 hoverEffect z-10">
+              <GlassCard className="p-5 w-44 hoverEffect z-10 transform rotate-[-2deg]">
                 <div className="flex flex-col items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-3">
                     <BarChart3 className="w-6 h-6 text-white" />
@@ -114,7 +114,7 @@ export const Hero = () => {
                 </div>
               </GlassCard>
 
-              <GlassCard className="p-5 w-48 hoverEffect z-20">
+              <GlassCard className="p-5 w-44 hoverEffect z-30 transform translate-y-[-8px]">
                 <div className="flex flex-col items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-brand-blue to-brand-orange rounded-xl flex items-center justify-center mb-3">
                     <CheckCircle className="w-6 h-6 text-white" />
@@ -124,7 +124,7 @@ export const Hero = () => {
                 </div>
               </GlassCard>
 
-              <GlassCard className="p-5 w-48 hoverEffect z-10">
+              <GlassCard className="p-5 w-44 hoverEffect z-10 transform rotate-[2deg]">
                 <div className="flex flex-col items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mb-3">
                     <Target className="w-6 h-6 text-white" />
@@ -135,11 +135,11 @@ export const Hero = () => {
               </GlassCard>
             </div>
 
-            {/* 통계 위젯 4개 (좌측 상단) */}
-            <div className={`absolute top-16 left-0 grid grid-cols-2 gap-3 w-64 transition-all duration-700 delay-200 ${
+            {/* 통계 위젯 4개 (좌측 상단, 겹쳐짐) */}
+            <div className={`absolute top-20 left-0 transition-all duration-700 delay-200 ${
               isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
             }`}>
-              <GlassCard className="p-4 hoverEffect">
+              <GlassCard className="p-4 w-52 hoverEffect z-20 mb-3 transform rotate-[-1deg]">
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-xs text-neutral-700">Total Users</p>
                   <span className="text-xs text-green-600 font-bold">+1.2%</span>
@@ -147,7 +147,7 @@ export const Hero = () => {
                 <p className="text-xl font-bold text-neutral-900">332</p>
               </GlassCard>
 
-              <GlassCard className="p-4 hoverEffect">
+              <GlassCard className="p-4 w-52 hoverEffect z-30 mb-3 transform translate-x-4 translate-y-[-8px] rotate-[1deg]">
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-xs text-neutral-700">New Users</p>
                   <span className="text-xs text-red-600 font-bold">-0.5%</span>
@@ -155,7 +155,7 @@ export const Hero = () => {
                 <p className="text-xl font-bold text-neutral-900">162</p>
               </GlassCard>
 
-              <GlassCard className="p-4 hoverEffect">
+              <GlassCard className="p-4 w-52 hoverEffect z-20 mb-3 transform rotate-[-1deg]">
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-xs text-neutral-700">Avg. Time</p>
                   <span className="text-xs text-green-600 font-bold">+0.8%</span>
@@ -163,7 +163,7 @@ export const Hero = () => {
                 <p className="text-lg font-bold text-neutral-900">13:12</p>
               </GlassCard>
 
-              <GlassCard className="p-4 hoverEffect">
+              <GlassCard className="p-4 w-52 hoverEffect z-30 transform translate-x-4 translate-y-[-8px] rotate-[1deg]">
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-xs text-neutral-700">Revenue</p>
                   <span className="text-xs text-red-600 font-bold">-0.2%</span>
@@ -172,9 +172,9 @@ export const Hero = () => {
               </GlassCard>
             </div>
 
-            {/* 도넛 차트 (우측 상단) */}
-            <GlassCard className={`absolute top-16 right-0 p-5 w-56 hoverEffect transition-all duration-700 delay-300 ${
-              isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+            {/* 도넛 차트 (우측 상단, 겹쳐짐) */}
+            <GlassCard className={`absolute top-20 right-0 p-5 w-56 hoverEffect z-30 transform translate-x-[-12px] translate-y-[-10px] rotate-[1deg] transition-all duration-700 delay-300 ${
+              isVisible ? 'translate-x-[-12px] translate-y-[-10px] opacity-100' : 'translate-x-10 opacity-0'
             }`}>
               <p className="text-xs font-bold text-neutral-900 mb-3">Conversion Rate</p>
               <div className="flex items-center justify-center mb-3">
@@ -221,9 +221,9 @@ export const Hero = () => {
               </div>
             </GlassCard>
 
-            {/* 막대 차트 (중앙 하단) */}
-            <GlassCard className={`absolute bottom-0 left-1/2 -translate-x-1/2 p-5 w-80 hoverEffect transition-all duration-700 delay-400 ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            {/* 막대 차트 (중앙 하단, 겹쳐짐) */}
+            <GlassCard className={`absolute bottom-8 left-1/2 -translate-x-1/2 p-5 w-80 hoverEffect z-20 transform translate-y-[-15px] rotate-[-1deg] transition-all duration-700 delay-400 ${
+              isVisible ? 'translate-y-[-15px] opacity-100' : 'translate-y-10 opacity-0'
             }`}>
               <div className="flex justify-between items-center mb-3">
                 <p className="text-xs font-bold text-neutral-900">Data Analytics</p>
@@ -241,9 +241,9 @@ export const Hero = () => {
               </div>
             </GlassCard>
 
-            {/* KPI 카드 (우측 하단) */}
-            <GlassCard className={`absolute bottom-0 right-0 p-5 w-56 hoverEffect transition-all duration-700 delay-500 ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+            {/* KPI 카드 (우측 하단, 겹쳐짐) */}
+            <GlassCard className={`absolute bottom-0 right-0 p-5 w-56 hoverEffect z-30 transform translate-x-[-10px] translate-y-[-12px] rotate-[1deg] transition-all duration-700 delay-500 ${
+              isVisible ? 'translate-x-[-10px] translate-y-[-12px] opacity-100' : 'translate-y-10 opacity-0'
             }`}>
               <p className="text-xs font-bold text-neutral-900 mb-3">Test Stats</p>
               <div className="space-y-2">

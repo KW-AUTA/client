@@ -33,15 +33,17 @@ export const MetricCards = () => {
   }, []);
 
   return (
-    <div ref={containerRef}>
-      <h3 className="text-2xl font-bold text-neutral-900 mb-6 text-center">
-        {metrics.title}
-      </h3>
-      <p className="text-sm text-neutral-700 mb-8 text-center">
-        {metrics.note}
-      </p>
+    <div ref={containerRef} className="h-full flex flex-col">
+      <div className="mb-6 flex-shrink-0">
+        <h3 className="text-3xl font-bold text-neutral-900 mb-2">
+          모델 성능
+        </h3>
+        <p className="text-lg text-neutral-600">
+          {metrics.note}
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 min-h-0">
         {metrics.items.map((metric, idx) => {
           const value = typeof metric.value === 'number' ? metric.value : 0;
           const maxValue = 100;
@@ -89,9 +91,6 @@ export const MetricCards = () => {
               <div className="flex items-center justify-between mt-2">
                 <div className="text-xs text-neutral-500">
                   {metric.desc}
-                </div>
-                <div className="text-[9px] text-neutral-300">
-                  *{metric.source}
                 </div>
               </div>
             </GlassCard>

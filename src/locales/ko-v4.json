@@ -46,8 +46,7 @@
       "rows": [
         ["소요 시간(페이지당)", "약 30분", "2분"],
         ["테스트 커버리지", "화면 단위 일부", "전체 UI 단위 커버"]
-      ],
-      "source": "*AUTA 포스터 근거"
+      ]
     },
     "metrics": {
       "title": "모델 성능",
@@ -56,26 +55,22 @@
         {
           "label": "mAP@50-95",
           "value": 57.8,
-          "desc": "평균 정밀도",
-          "source": "AUTA 포스터"
+          "desc": "평균 정밀도"
         },
         {
           "label": "mAP@50",
           "value": 70.6,
-          "desc": "평균 정밀도",
-          "source": "AUTA 포스터"
+          "desc": "평균 정밀도"
         },
         {
           "label": "Precision",
           "value": 71.1,
-          "desc": "정밀도",
-          "source": "AUTA 포스터"
+          "desc": "정밀도"
         },
         {
           "label": "Recall",
           "value": 67.1,
-          "desc": "재현율",
-          "source": "AUTA 포스터"
+          "desc": "재현율"
         }
       ]
     },

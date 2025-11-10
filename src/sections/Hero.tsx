@@ -120,14 +120,16 @@ export const Hero = () => {
 
           {/* 모델 성능 & 효율 비교 섹션 */}
           <div className="w-full max-w-6xl mx-auto my-20">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
               {/* 모델 성능 카드 (2/3 영역) */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2 h-full">
                 <MetricCards />
               </div>
 
               {/* 효율 비교 (1/3 영역) */}
-              <div className="lg:col-span-1">
+              <div className="lg:col-span-1 h-full">
                 <EfficiencyCompare />
               </div>
             </div>

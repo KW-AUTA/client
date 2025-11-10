@@ -52,18 +52,24 @@ export const EfficiencyCompare = () => {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="h-full flex flex-col">
+      <div className="mb-6 flex-shrink-0">
+        <h3 className="text-3xl font-bold text-neutral-900 mb-2">
+          효율 지표
+        </h3>
+        <p className="text-lg text-neutral-600">
+          기존 QA 대비 AUTA의 효율성
+        </p>
+      </div>
+
       <GlassCard 
-        className="p-5 h-full"
+        className="p-5 flex-1 min-h-0"
         style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
           transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
         } as React.CSSProperties}
       >
-      <h3 className="text-xl font-bold text-neutral-900 mb-4 text-center">
-        {compare.title}
-      </h3>
       
       <div className="space-y-4">
         {compare.rows.map((row, rowIdx) => {
@@ -121,10 +127,6 @@ export const EfficiencyCompare = () => {
           );
         })}
       </div>
-
-      <p className="text-[9px] text-neutral-300 mt-4 text-center">
-        {compare.source}
-      </p>
       </GlassCard>
     </div>
   );

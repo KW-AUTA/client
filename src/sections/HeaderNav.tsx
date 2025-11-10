@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { ROUTES } from '@/constants';
-import smallLogo from '@/assets/logos/AUTA_small.svg';
+import autaLogo from '@/assets/logos/auta-newlogo.svg';
 import translations from '@/locales/ko-v4.json';
 
 /**
@@ -49,7 +49,7 @@ export const HeaderNav = () => {
         role="banner">
         <nav className="max-w-[1120px] mx-auto px-5 md:px-8 h-16 flex items-center justify-between" aria-label="메인 네비게이션">
           <Link to={ROUTES.LANDING} aria-label="AUTA 홈">
-            <img src={smallLogo} alt="AUTA" className="h-7 w-auto" />
+            <img src={autaLogo} alt="AUTA" className="h-10 w-auto" />
           </Link>
 
           {/* 데스크톱 메뉴 */}
@@ -111,7 +111,7 @@ export const HeaderNav = () => {
         }`}>
         <div className="flex flex-col h-full">
           <div className="flex justify-between items-center p-6 border-b">
-            <img src={smallLogo} alt="AUTA" className="h-7 w-auto" />
+            <img src={autaLogo} alt="AUTA" className="h-10 w-auto" />
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 hover:bg-neutral-100 rounded-lg transition-colors"

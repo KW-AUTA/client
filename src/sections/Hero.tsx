@@ -39,10 +39,12 @@ export const Hero = () => {
             {hero.title}
           </h1>
 
-          {/* 서브헤드라인 */}
-          <p className="text-lg md:text-xl text-neutral-700 mb-10 leading-relaxed max-w-3xl mx-auto">
-            {hero.subtitle}
-          </p>
+          {/* 서브헤드라인 (3줄) */}
+          <div className="text-lg md:text-xl text-neutral-700 mb-10 leading-relaxed max-w-3xl mx-auto space-y-3">
+            <p>{hero.subtitle}</p>
+            <p>{hero.subtitle2}</p>
+            <p className="font-semibold text-neutral-900">{hero.subtitle3}</p>
+          </div>
 
           {/* CTA 버튼 */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">

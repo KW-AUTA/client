@@ -16,6 +16,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import sampleKwImage from '@/assets/images/sample-kw.png';
+import MetricCards from '../components/molecules/MetricCards';
+import EfficiencyCompare from '../components/molecules/EfficiencyCompare';
 
 /**
  * v4 Hero 섹션 (Above the fold, Glassmorphism 대시보드)
@@ -102,7 +104,7 @@ export const Hero = () => {
           </div>
 
           {/* CTA 버튼 */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-24">
             <Link to={ROUTES.LOGIN}>
               <button className="bg-[#5CA585] hover:bg-[#5CA585]/90 text-white text-lg px-10 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl">
                 {hero.primary}
@@ -116,10 +118,25 @@ export const Hero = () => {
             </a>
           </div>
 
+          {/* 모델 성능 & 효율 비교 섹션 */}
+          <div className="w-full max-w-6xl mx-auto my-20">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* 모델 성능 카드 (2/3 영역) */}
+              <div className="lg:col-span-2">
+                <MetricCards />
+              </div>
+
+              {/* 효율 비교 (1/3 영역) */}
+              <div className="lg:col-span-1">
+                <EfficiencyCompare />
+              </div>
+            </div>
+          </div>
+
           {/* Glassmorphism 대시보드 캐러셀 */}
           <div 
             ref={dashboardRef}
-            className={`relative w-full max-w-6xl mx-auto mt-12 mb-12 hidden md:block transition-all duration-1000 ${
+            className={`relative w-full max-w-6xl mx-auto mt-20 mb-12 hidden md:block transition-all duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >

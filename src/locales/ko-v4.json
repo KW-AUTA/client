@@ -45,37 +45,36 @@
       "headers": ["항목", "기존 QA", "AUTA"],
       "rows": [
         ["소요 시간(페이지당)", "약 30분", "2분"],
-        ["테스트 커버리지", "화면 단위 일부", "전체 UI 단위 커버"],
-        ["실행 인원", "최소 1명", "0명(자동화)"]
+        ["테스트 커버리지", "화면 단위 일부", "전체 UI 단위 커버"]
       ],
       "source": "*AUTA 포스터 근거"
     },
     "metrics": {
-      "title": "모델 성능 (포스터 값 그대로)",
-      "note": "값이 불확실하면 N/A로 표기. YOLO 모델 기반 성능 지표",
+      "title": "모델 성능",
+      "note": "YOLO 모델 기반 성능 지표",
       "items": [
         {
-          "label": "mAP@50",
-          "value": "N/A",
-          "desc": "포스터 수치 필요",
+          "label": "mAP@50-95",
+          "value": 57.8,
+          "desc": "평균 정밀도",
           "source": "AUTA 포스터"
         },
         {
-          "label": "mAP@50-95",
-          "value": "N/A",
-          "desc": "포스터 수치 필요",
+          "label": "mAP@50",
+          "value": 70.6,
+          "desc": "평균 정밀도",
           "source": "AUTA 포스터"
         },
         {
           "label": "Precision",
-          "value": "N/A",
-          "desc": "포스터 수치 필요",
+          "value": 71.1,
+          "desc": "정밀도",
           "source": "AUTA 포스터"
         },
         {
           "label": "Recall",
-          "value": "N/A",
-          "desc": "포스터 수치 필요",
+          "value": 67.1,
+          "desc": "재현율",
           "source": "AUTA 포스터"
         }
       ]

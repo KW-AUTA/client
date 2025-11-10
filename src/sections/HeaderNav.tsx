@@ -48,8 +48,10 @@ export const HeaderNav = () => {
         }`}
         role="banner">
         <nav className="max-w-[1120px] mx-auto px-5 md:px-8 h-16 flex items-center justify-between" aria-label="메인 네비게이션">
-          <Link to={ROUTES.LANDING} aria-label="AUTA 홈">
-            <img src={autaLogo} alt="AUTA" className="h-10 w-auto" />
+          <Link to={ROUTES.LANDING} aria-label="AUTA 홈" className="flex items-center">
+            <div className="bg-white/70 backdrop-blur-sm p-2 rounded-lg ring-1 ring-white/50 shadow-sm transition-all duration-200 hover:bg-white/90 hover:shadow-md">
+              <img src={autaLogo} alt="AUTA" className="h-8 w-auto" />
+            </div>
           </Link>
 
           {/* 데스크톱 메뉴 */}
@@ -111,7 +113,9 @@ export const HeaderNav = () => {
         }`}>
         <div className="flex flex-col h-full">
           <div className="flex justify-between items-center p-6 border-b">
-            <img src={autaLogo} alt="AUTA" className="h-10 w-auto" />
+            <div className="bg-white/70 backdrop-blur-sm p-2 rounded-lg ring-1 ring-white/50">
+              <img src={autaLogo} alt="AUTA" className="h-8 w-auto" />
+            </div>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 hover:bg-neutral-100 rounded-lg transition-colors"

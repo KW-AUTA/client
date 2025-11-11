@@ -45,6 +45,8 @@ export const useGetPageIssue = (pageId: number) => {
 
       return response.data.data;
     },
-    enabled: !!pageId
+    enabled: !!pageId,
+    refetchOnMount: true, // 컴포넌트 마운트 시 항상 새로 fetch
+    gcTime: 0 // 캐시 저장하지 않음
   });
 };

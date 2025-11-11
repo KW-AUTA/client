@@ -49,7 +49,7 @@ export default function ProjectSearchBar() {
 
   return (
     <div
-      className="relative flex-1 max-w-[760px] w-full bg-white/70 backdrop-blur-lg ring-1 ring-white/40 ml-8 py-2 px-8 mx-2 rounded-full hidden md:flex shadow-md transition-all duration-300 hover:bg-white/85 hover:ring-white/60 hover:shadow-lg"
+      className="relative flex-1 max-w-[760px] w-full bg-white/70 backdrop-blur-lg ring-1 ring-white/40 ml-8 py-2 px-8 mx-2 rounded-full hidden md:flex shadow-md transition-all duration-300 hover:bg-white/85 hover:ring-white/60 hover:shadow-md"
       tabIndex={-1}
       onFocus={() => setShowRecent(true)}
       onBlur={() => setShowRecent(false)}>

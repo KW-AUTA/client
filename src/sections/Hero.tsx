@@ -59,23 +59,10 @@ export const Hero = () => {
     { label: 'COMPONENT', value: 90, color: colors.brown_1 }
   ];
 
-  const neutralBg = '#f8faf9';
-  const neutralLight = '#e9f3ef';
-
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-24 pb-32"
-      style={{
-        background: `linear-gradient(135deg, ${neutralBg} 0%, ${neutralLight} 50%, ${neutralBg} 100%)`
-      }}>
-      
-      {/* 배경 블러 효과 */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-[#5CA585]/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#5CA585]/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#5CA585]/10 rounded-full blur-3xl" />
-      </div>
+      className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-24 pb-32 md:pb-40">
 
       <div className="relative z-10 max-w-[1120px] mx-auto px-5 md:px-8 py-20 w-full">
         <div className="text-center max-w-4xl mx-auto relative w-full">
@@ -119,9 +106,11 @@ export const Hero = () => {
           </div>
 
           {/* 모델 성능 & 효율 비교 섹션 */}
-          <div className="w-full max-w-6xl mx-auto my-20">
-      
-
+          <div 
+            className={`w-full max-w-6xl mx-auto mt-48 mb-32 transition-all duration-1000 ${
+              isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
               {/* 모델 성능 카드 (2/3 영역) */}
               <div className="lg:col-span-2 h-full">
@@ -138,7 +127,7 @@ export const Hero = () => {
           {/* Glassmorphism 대시보드 캐러셀 */}
           <div 
             ref={dashboardRef}
-            className={`relative w-full max-w-6xl mx-auto mt-20 mb-12 hidden md:block transition-all duration-1000 ${
+            className={`relative w-full max-w-6xl mx-auto mt-48 mb-0 hidden md:block transition-all duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >
@@ -178,14 +167,17 @@ export const Hero = () => {
               {/* 슬라이드 1: 대시보드 (이미지 1) */}
               <SwiperSlide>
                 <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
-                  <div className="text-center mb-1">
+                  <div className="text-center w-full mb-1">
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">대시보드</h3>
-                    <p className="text-sm text-neutral-600">전체 프로젝트와 테스트 현황을 한눈에 확인하세요</p>
+                    <p className="text-sm text-neutral-600 mb-2">전체 프로젝트와 테스트 현황을 한눈에 확인하세요</p>
+                    <p className="text-xs text-neutral-500 leading-relaxed max-w-2xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+                      진행 중인 프로젝트, 완료된 테스트, 미완료 테스트를 실시간으로 모니터링하고, 프로젝트 관리와 테스트 관리를 통합적으로 관리할 수 있습니다.
+                    </p>
                   </div>
                   <div className="w-full space-y-2 flex-1 flex flex-col justify-center">
                     {/* Overview 카드 3개 */}
                     <div className="grid grid-cols-3 gap-2">
-                      <GlassCard className="p-6 h-full min-h-[200px]" hoverEffect>
+                      <GlassCard className="p-6 h-full min-h-[200px]">
                         <div className="flex flex-col justify-between h-full">
                           <div className="flex items-center gap-3 mb-3">
                             <div className="p-2 rounded-lg bg-[#D5B8D5]">
@@ -199,7 +191,7 @@ export const Hero = () => {
                           </div>
                         </div>
                       </GlassCard>
-                      <GlassCard className="p-6 h-full min-h-[200px]" hoverEffect>
+                      <GlassCard className="p-6 h-full min-h-[200px]">
                         <div className="flex flex-col justify-between h-full">
                           <div className="flex items-center gap-3 mb-3">
                             <div className="p-2 rounded-lg bg-[#D5B8D5]">
@@ -213,7 +205,7 @@ export const Hero = () => {
                           </div>
                         </div>
                       </GlassCard>
-                      <GlassCard className="p-6 h-full min-h-[200px]" hoverEffect>
+                      <GlassCard className="p-6 h-full min-h-[200px]">
                         <div className="flex flex-col justify-between h-full">
                           <div className="flex items-center gap-3 mb-3">
                             <div className="p-2 rounded-lg bg-[#D5B8D5]">
@@ -232,7 +224,7 @@ export const Hero = () => {
                     {/* 프로젝트 관리 & 테스트 관리 테이블 */}
                     <div className="grid grid-cols-2 gap-4">
                       {/* 프로젝트 관리 */}
-                      <GlassCard className="p-4 h-full" hoverEffect>
+                      <GlassCard className="p-4 h-full">
                         <h3 className="text-[14px] font-bold text-neutral-900 mb-2">프로젝트 관리</h3>
                         <div className="overflow-hidden rounded-lg">
                           <div className="grid grid-cols-4 bg-[#e9f3ef]/50 p-2 gap-2 text-xs font-bold text-neutral-900">
@@ -283,7 +275,7 @@ export const Hero = () => {
                       </GlassCard>
 
                       {/* 테스트 관리 */}
-                      <GlassCard className="p-4 h-full" hoverEffect>
+                      <GlassCard className="p-4 h-full">
                         <h3 className="text-[14px] font-bold text-neutral-900 mb-2">테스트 관리</h3>
                         <div className="overflow-hidden rounded-lg">
                           <div className="grid grid-cols-4 bg-[#e9f3ef]/50 p-2 gap-2 text-xs font-bold text-neutral-900">
@@ -360,13 +352,16 @@ export const Hero = () => {
               {/* 슬라이드 2: 프로젝트 상세 페이지 */}
               <SwiperSlide>
                 <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
-                  <div className="text-center mb-1">
+                  <div className="text-center w-full mb-1">
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">프로젝트 상세 페이지</h3>
-                    <p className="text-sm text-neutral-600">LLM 평가 결과와 테스트 결과를 확인하세요</p>
+                    <p className="text-sm text-neutral-600 mb-2 whitespace-nowrap">LLM 평가 결과와 테스트 결과를 확인하세요</p>
+                    <p className="text-xs text-neutral-500 leading-relaxed max-w-2xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+                      LLM 기반 UX/UI 평가 점수와 상세 피드백을 확인하고, ROUTING, INTERACTION, COMPONENT 매칭 테스트 결과를 페이지별로 분석할 수 있습니다.
+                    </p>
                   </div>
                   <div className="w-full space-y-2 flex-1 flex flex-col justify-center overflow-hidden">
                     {/* LLM UX/UI 평가 결과 */}
-                    <GlassCard className="p-3" hoverEffect>
+                    <GlassCard className="p-3">
                       <div className="flex flex-col">
                         <h4 className="text-[14px] font-bold text-neutral-900 mb-2">LLM UX/UI 평가 결과</h4>
                         <div className="flex gap-3 items-stretch">
@@ -400,7 +395,7 @@ export const Hero = () => {
                       </div>
                     </GlassCard>
                     {/* 테스트 결과 */}
-                    <GlassCard className="p-3" hoverEffect>
+                    <GlassCard className="p-3">
                       <div className="flex flex-col">
                         <h4 className="text-[14px] font-bold text-neutral-900 mb-2">테스트 결과</h4>
                         <div className="flex gap-3">
@@ -486,13 +481,16 @@ export const Hero = () => {
               {/* 슬라이드 3: 테스트 상세 페이지 */}
               <SwiperSlide>
                 <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
-                  <div className="text-center mb-1">
+                  <div className="text-center w-full mb-1">
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">테스트 상세 페이지</h3>
-                    <p className="text-sm text-neutral-600">테스트 통계와 상세 이슈 정보를 확인하세요</p>
+                    <p className="text-sm text-neutral-600 mb-2 whitespace-nowrap">테스트 통계와 상세 이슈 정보를 확인하세요</p>
+                    <p className="text-xs text-neutral-500 leading-relaxed max-w-2xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+                      TOTAL, ROUTING, INTERACTION, COMPONENT 테스트 통계를 원형 그래프로 확인하고, 컴포넌트 매핑 이슈의 상세 내용과 위치를 정확히 파악할 수 있습니다.
+                    </p>
                   </div>
                   <div className="w-full space-y-2 flex-1 flex flex-col justify-center">
                     {/* 테스트 통계 */}
-                    <GlassCard className="p-6 flex-shrink-0" hoverEffect>
+                    <GlassCard className="p-6 flex-shrink-0">
                       <div className="flex flex-col">
                         <h4 className="text-[14px] font-bold text-neutral-900 mb-5">테스트 통계</h4>
                         <div className="grid grid-cols-4 gap-3 items-center">
@@ -510,7 +508,7 @@ export const Hero = () => {
                       </div>
                     </GlassCard>
                     {/* 컴포넌트 이슈 상세 */}
-                    <GlassCard className="p-5 flex-shrink-0" hoverEffect>
+                    <GlassCard className="p-5 flex-shrink-0">
                       <div className="flex flex-col">
                         <div className="flex items-center justify-between mb-3">
                           <h4 className="text-[14px] font-bold text-neutral-900">컴포넌트 매핑 이슈 1</h4>

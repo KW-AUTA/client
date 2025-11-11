@@ -1,22 +1,13 @@
 import HeaderNav from '../../sections/HeaderNav';
 import Hero from '../../sections/Hero';
-import IntroSummary from '../../sections/IntroSummary';
-import TechnicalFeatures from '../../sections/TechnicalFeatures';
-import OperatingStructure from '../../sections/OperatingStructure';
-import Tutorial from '../../sections/Tutorial';
 import FinalCtaFooter from '../../sections/FinalCtaFooter';
 import translations from '@/locales/ko-v4.json';
 
 /**
- * AUTA v4 Landing Page (Lean Glass Startup · Evidence-Only)
- * 
- * 핵심 원칙:
- * - 거짓정보 금지 (AUTA 포스터 근거만)
- * - 6개 섹션만
- * - Glass morphism 디자인
- * - 유튜브 링크 고정: https://youtu.be/c4ozICaCZWA
+ * 제품 페이지
+ * Hero 섹션 - CTA - Footer 구성
  */
-const LandingPageV4 = () => {
+const ProductPage = () => {
   const neutralBg = '#f8faf9';
   const neutralLight = '#e9f3ef';
 
@@ -32,6 +23,7 @@ const LandingPageV4 = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#5CA585]/10 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#5CA585]/10 rounded-full blur-3xl" />
       </div>
+      
       {/* Skip to Content (접근성) */}
       <a
         href="#main-content"
@@ -44,25 +36,13 @@ const LandingPageV4 = () => {
         <HeaderNav />
       </div>
 
-              {/* Main Content */}
-              <main id="main-content" role="main" className="relative z-0">
-                {/* 1. Hero */}
-                <Hero />
-
-                {/* 2. Intro Summary - 서론 요약 */}
-                <IntroSummary />
-
-                {/* 3. Technical Features - 기술적 특징 */}
-                <TechnicalFeatures />
-
-                {/* 4. Operating Structure - 작동 구조 */}
-                <OperatingStructure />
-
-                {/* 5. Tutorial */}
-                <Tutorial />
+      {/* Main Content */}
+      <main id="main-content" role="main" className="relative z-0">
+        {/* Hero Section */}
+        <Hero />
       </main>
 
-      {/* 5 & 6. Final CTA + Footer */}
+      {/* CTA + Footer */}
       <div className="relative z-10">
         <FinalCtaFooter />
       </div>
@@ -70,5 +50,5 @@ const LandingPageV4 = () => {
   );
 };
 
-export default LandingPageV4;
+export default ProductPage;
 

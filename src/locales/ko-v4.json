@@ -55,27 +55,31 @@
         {
           "label": "mAP@50-95",
           "value": 57.8,
-          "desc": "평균 정밀도"
+          "desc": "평균 정밀도",
+          "description": "다양한 객체 겹침 상황에서도 일관된 정확도를 유지하는 종합 지표입니다."
         },
         {
           "label": "mAP@50",
           "value": 70.6,
-          "desc": "평균 정밀도"
+          "desc": "평균 정밀도",
+          "description": "실제 화면에서 주요 컴포넌트를 탐지하는 핵심 지표로, UI 요소 간의 구조적 불일치를 정확히 인식합니다."
         },
         {
           "label": "Precision",
           "value": 71.1,
-          "desc": "정밀도"
+          "desc": "정밀도",
+          "description": "탐지한 항목 중 실제로 맞은 비율로, 오탐이 적어 시각적 복잡도가 높은 UI에서도 탁월한 신뢰성을 보입니다."
         },
         {
           "label": "Recall",
           "value": 67.1,
-          "desc": "재현율"
+          "desc": "재현율",
+          "description": "실제 존재하는 항목 중 모델이 찾아낸 비율로, 다양한 형태의 컴포넌트를 폭넓게 인식합니다."
         }
       ]
     },
     "flow": {
-      "title": "작동 구조 (요약)",
+      "title": "디자인이 테스트로, 테스트가 리포트로",
       "subtitle": "YOLO + OCR + LLM 기반 자동 검증",
       "items": [
         {
@@ -93,6 +97,91 @@
       ],
       "source": "*AUTA 포스터 근거"
     }
+  },
+  "problem": {
+    "title": "디자인과 코드의 불일치, 이제 자동으로 검증하세요",
+    "subtitle": "수동 테스트의 한계를 넘어서는 AI 기반 솔루션",
+    "problem": {
+      "title": "기존 방식의 문제점",
+      "items": [
+        "수동 UI/UX 테스트에 많은 시간과 인력 소요",
+        "코드 기반 자동화 도구는 디자이너에게 접근하기 어려움",
+        "테스트 스크립트 작성 및 유지보수 비용 증가",
+        "페이지당 평균 30분 이상 소요되는 비효율적인 프로세스"
+      ]
+    },
+    "solution": {
+      "title": "AUTA의 해결책",
+      "items": [
+        "Figma JSON 데이터와 AI 시각 분석(YOLO)으로 자동 검증",
+        "클릭 한 번으로 드리프트 탐지 및 결과 확인",
+        "페이지당 평균 2분, 기존 QA 대비 80% 이상 리소스 절감",
+        "코드 작성 없이 디자인 기준 테스트 가능"
+      ]
+    }
+  },
+  "technical": {
+    "title": "기술적 특이점",
+    "subtitle": "기존 테스트 도구와 차별화된 AUTA의 접근 방식",
+    "compare": {
+      "title": "기존 테스트 도구 VS AUTA",
+      "headers": ["항목", "기존 테스트 도구", "AUTA"],
+      "rows": [
+        ["테스트 단위", "DOM 요소", "시각적 컴포넌트 + UX 플로우"],
+        ["입력 데이터", "코드 스크립트", "Figma JSON (개발한 피그마 플러그인을 통한)"],
+        ["분석 방식", "위치/이벤트 단일 기준", "YOLO + OCR + LLM 종합 분석"],
+        ["UX 평가", "X 불가", "✔ 시각화 리포트 가능"]
+      ]
+    },
+    "uiTest": {
+      "title": "UI 테스트 (화면·컴포넌트 일치 검증)",
+      "desc": "구현된 웹 화면을 디자인과 시각적으로 비교하여 정확성을 검증합니다.",
+      "items": [
+        {
+          "title": "Routing",
+          "desc": "화면 간 이동 검증"
+        },
+        {
+          "title": "Interaction",
+          "desc": "화면 내 변화 검증"
+        },
+        {
+          "title": "Component Matching",
+          "desc": "컴포넌트 일치 검증"
+        }
+      ]
+    },
+    "uxTest": {
+      "title": "UX 테스트 (사용자 경험 품질 평가)",
+      "desc": "Figma의 시각 정보를 LLM에 입력하여 Nielsen 10원칙과 수집된 UI/UX 규칙 데이터를 기반으로 평가합니다.",
+      "items": [
+        "Nielsen 10원칙 기반 사용성 평가",
+        "시각적 박스로 UX 약점을 직관적으로 표시",
+        "Figma 프로토타입 상호작용 정보 해석",
+        "단일 URL로 UI 탐색 및 디자인 플로우 재현"
+      ]
+    }
+  },
+  "matching": {
+    "title": "실제 매칭 예시",
+    "subtitle": "AUTA가 발견한 디자인과 구현 간의 차이점",
+    "examples": [
+      {
+        "title": "컴포넌트 위치 불일치",
+        "desc": "디자인과 다른 위치에 배치된 컴포넌트 탐지",
+        "placeholder": "위치 불일치 예시"
+      },
+      {
+        "title": "텍스트 스타일 차이",
+        "desc": "폰트 크기, 색상, 간격 등의 차이점 발견",
+        "placeholder": "텍스트 스타일 예시"
+      },
+      {
+        "title": "인터랙션 오류",
+        "desc": "클릭, hover 등 상호작용이 의도대로 작동하지 않는 경우",
+        "placeholder": "인터랙션 오류 예시"
+      }
+    ]
   },
   "how": {
     "title": "3단계로 끝나는 자동 검증",
@@ -119,13 +208,24 @@
     ]
   },
   "video": {
-    "title": "5분 만에 AUTA 셋업 & 첫 테스트",
-    "subtitle": "설치부터 리포트 해석까지 한 번에",
-    "url": "https://youtu.be/c4ozICaCZWA",
-    "note": "URL 고정됨"
+    "title": "AUTA 셋업 & 플러그인 설치 가이드",
+    "subtitle": "설치부터 리포트 해석까지 한 번에 완료하세요.<br />AUTA의 전체 워크플로우를 단계별로 확인하고, 실제 프로젝트에 바로 적용할 수 있는 실용적인 가이드를 제공합니다.",
+    "videos": [
+      {
+        "title": "5분 만에 AUTA 셋업 & 첫 테스트",
+        "subtitle": "설치부터 리포트 해석까지 한 번에",
+        "url": "https://youtu.be/c4ozICaCZWA"
+      },
+      {
+        "title": "플러그인 설치 방법",
+        "subtitle": "Figma 플러그인 설치 및 연동 가이드",
+        "url": "https://www.youtube.com/watch?v=pZ-hYhXEerU"
+      }
+    ],
+    "url": "https://youtu.be/c4ozICaCZWA"
   },
   "final": {
-    "title": "지금, 내 프로젝트로 정확히 검증해 보세요",
+    "title": "AUTA 로 내 프로젝트를 정밀 검증해 보세요",
     "subtitle": "무료로 시작하고, 5분 안에 첫 테스트 완료",
     "primary": "무료로 시작하기",
     "secondary": "가이드 보며 5분 설치"

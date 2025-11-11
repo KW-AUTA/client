@@ -27,38 +27,13 @@ export const FinalCtaFooter = () => {
             <div className="relative z-10 p-8 md:p-12 lg:p-16">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 {/* 왼쪽: 텍스트 및 CTA 버튼 */}
-                <div className="text-white">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                    <span className="inline-flex items-baseline">
-                      <span className="inline-block overflow-hidden" style={{ 
-                        height: '1em',
-                        lineHeight: '1em',
-                        verticalAlign: 'baseline',
-                        display: 'inline-block',
-                        marginRight: '0.3em'
-                      }}>
-                        <img 
-                          src={autaLogo} 
-                          alt="AUTA" 
-                          className="w-auto" 
-                          style={{ 
-                            display: 'block',
-                            filter: 'brightness(0) invert(1)',
-                            height: '4em',
-                            width: 'auto',
-                            objectFit: 'cover',
-                            objectPosition: 'center center',
-                            margin: 0,
-                            padding: 0,
-                            transform: 'translateY(-1.4em)',
-                            marginBottom: '-1.5em'
-                          }} 
-                        />
-                      </span>
-                      <span className="whitespace-nowrap">로 내 프로젝트를</span>
-                    </span>
+                <div className="text-white text-left">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-left">
+                    <span>AUTA로</span>
                     <br />
-                    <span className="whitespace-nowrap">정밀 검증해 보세요</span>
+                    <span>내 프로젝트를</span>
+                    <br />
+                    <span>검증해보세요</span>
                   </h2>
                   <p className="text-sm md:text-base text-white/90 mb-10 leading-relaxed">
                     {final.subtitle}

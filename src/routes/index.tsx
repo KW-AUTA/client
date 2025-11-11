@@ -6,6 +6,7 @@ import Layout from '@/components/layout/page-layout/Layout';
 import LoginPage from '@/pages/auth/LoginPage';
 import SignupPage from '@/pages/auth/SignupPage';
 import LandingPageV4 from '@/pages/landing/LandingPageV4';
+import ProductPage from '@/pages/product/ProductPage';
 import DashboardPage from '@/pages/main/DashboardPage';
 import ManualPage from '@/pages/manual/ManualPage';
 import ManualPrivatePage from '@/pages/manual/ManualPrivatePage';
@@ -22,6 +23,7 @@ const PasswordEditPage = lazy(() => import('@/pages/setting/PasswordEditPage'));
 
 const routes = [
   { path: ROUTES.LANDING, element: <LandingPageV4 /> },
+  { path: ROUTES.PRODUCT, element: <ProductPage /> },
   {
     element: <Layout />,
     children: [

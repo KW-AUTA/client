@@ -52,18 +52,22 @@ export const EfficiencyCompare = () => {
   };
 
   return (
-    <div ref={containerRef} className="h-full flex flex-col">
-      <div className="mb-6 flex-shrink-0">
-        <h3 className="text-3xl font-bold text-neutral-900 mb-2">
-          효율 지표
-        </h3>
-        <p className="text-lg text-neutral-600">
-          기존 QA 대비 AUTA의 효율성
-        </p>
-      </div>
+            <div ref={containerRef} className="h-full flex flex-col">
+              <div className="mb-4 flex-shrink-0">
+                <h3 className="text-2xl font-bold text-neutral-900 mb-2 text-center">
+                  효율 지표
+                </h3>
+                {/* <p className="text-sm text-neutral-600 text-center leading-relaxed">
+                  기존 QA 대비 AUTA의 효율성
+                </p> */}
+                <p className="text-sm text-neutral-600 text-center leading-relaxed mt-1">
+                  자동화된 테스트 프로세스로<br />
+                  시간 단축 및 커버리지 향상을 제공합니다.
+                </p>
+              </div>
 
       <GlassCard 
-        className="p-5 flex-1 min-h-0"
+        className="p-5 flex-1 min-h-0 flex flex-col justify-center"
         style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -86,7 +90,7 @@ export const EfficiencyCompare = () => {
 
           return (
             <div key={rowIdx} className="space-y-2">
-              <div className="text-sm font-medium text-neutral-700 mb-2">
+              <div className="text-sm font-bold text-neutral-900 mb-2">
                 {row[0]}
               </div>
               
@@ -96,7 +100,7 @@ export const EfficiencyCompare = () => {
                   <span className="text-red-600 font-medium">기존 QA</span>
                   <span className="text-red-600">{row[1]}</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
                   <div
                     className="bg-red-400 h-full rounded-full transition-all duration-1000 ease-out"
                     style={{
@@ -113,7 +117,7 @@ export const EfficiencyCompare = () => {
                   <span className="text-brand-blue font-bold">AUTA</span>
                   <span className="text-brand-blue font-bold">{row[2]}</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
                   <div
                     className="bg-brand-blue h-full rounded-full transition-all duration-1000 ease-out"
                     style={{

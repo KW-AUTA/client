@@ -12,7 +12,7 @@ export const HowItWorks = () => {
   return (
     <section 
       id="how-it-works" 
-      className="py-22 md:py-26 bg-white">
+      className="relative py-32 md:py-40">
       <div className="max-w-[1120px] mx-auto px-5 md:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 mb-4">

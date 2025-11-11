@@ -34,11 +34,7 @@ export const HeaderNav = () => {
     return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
 
-  const navItems = [
-    { label: translations.nav.product, href: '#product' },
-    { label: translations.nav.how, href: '#how' },
-    { label: translations.nav.features, href: '#features' }
-  ];
+  const navItems: Array<{ label: string; href: string; isRoute: boolean }> = [];
 
   return (
     <>
@@ -54,14 +50,23 @@ export const HeaderNav = () => {
 
           {/* 데스크톱 메뉴 */}
           <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item, idx) => (
-              <a 
-                key={idx} 
-                href={item.href}
-                className="text-sm font-medium text-neutral-700 hover:text-brand-blue transition-colors">
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item, idx) => 
+              item.isRoute ? (
+                <Link 
+                  key={idx} 
+                  to={item.href}
+                  className="text-sm font-medium text-neutral-700 hover:text-brand-blue transition-colors">
+                  {item.label}
+                </Link>
+              ) : (
+                <a 
+                  key={idx} 
+                  href={item.href}
+                  className="text-sm font-medium text-neutral-700 hover:text-brand-blue transition-colors">
+                  {item.label}
+                </a>
+              )
+            )}
           </div>
 
           {/* 우측 버튼 */}
@@ -124,12 +129,21 @@ export const HeaderNav = () => {
             <ul className="space-y-2">
               {navItems.map((item, idx) => (
                 <li key={idx}>
-                  <a
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-4 py-3 text-base font-medium text-neutral-700 hover:text-brand-blue hover:bg-neutral-50 rounded-lg transition-colors">
-                    {item.label}
-                  </a>
+                  {item.isRoute ? (
+                    <Link
+                      to={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-3 text-base font-medium text-neutral-700 hover:text-brand-blue hover:bg-neutral-50 rounded-lg transition-colors">
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-3 text-base font-medium text-neutral-700 hover:text-brand-blue hover:bg-neutral-50 rounded-lg transition-colors">
+                      {item.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

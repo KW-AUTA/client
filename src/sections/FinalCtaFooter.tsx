@@ -29,9 +29,38 @@ export const FinalCtaFooter = () => {
                 {/* 왼쪽: 텍스트 및 CTA 버튼 */}
                 <div className="text-white">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                    {final.title}
+                    <span className="inline-flex items-baseline">
+                      <span className="inline-block overflow-hidden" style={{ 
+                        height: '1em',
+                        lineHeight: '1em',
+                        verticalAlign: 'baseline',
+                        display: 'inline-block',
+                        marginRight: '0.3em'
+                      }}>
+                        <img 
+                          src={autaLogo} 
+                          alt="AUTA" 
+                          className="w-auto" 
+                          style={{ 
+                            display: 'block',
+                            filter: 'brightness(0) invert(1)',
+                            height: '4em',
+                            width: 'auto',
+                            objectFit: 'cover',
+                            objectPosition: 'center center',
+                            margin: 0,
+                            padding: 0,
+                            transform: 'translateY(-1.4em)',
+                            marginBottom: '-1.5em'
+                          }} 
+                        />
+                      </span>
+                      <span className="whitespace-nowrap">로 내 프로젝트를</span>
+                    </span>
+                    <br />
+                    <span className="whitespace-nowrap">정밀 검증해 보세요</span>
                   </h2>
-                  <p className="text-base md:text-lg text-white/90 mb-10 leading-relaxed">
+                  <p className="text-sm md:text-base text-white/90 mb-10 leading-relaxed">
                     {final.subtitle}
                   </p>
 
@@ -49,11 +78,33 @@ export const FinalCtaFooter = () => {
                   </div>
                 </div>
 
-                {/* 오른쪽: 일러스트레이션 영역 (선택사항) */}
+                {/* 오른쪽: 일러스트레이션 영역 */}
                 <div className="hidden lg:block">
                   <div className="flex items-center justify-center h-full">
-                    <div className="w-full max-w-md aspect-square bg-white/10 rounded-2xl backdrop-blur-sm flex items-center justify-center">
-                      <div className="text-white/30 text-sm">일러스트레이션 영역</div>
+                    <div className="relative w-full max-w-md aspect-square">
+                      {/* 배경 원형 그라데이션 */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm" />
+                      
+                      {/* 중앙 일러스트 요소들 */}
+                      <div className="relative h-full flex items-center justify-center">
+                        {/* 메인 원형 */}
+                        <div className="absolute w-48 h-48 bg-white/30 rounded-full blur-xl" />
+                        <div className="absolute w-40 h-40 bg-white/40 rounded-full blur-lg" />
+                        
+                        {/* 아이콘/그래픽 요소들 */}
+                        <div className="relative z-10 flex flex-col items-center gap-4">
+                          <div className="w-24 h-24 bg-white/20 rounded-2xl backdrop-blur-sm flex items-center justify-center border border-white/30">
+                            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </div>
+                          <div className="flex gap-2">
+                            <div className="w-3 h-3 bg-white/40 rounded-full" />
+                            <div className="w-3 h-3 bg-white/60 rounded-full" />
+                            <div className="w-3 h-3 bg-white/40 rounded-full" />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

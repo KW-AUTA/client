@@ -38,7 +38,7 @@ export default function TableItem<T>({
   return (
     <table className={`${className} flex flex-col gap-5`}>
       {/* 테이블 헤더 */}
-      <thead className="grid grid-cols-[repeat(auto-fit,_minmax(0,_1fr))] bg-background shadow-custom rounded-10 p-4">
+      <thead className="grid grid-cols-[repeat(auto-fit,_minmax(0,_1fr))] bg-white/60 backdrop-blur-md ring-1 ring-gray-200/50 shadow-sm rounded-xl p-4">
         {columns.map((column) => (
           <tr
             key={column.id}
@@ -55,7 +55,7 @@ export default function TableItem<T>({
         {items.map((item, itemIndex) => (
           <tr
             key={itemIndex}
-            className="bg-white grid grid-cols-[repeat(auto-fit,_minmax(0,_1fr))] p-4 hover:bg-button-hover transition-colors rounded-10 cursor-pointer"
+            className="bg-white/80 backdrop-blur-lg ring-1 ring-white/40 grid grid-cols-[repeat(auto-fit,_minmax(0,_1fr))] p-4 hover:bg-[#5CA585]/10 hover:ring-[#5CA585]/10 hover:shadow-md transition-all duration-300 rounded-2xl cursor-pointer shadow-md"
             onClick={() => handleItemClick(item)}>
             {columns.map((column) => (
               <td

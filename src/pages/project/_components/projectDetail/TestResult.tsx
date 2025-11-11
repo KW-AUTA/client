@@ -18,7 +18,7 @@ export default function TestResult({ projectDetail }: TestResultProps) {
         <p className="font-bold text-14 text-typography-dark pl-4">테스트 결과</p>
         <Button
           text="테스트 리포트 바로가기"
-          className={`border-none shadow-custom h-6`}
+          className="border-none bg-[#5CA585]/90 backdrop-blur-lg text-white hover:bg-[#5CA585] shadow-md h-9 px-6 rounded-lg transition-all duration-300"
           onClick={() => navigate(ROUTES.TEST_DETAIL.replace(':projectId', String(projectId)))}
         />
       </div>

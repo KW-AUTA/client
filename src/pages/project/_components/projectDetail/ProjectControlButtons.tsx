@@ -50,7 +50,7 @@ export default function ProjectControlButtons({
           <Button
             text="프로젝트 수정"
             leftIcon={<PencilIcon />}
-            className="flex border-none shadow-custom rounded-10 w-[118px] h-6 items-center justify-center"
+            className="flex border-none bg-white/80 backdrop-blur-lg ring-1 ring-white/40 shadow-md hover:bg-white/90 hover:shadow-lg rounded-xl w-[118px] h-9 items-center justify-center transition-all duration-300"
             onClick={handleEditProjectButtonClick}
           />
 
@@ -59,14 +59,14 @@ export default function ProjectControlButtons({
               text={isRunningTest ? '테스트 중' : '테스트 재실행'}
               onClick={onOpenTestModal}
               disabled={isRunningTest}
-              className="flex border-none shadow-custom rounded-10 w-[118px] h-6 items-center justify-center"
+              className="flex border-none bg-[#5CA585]/90 backdrop-blur-lg text-white hover:bg-[#5CA585] shadow-md hover:shadow-lg rounded-xl w-[130px] h-9 items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             />
           )}
         </div>
 
         <div className="flex justify-end">
           <button
-            className="border-0 border-b border-[#696969] text-[#696969] font-medium text-11 hover:text-gray-800 transition-colors"
+            className="border-0 border-b border-neutral-400 text-neutral-600 hover:text-red-500 hover:border-red-500 font-medium text-11 transition-all duration-300"
             onClick={handleProjectDeleteButtonClick}>
             프로젝트 삭제하기
           </button>

@@ -17,7 +17,7 @@ export default function ProjectInfo({
   testExecutionTime
 }: ProjectBasicInfoProps) {
   return (
-    <section>
+    <section className="bg-white/70 backdrop-blur-lg ring-1 ring-white/40 rounded-2xl shadow-md p-6 mb-4">
       <h2 className="font-bold text-[24px] pb-4 max-lg:text-16">{projectName}</h2>
       <div className="flex flex-col gap-3">
         <div className="flex gap-5 max-lg:grid grid-cols-2 max-lg:gap-1">

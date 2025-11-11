@@ -5,7 +5,7 @@ interface GlassCardProps {
   className?: string;
   hoverEffect?: boolean;
   style?: React.CSSProperties;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 /**
@@ -15,7 +15,9 @@ interface GlassCardProps {
 export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
   ({ children, className = '', hoverEffect = false, style, onClick }, ref) => {
     const baseClasses = 'bg-white/70 backdrop-blur-2xl ring-1 ring-white/40 rounded-2xl shadow-lg';
-    const hoverClasses = hoverEffect ? 'transition-all duration-300 hover:bg-white/80 hover:shadow-2xl hover:scale-[1.02] hover:ring-white/50' : '';
+    const hoverClasses = hoverEffect
+      ? 'transition-all duration-300 hover:bg-white/80 hover:shadow-2xl hover:scale-[1.02] hover:ring-white/50'
+      : '';
 
     return (
       <div ref={ref} className={`${baseClasses} ${hoverClasses} ${className}`} style={style} onClick={onClick}>
@@ -28,4 +30,3 @@ export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
 GlassCard.displayName = 'GlassCard';
 
 export default GlassCard;
-

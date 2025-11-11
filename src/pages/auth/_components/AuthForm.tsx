@@ -1,4 +1,4 @@
-import bigLogo from '@/assets/logos/AUTA_big.svg';
+import autaNewLogo from '@/assets/logos/auta-newlogo.svg';
 import Button from '@/components/ui/button/Button';
 import Input from '@/components/ui/input/Input';
 import { ROUTES } from '@/constants';
@@ -44,8 +44,17 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
   return (
     <div className="flex items-center justify-center py-12 max-xl2:px-8 max-xl2:py-0">
       <div className="flex flex-col items-center">
-        <Link to={ROUTES.LANDING}>
-          <img src={bigLogo} alt="AUTA big logo" className="py-20" />
+        <Link to={ROUTES.LANDING} className="block overflow-hidden mb-8 mx-auto mt-8" style={{ height: '140px', width: '420px', maxWidth: '90vw' }}>
+          <img 
+            src={autaNewLogo} 
+            alt="AUTA logo" 
+            className="w-full h-full"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center center',
+              transform: 'scale(1.6)'
+            }}
+          />
         </Link>
         <form onSubmit={handleSubmitAuthForm} className="flex flex-col gap-8 max-w-[446px] w-full">
           <Input label="이메일" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

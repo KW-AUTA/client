@@ -56,7 +56,8 @@ export const IntroSummary = () => {
       color: 'text-red-500',
       expanded: {
         headline: '빠르게 바뀌는 서비스, 여전히 사람 손에 맡겨진 UI 테스트',
-        description: '현대의 웹·앱 서비스는 하루에도 여러 번 업데이트되지만, 화면이 정말 디자인대로 구현되었는지 확인하는 일은 여전히 사람이 직접 클릭하며 눈으로 확인하는 방식에 의존하고 있습니다. 페이지와 컴포넌트가 많아질수록 테스트 범위는 현실적으로 줄어들고, 중요 화면조차 "시간이 없어서", "다음 스프린트에서"라는 이유로 검증이 미뤄집니다.',
+        description:
+          '현대의 웹·앱 서비스는 하루에도 여러 번 업데이트되지만, 화면이 정말 디자인대로 구현되었는지 확인하는 일은 여전히 사람이 직접 클릭하며 눈으로 확인하는 방식에 의존하고 있습니다. 페이지와 컴포넌트가 많아질수록 테스트 범위는 현실적으로 줄어들고, 중요 화면조차 "시간이 없어서", "다음 스프린트에서"라는 이유로 검증이 미뤄집니다.',
         points: [
           {
             title: '과부하된 QA 리소스',
@@ -97,10 +98,7 @@ export const IntroSummary = () => {
   ];
 
   return (
-    <section 
-      id="intro-summary" 
-      className="relative py-32 md:py-40"
-      ref={containerRef}>
+    <section id="intro-summary" className="relative py-32 md:py-40" ref={containerRef}>
       <div className="max-w-[1120px] mx-auto px-5 md:px-8">
         {/* Eyebrow 배지 */}
         <div className="text-center mb-6">
@@ -125,25 +123,35 @@ export const IntroSummary = () => {
               const Icon = card.icon;
               const isExpanded = expandedCard === card.label;
               const isCollapsed = expandedCard !== null && expandedCard !== card.label;
-              
+
               return (
                 <div
                   key={idx}
                   className="h-full min-h-[300px] md:min-h-[320px] flex-shrink-0"
                   style={{
                     opacity: isVisible ? 1 : 0,
-                    transform: isVisible 
-                      ? (isExpanded ? 'scale(1)' : isCollapsed ? 'scale(1)' : 'translateY(0)')
+                    transform: isVisible
+                      ? isExpanded
+                        ? 'scale(1)'
+                        : isCollapsed
+                          ? 'scale(1)'
+                          : 'translateY(0)'
                       : 'translateY(30px)',
-                    width: expandedCard === 'PROBLEM' 
-                      ? (isExpanded ? 'calc(100% - 124px)' : isCollapsed ? '60px' : 'calc((100% - 16px) / 3)')
-                      : card.label === 'PROBLEM' ? 'calc((100% - 16px) / 3)' : 'calc((100% - 16px) / 3)',
+                    width:
+                      expandedCard === 'PROBLEM'
+                        ? isExpanded
+                          ? 'calc(100% - 124px)'
+                          : isCollapsed
+                            ? '60px'
+                            : 'calc((100% - 16px) / 3)'
+                        : card.label === 'PROBLEM'
+                          ? 'calc((100% - 16px) / 3)'
+                          : 'calc((100% - 16px) / 3)',
                     transition: `width 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-out ${idx * 0.1}s, transform 1.2s cubic-bezier(0.4, 0, 0.2, 1) ${idx * 0.1}s`
-                  }}
-                >
+                  }}>
                   {isCollapsed ? (
                     /* 축소된 상태: 흰색 막대 */
-                    <div 
+                    <div
                       className="h-full bg-white rounded-2xl shadow-lg w-full min-h-[300px] md:min-h-[320px] transition-all duration-[1200ms] ease-in-out"
                       style={{
                         minWidth: '60px',
@@ -155,15 +163,14 @@ export const IntroSummary = () => {
                       className={`p-3 md:p-4 hoverEffect cursor-pointer relative h-full flex flex-col min-h-[300px] md:min-h-[320px] overflow-hidden w-full ${
                         card.label === 'PROBLEM' ? '' : ''
                       }`}
-                      onClick={(e) => {
+                      onClick={(e: React.MouseEvent) => {
                         e.stopPropagation();
                         if (card.label === 'PROBLEM') {
                           const newState = isExpanded ? null : 'PROBLEM';
                           console.log('Clicking PROBLEM card, current state:', expandedCard, 'new state:', newState);
                           setExpandedCard(newState);
                         }
-                      }}
-                    >
+                      }}>
                       {isExpanded && card.expanded ? (
                         /* 확장된 Problem 카드 내용 */
                         <div className="space-y-3 flex-1 flex flex-col overflow-y-auto">
@@ -173,100 +180,87 @@ export const IntroSummary = () => {
                               e.stopPropagation();
                               setExpandedCard(null);
                             }}
-                            className="absolute top-2 right-2 p-2 hover:bg-white/50 rounded-full transition-colors z-10"
-                          >
+                            className="absolute top-2 right-2 p-2 hover:bg-white/50 rounded-full transition-colors z-10">
                             <ArrowLeft className="w-5 h-5 text-neutral-600" />
                           </button>
 
-                        {/* 헤드라인 */}
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <Icon className={`w-4 h-4 ${card.color}`} />
-                            <span className="text-xs font-medium text-neutral-500 tracking-widest uppercase">
-                              {card.label}
-                            </span>
-                          </div>
-                          <h3 className="text-lg md:text-xl font-bold text-neutral-900 mb-3 leading-tight">
-                            {card.expanded.headline}
-                          </h3>
-                        </div>
-
-                        {/* 설명 문단 */}
-                        <p className="text-sm text-neutral-700 leading-relaxed mb-2">
-                          {card.expanded.description}
-                        </p>
-
-                        {/* 문제 포인트 */}
-                        <div className="space-y-2">
-                          {card.expanded.points.map((point, pIdx) => (
-                            <div key={pIdx} className="flex gap-2">
-                              <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5" />
-                              <div>
-                                <h4 className="text-sm font-bold text-neutral-900 mb-0.5">
-                                  {point.title}
-                                </h4>
-                                <p className="text-xs text-neutral-600 leading-relaxed">
-                                  {point.desc}
-                                </p>
-                              </div>
+                          {/* 헤드라인 */}
+                          <div>
+                            <div className="flex items-center gap-2 mb-2">
+                              <Icon className={`w-4 h-4 ${card.color}`} />
+                              <span className="text-xs font-medium text-neutral-500 tracking-widest uppercase">
+                                {card.label}
+                              </span>
                             </div>
-                          ))}
-                        </div>
-
-                        {/* 결론 문장 */}
-                        <div className="pt-2 border-t border-neutral-200 mt-auto">
-                          <p className="text-sm font-medium text-neutral-900 leading-relaxed">
-                            {card.expanded.conclusion}
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      /* 기본 축소형 카드 내용 */
-                      <div className="flex flex-col h-full">
-                        {/* 카드 헤더 */}
-                        <div className="mb-2">
-                          <div className="flex items-center gap-2 mb-1.5">
-                            <Icon className={`w-4 h-4 ${card.color}`} />
-                            <span className="text-xs font-medium text-neutral-500 tracking-widest uppercase">
-                              {card.label}
-                            </span>
+                            <h3 className="text-lg md:text-xl font-bold text-neutral-900 mb-3 leading-tight">
+                              {card.expanded.headline}
+                            </h3>
                           </div>
-                          <h3 className="text-lg font-bold text-neutral-900 mb-1.5">
-                            {card.title}
-                          </h3>
-                        </div>
 
-                        {/* 카드 본문 */}
-                        <div className="space-y-1.5 flex-1">
-                          <p className="text-sm text-neutral-700 leading-relaxed">
-                            {card.description}
-                          </p>
-                          <p className="text-sm text-neutral-600 leading-relaxed">
-                            {card.detail}
-                          </p>
+                          {/* 설명 문단 */}
+                          <p className="text-sm text-neutral-700 leading-relaxed mb-2">{card.expanded.description}</p>
 
-                          {/* PROOF 카드의 지표 */}
-                          {card.metrics && (
-                            <div className="mt-3 pt-3 border-t border-neutral-200">
-                              <div className="flex items-center gap-6">
-                                <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold text-[#5CA585] mb-0.5">
-                                    {card.metrics.time}
-                                  </span>
-                                  <span className="text-xs text-neutral-500">페이지당 평균</span>
-                                </div>
-                                <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold text-[#5CA585] mb-0.5">
-                                    {card.metrics.reduction}
-                                  </span>
-                                  <span className="text-xs text-neutral-500">리소스 절감</span>
+                          {/* 문제 포인트 */}
+                          <div className="space-y-2">
+                            {card.expanded.points.map((point, pIdx) => (
+                              <div key={pIdx} className="flex gap-2">
+                                <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5" />
+                                <div>
+                                  <h4 className="text-sm font-bold text-neutral-900 mb-0.5">{point.title}</h4>
+                                  <p className="text-xs text-neutral-600 leading-relaxed">{point.desc}</p>
                                 </div>
                               </div>
-                            </div>
-                          )}
+                            ))}
+                          </div>
+
+                          {/* 결론 문장 */}
+                          <div className="pt-2 border-t border-neutral-200 mt-auto">
+                            <p className="text-sm font-medium text-neutral-900 leading-relaxed">
+                              {card.expanded.conclusion}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      ) : (
+                        /* 기본 축소형 카드 내용 */
+                        <div className="flex flex-col h-full">
+                          {/* 카드 헤더 */}
+                          <div className="mb-2">
+                            <div className="flex items-center gap-2 mb-1.5">
+                              <Icon className={`w-4 h-4 ${card.color}`} />
+                              <span className="text-xs font-medium text-neutral-500 tracking-widest uppercase">
+                                {card.label}
+                              </span>
+                            </div>
+                            <h3 className="text-lg font-bold text-neutral-900 mb-1.5">{card.title}</h3>
+                          </div>
+
+                          {/* 카드 본문 */}
+                          <div className="space-y-1.5 flex-1">
+                            <p className="text-sm text-neutral-700 leading-relaxed">{card.description}</p>
+                            <p className="text-sm text-neutral-600 leading-relaxed">{card.detail}</p>
+
+                            {/* PROOF 카드의 지표 */}
+                            {card.metrics && (
+                              <div className="mt-3 pt-3 border-t border-neutral-200">
+                                <div className="flex items-center gap-6">
+                                  <div className="flex flex-col">
+                                    <span className="text-2xl md:text-3xl font-bold text-[#5CA585] mb-0.5">
+                                      {card.metrics.time}
+                                    </span>
+                                    <span className="text-xs text-neutral-500">페이지당 평균</span>
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <span className="text-2xl md:text-3xl font-bold text-[#5CA585] mb-0.5">
+                                      {card.metrics.reduction}
+                                    </span>
+                                    <span className="text-xs text-neutral-500">리소스 절감</span>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </GlassCard>
                   )}
                 </div>
@@ -280,4 +274,3 @@ export const IntroSummary = () => {
 };
 
 export default IntroSummary;
-

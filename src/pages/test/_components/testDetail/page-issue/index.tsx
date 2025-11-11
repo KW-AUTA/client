@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { TestDetail } from '@/types/test.type';
 import { useGetPageIssue } from '@/store/queries/test/useTestQueries';
@@ -31,6 +31,28 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
   const { data: issueData, isLoading: isPending, isError } = useGetPageIssue(pageId);
 
   const { issueCounts, tabMeta } = useIssueData(issueData || {}, filters);
+
+  /** category 오류 수정 부분
+   * 페이지 변경할 때, 선택된 이슈가 상태로 저장되는데 그게 그대로 넘어가서 다음 페이지에 갔을 때 그 이슈 인덱스가 없을 때 오류가 발생하는 것 같습니다.
+   * 그래서 페이지 변경될 때마다 선택된 이슈 인덱스를 0으로 초기화 해줬어요
+   */
+  useEffect(() => {
+    setSelectedIssueIndex(0);
+  }, [pageId]);
+
+  /** 전체 선택 시, 이슈가 없는 건 선택 안되게 수정한 부분
+   * 페이지 데이터 불러오면 이슈 개수에 따라 필터 초기화시키기
+   * 이슈가 0인 테스트는 체크 해제 상태로 시작
+   */
+  useEffect(() => {
+    if (issueData) {
+      setFilters({
+        routing: issueCounts.routing > 0,
+        interaction: issueCounts.interaction > 0,
+        mapping: issueCounts.mapping > 0
+      });
+    }
+  }, [pageId, issueData]);
 
   if (isPending) {
     return <PageLoader />;

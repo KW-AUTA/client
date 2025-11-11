@@ -39,6 +39,7 @@ export const API_ENDPOINTS = {
 export const ROUTES = {
   HOME: '/',
   LANDING: '/landing',
+  PRODUCT: '/product',
   MANUAL: '/manual',
   LOGIN: '/login',
   SIGNUP: '/signup',

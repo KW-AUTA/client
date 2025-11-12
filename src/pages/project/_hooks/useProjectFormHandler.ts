@@ -32,8 +32,10 @@ export const useProjectFormHandler = ({ mode }: UseProjectFromHandlerProps) => {
   const handleNavigate = (actionType: 'register' | 'test', responseProjectId?: number) => {
     if (actionType === 'register') {
       navigate(ROUTES.PROJECT_DETAIL.replace(':projectId', String(responseProjectId)));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (actionType === 'test') {
-      navigate(ROUTES.TESTS);
+      navigate(ROUTES.PROJECT_DETAIL.replace(':projectId', String(responseProjectId)));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
   // FormData 생성

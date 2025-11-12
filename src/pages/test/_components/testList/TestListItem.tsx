@@ -30,13 +30,15 @@ export default function TestListItem({ data, handleClickRegisterButton }: TestLi
   const successTests = successRoutingTest + successInteractionTest + successMappingTest;
 
   return (
-    <div className="border shadow-custom rounded-10 pt-5 px-6 pb-4 space-y-3">
+    <div
+      onClick={() => handleClickRegisterButton(data.projectId)}
+      className="bg-white/80 backdrop-blur-lg ring-1 ring-white/40 rounded-2xl shadow-md pt-5 px-6 pb-4 space-y-3 hover:bg-white/90 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer">
       <div className="flex items-center justify-between">
         <div className="flex gap-2 items-center">
-          <span className="w-[15px] h-[15px] rounded-full bg-[#9991F4]"></span>
+          <span className="w-[15px] h-[15px] rounded-full bg-[#5CA585] shadow-sm"></span>
           <p className="font-semibold text-16">{projectName}</p>
         </div>
-        <p className="font-medium text-11 text-typography-gray">{projectCreatedDate}</p>
+        <p className="font-medium text-11 text-neutral-500">{projectCreatedDate}</p>
       </div>
       <ul className="space-y-4 py-2">
         <li className="space-y-1">
@@ -67,10 +69,13 @@ export default function TestListItem({ data, handleClickRegisterButton }: TestLi
           />
         </li>
       </ul>
-      <p className="font-medium text-11 text-typography-gray py-2">
+      <p className="font-medium text-11 text-neutral-600 py-2">
         총 테스트 {successTests}/{totalTests} 통과
       </p>
-      <Button text="보기" className="w-full" onClick={() => handleClickRegisterButton(data.projectId)} />
+      <Button
+        text="보기"
+        className="w-full bg-[#5CA585]/90 backdrop-blur-lg text-white hover:bg-[#5CA585] border-none shadow-sm transition-all duration-300"
+      />
     </div>
   );
 }

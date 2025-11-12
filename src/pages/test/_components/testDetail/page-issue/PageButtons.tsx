@@ -6,6 +6,7 @@ interface PageButtonProps {
   activePageIndex: number;
   onSelectPage: (pageId: number) => void;
 }
+
 export default function PageButtons({ pages, activePageIndex, onSelectPage }: PageButtonProps) {
   return (
     <div className="flex items-center justify-start gap-5 pt-14 pb-6 px-2 overflow-x-auto">
@@ -16,12 +17,9 @@ export default function PageButtons({ pages, activePageIndex, onSelectPage }: Pa
           <Button
             key={pageId}
             onClick={() => onSelectPage(pageId)}
-            text={page?.pageName}
-            className={`
-              px-[23px] py-[10px]
-              font-medium shadow-custom rounded-15 border-none text-typography-dark
-              ${isActive ? '!bg-[#AF97AF] text-white' : 'bg-white text-typography-dark'}
-            `}
+            text={`${page?.pageName} 페이지`}
+            variant={isActive ? 'primary' : 'default'}
+            className={`px-[23px] py-[10px] whitespace-nowrap hover:bg-[#5CA585]/20 ${isActive ? 'bg-[#5CA585]/60' : ''}`}
           />
         );
       })}

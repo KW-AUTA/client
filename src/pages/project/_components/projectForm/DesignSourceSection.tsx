@@ -39,7 +39,7 @@ export default function DesignSourceSection({
               target="_blank"
               rel="noopener noreferrer"
               className="border-0 border-b border-[#5CA585] text-[#5CA585] hover:text-[#4a8a6e] font-medium text-11 transition-colors duration-300"
-              href="https://www.youtube.com/embed/pZ-hYhXEerU?autoplay=0&mute=1&loop=1&playlist=pZ-hYhXEerU">
+              href="https://www.youtube.com/watch?v=pZ-hYhXEerU">
               업로드 방법
             </a>
           }

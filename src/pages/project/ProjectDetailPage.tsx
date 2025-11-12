@@ -72,10 +72,10 @@ export default function ProjectDetailPage() {
   return (
     <div className="w-[90%] flex flex-col m-auto">
       <ProjectTitle />
-
+      <hr className="w-full border-t-[1.5px] border-typography-gray mb-4" />
       <ProjectInfo {...projectDetail?.projectInfo} />
 
-      <section className="mb-6">{renderProjectStatusSection()}</section>
+      <section className="my-4">{renderProjectStatusSection()}</section>
 
       <DesignSourceSection
         {...projectDetail?.figmaInfo}

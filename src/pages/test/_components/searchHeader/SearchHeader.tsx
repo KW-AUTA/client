@@ -34,6 +34,7 @@ export default function SearchHeader({
 
   const handleInputFocus = () => {
     setShowRecent(true);
+    // 최근 검색어 불러오기 등 추가 로직
   };
 
   useEffect(() => {
@@ -59,14 +60,14 @@ export default function SearchHeader({
         <img
           src={searchIcon}
           alt="search button"
-          className="absolute top-2.5 left-4 w-4 cursor-pointer transition-transform duration-300 hover:scale-110"
+          className="absolute top-2.5 left-4 w-4 cursor-pointer"
           onClick={onSearch}
         />
         <Input
           ref={inputRef}
           type="text"
           placeholder="프로젝트 검색"
-          className="w-full max-h-[35px] rounded-full pl-10 bg-white/60 backdrop-blur-md ring-1 ring-gray-200/50 shadow-sm hover:bg-white/75 transition-all duration-300 max-md:placeholder:text-[12px]"
+          className="w-full max-h-[35px] rounded-20 pl-10 border-[0.5px] border-typography-gray max-md:placeholder:text-[12px]"
           value={inputValue}
           onChange={(e) => onInputChange(e.target.value)}
           onKeyUp={(e: KeyboardEvent<HTMLInputElement>) => {
@@ -79,7 +80,7 @@ export default function SearchHeader({
         {showRecent && (
           <div
             id="search-dropdown"
-            className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[510px] md:max-w-none bg-white/95 backdrop-blur-xl ring-1 ring-white/40 rounded-2xl shadow-2xl p-4 max-h-60 overflow-auto z-[9999]"
+            className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[510px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto z-[9999]"
             style={{ minHeight: 48 }}>
             {/* 드롭다운 내용 */}
           </div>
@@ -87,22 +88,17 @@ export default function SearchHeader({
       </div>
       <div className="flex gap-2">
         <Button
+          variant="default"
           leftIcon={<ResetIcon className="transition-transform duration-500 ease-out group-hover:rotate-90" />}
-          className="group [&>span:first-child]:mr-0 justify-center items-center bg-white/60 backdrop-blur-md ring-1 ring-gray-200/50 shadow-sm hover:bg-white/75 hover:shadow-md transition-all duration-300"
+          className="group [&>span:first-child]:mr-0"
           onClick={onReset}
         />
-        <Select
-          value={nameSort}
-          onChange={onNameSortChange}
-          options={sortOptions}
-          className="bg-white/60 backdrop-blur-md ring-1 ring-gray-200/50 shadow-sm hover:bg-white/75 transition-all duration-300"
-          placeholder="정렬"
-        />
+        <Select value={nameSort} onChange={onNameSortChange} options={sortOptions} placeholder="정렬" />
         <Select
           value={dateSort}
           onChange={onDateSortChange}
           options={dateOptions}
-          className="bg-[#5CA585]/90 backdrop-blur-md text-white border-none hover:bg-[#5CA585] shadow-sm transition-all duration-300"
+          className="bg-[#5CA585]/60 hover:bg-[#5CA585]"
           placeholder="날짜순"
         />
       </div>

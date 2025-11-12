@@ -29,6 +29,9 @@ export const useGetProjectDetail = (projectId: number) => {
       return response.data.data;
     },
     enabled: !!projectId,
-    refetchInterval: 5000
+    refetchInterval: (query) => {
+      // IN_PROGRESS 상태일 때만 3초마다 refetch, 아니면 refetch 안 함
+      return query.state.data?.projectInfo?.projectStatus === 'IN_PROGRESS' ? 3000 : false;
+    }
   });
 };

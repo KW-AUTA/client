@@ -24,7 +24,10 @@ export default function ProjectDetailPage() {
     runTestMutation(Number(projectId), {
       onSuccess: () => {
         toast.success('테스트 실행이 시작되었습니다.\n완료까지 몇 분 소요될 수 있습니다.', { autoClose: 1000 });
-        refetch();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          refetch();
+        }, 1000);
       },
       onError: () => {
         toast.error('테스트 실행 요청이 실패했습니다.\n다시 시도해주세요.', { autoClose: 1000 });

@@ -19,6 +19,7 @@ export default function ProjectDetailPage() {
   const { data: projectDetail, isPending, isError, refetch } = useGetProjectDetail(Number(projectId));
   const { mutate: runTestMutation, isPending: isRunningTest } = useRunTest();
   const [isRunTestModalOpen, setIsRunTestModalOpen] = useState(false);
+
   const handleRunTest = () => {
     runTestMutation(Number(projectId), {
       onSuccess: () => {
@@ -59,19 +60,26 @@ export default function ProjectDetailPage() {
   };
 
   if (isPending) return <PageLoader />;
-  if (isError) return <div className="py-20 text-center text-red-500">오류가 발생했습니다.</div>;
+  if (isError)
+    return (
+      <div className="py-20 text-center">
+        <div className="inline-block bg-red-50/80 backdrop-blur-lg ring-1 ring-red-200/50 rounded-2xl px-8 py-4 text-red-600 shadow-md">
+          오류가 발생했습니다.
+        </div>
+      </div>
+    );
 
   return (
     <div className="w-[90%] flex flex-col m-auto">
       <ProjectTitle />
+      <hr className="w-full border-t-[1.5px] border-typography-gray mb-4" />
       <ProjectInfo {...projectDetail?.projectInfo} />
-      <span className="border border-typography-gray my-4"></span>
 
-      <section>{renderProjectStatusSection()}</section>
+      <section className="my-4">{renderProjectStatusSection()}</section>
 
       <DesignSourceSection
         {...projectDetail?.figmaInfo}
-        containerClassName="border-none shadow-custom rounded-15 px-6 pt-6 pb-8 space-y-4"
+        containerClassName="bg-white/80 backdrop-blur-lg ring-1 ring-white/40 shadow-md rounded-2xl px-6 pt-6 pb-8 space-y-4"
         disabled
       />
 

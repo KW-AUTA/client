@@ -39,6 +39,7 @@ export default function CheckBoxes({ filters, onChange, issueCounts }: CheckBoxe
       mapping: newValue
     });
   };
+
   const toggleField = (field: keyof Filters) => {
     onChange({ ...filters, [field]: !filters[field] });
   };
@@ -58,8 +59,8 @@ export default function CheckBoxes({ filters, onChange, issueCounts }: CheckBoxe
   const totalIssueCount = issueCounts.routing + issueCounts.interaction + issueCounts.mapping;
 
   return (
-    <div className="flex items-center space-x-2 px-8 pb-5 all:max-sm:text-[10px]">
-      <label className="flex items-center gap-2 text-typography-dark font-medium text-11 select-none">
+    <div className="flex items-center flex-wrap gap-3 px-8 pb-5 all:max-sm:text-[10px]">
+      <label className="flex items-center gap-2 text-typography-dark font-medium text-11 select-none cursor-pointer hover:text-[#5CA585] transition-colors duration-300">
         <div className="relative flex items-center">
           <input
             type="checkbox"
@@ -70,10 +71,14 @@ export default function CheckBoxes({ filters, onChange, issueCounts }: CheckBoxe
               w-[15px] h-[15px]
               rounded-[3px]
               border-none
-              bg-[#D9D9D9]
-              checked:bg-[#AF97AF]
+              bg-gray-200
+              checked:bg-[#5CA585]
+              hover:bg-gray-300
               focus:outline-none
-              transition duration-150 ease-in-out
+              focus:ring-2
+              focus:ring-[#5CA585]/30
+              transition-all duration-200 ease-in-out
+              cursor-pointer
             "
           />
           {allChecked && (
@@ -83,24 +88,33 @@ export default function CheckBoxes({ filters, onChange, issueCounts }: CheckBoxe
         <span>전체 보기 ({totalIssueCount})</span>
       </label>
 
-      <span className="text-[#D9D9D9]">ㅣ</span>
+      <span className="text-gray-300">|</span>
 
       {items.map(({ key, label, checked, count }) => (
-        <label key={key} className="flex items-center gap-2 text-typography-dark font-medium text-11 select-none">
+        <label
+          key={key}
+          className="flex items-center gap-2 text-typography-dark font-medium text-11 select-none cursor-pointer hover:text-[#5CA585] transition-colors duration-300">
           <div className="relative flex items-center">
             <input
               type="checkbox"
               checked={checked}
               onChange={() => toggleField(key)}
+              disabled={count === 0}
               className="
                 appearance-none
                 w-[15px] h-[15px]
                 rounded-[3px]
                 border-none
-                bg-[#D9D9D9]
-                checked:bg-[#AF97AF]
+                bg-gray-200
+                checked:bg-[#5CA585]
+                hover:bg-gray-300
+                disabled:bg-gray-100
+                disabled:cursor-not-allowed
                 focus:outline-none
-                transition duration-150 ease-in-out
+                focus:ring-2
+                focus:ring-[#5CA585]/30
+                transition-all duration-200 ease-in-out
+                cursor-pointer
               "
             />
             {checked && (
@@ -111,7 +125,7 @@ export default function CheckBoxes({ filters, onChange, issueCounts }: CheckBoxe
               />
             )}
           </div>
-          <span>
+          <span className={count === 0 ? 'text-gray-400' : ''}>
             {label} ({count})
           </span>
         </label>

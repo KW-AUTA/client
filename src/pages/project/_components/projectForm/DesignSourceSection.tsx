@@ -20,7 +20,7 @@ export default function DesignSourceSection({
   onChange,
   onFileChange,
   disabled = false,
-  containerClassName = 'border-[0.5px] border-typography-gray rounded-15 px-6 pt-6 pb-8 space-y-4',
+  containerClassName = 'bg-white/80 backdrop-blur-lg ring-1 ring-white/40 shadow-md rounded-2xl px-6 pt-6 pb-8 space-y-4',
   fileName
 }: DesignSourceProps) {
   return (
@@ -38,8 +38,8 @@ export default function DesignSourceSection({
             <a
               target="_blank"
               rel="noopener noreferrer"
-              className="border-0 border-b border-blue-500 text-blue-500 hover:text-blue-700 font-medium text-11"
-              href="https://www.youtube.com/embed/pZ-hYhXEerU?autoplay=0&mute=1&loop=1&playlist=pZ-hYhXEerU">
+              className="border-0 border-b border-[#5CA585] text-[#5CA585] hover:text-[#4a8a6e] font-medium text-11 transition-colors duration-300"
+              href="https://www.youtube.com/watch?v=pZ-hYhXEerU">
               업로드 방법
             </a>
           }
@@ -52,7 +52,11 @@ export default function DesignSourceSection({
           onChange={onChange}
           disabled={disabled}
           labelClassName="font-medium text-11"
-          className={`h-8 rounded-md ${disabled ? 'bg-gray_2 text-typography-gray' : ''}`}
+          className={`h-8 rounded-lg transition-all duration-300 ${
+            disabled
+              ? 'bg-gray-100/80 text-typography-gray'
+              : 'bg-white/60 ring-1 ring-gray-200/50 focus:ring-[#5CA585]/50 focus:bg-white/80'
+          }`}
           type="url"
         />
         <Input
@@ -63,7 +67,11 @@ export default function DesignSourceSection({
           onChange={onChange}
           disabled={disabled}
           labelClassName="font-medium text-11"
-          className={`h-8 rounded-md ${disabled ? 'bg-gray_2 text-typography-gray' : ''}`}
+          className={`h-8 rounded-lg transition-all duration-300 ${
+            disabled
+              ? 'bg-gray-100/80 text-typography-gray'
+              : 'bg-white/60 ring-1 ring-gray-200/50 focus:ring-[#5CA585]/50 focus:bg-white/80'
+          }`}
           type="url"
         />
         <Input
@@ -74,7 +82,11 @@ export default function DesignSourceSection({
           onChange={onChange}
           disabled={disabled}
           labelClassName="font-medium text-11"
-          className={`h-8 rounded-md ${disabled ? 'bg-gray_2 text-typography-gray' : ''}`}
+          className={`h-8 rounded-lg transition-all duration-300 ${
+            disabled
+              ? 'bg-gray-100/80 text-typography-gray'
+              : 'bg-white/60 ring-1 ring-gray-200/50 focus:ring-[#5CA585]/50 focus:bg-white/80'
+          }`}
           type="text"
         />
       </div>

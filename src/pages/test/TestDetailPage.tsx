@@ -27,7 +27,7 @@ export default function TestDetailPage() {
     <div className="w-[90%] m-auto">
       <TestTitle />
       <hr className="w-full border-t-[1.5px] border-typography-gray my-2" />
-      <div className="px-3 pt-2 pb-11">
+      <div className="pt-2 pb-4">
         <ProjectInfo {...testBasicInfo} />
       </div>
 

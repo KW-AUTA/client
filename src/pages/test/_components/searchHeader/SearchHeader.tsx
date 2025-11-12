@@ -88,22 +88,17 @@ export default function SearchHeader({
       </div>
       <div className="flex gap-2">
         <Button
+          variant="default"
           leftIcon={<ResetIcon className="transition-transform duration-500 ease-out group-hover:rotate-90" />}
-          className="group [&>span:first-child]:mr-0 justify-center items-center"
+          className="group [&>span:first-child]:mr-0"
           onClick={onReset}
         />
-        <Select
-          value={nameSort}
-          onChange={onNameSortChange}
-          options={sortOptions}
-          className="bg-button-default hover:bg-button-hover"
-          placeholder="정렬"
-        />
+        <Select value={nameSort} onChange={onNameSortChange} options={sortOptions} placeholder="정렬" />
         <Select
           value={dateSort}
           onChange={onDateSortChange}
           options={dateOptions}
-          className="bg-[#9991F4] border-none hover:bg-[#9981f4]"
+          className="bg-[#5CA585]/60 hover:bg-[#5CA585]"
           placeholder="날짜순"
         />
       </div>

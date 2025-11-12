@@ -43,7 +43,13 @@ export default function TestManagePage() {
 
   if (isPending) return <PageLoader />;
   if (isError)
-    return <div className="col-span-3 text-center text-typography-gray text-16 pt-40">오류가 발생했습니다.</div>;
+    return (
+      <div className="col-span-3 text-center pt-40">
+        <div className="inline-block bg-red-50/80 backdrop-blur-lg ring-1 ring-red-200/50 rounded-2xl px-8 py-4 text-red-600 shadow-md">
+          오류가 발생했습니다.
+        </div>
+      </div>
+    );
 
   const tests = testList?.pages.flatMap((page) => page.tests) || [];
 

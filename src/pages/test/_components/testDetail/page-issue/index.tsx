@@ -18,8 +18,8 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
   const params = useParams();
   const projectId = params.projectId;
   const pages = testDetail.pages;
-  const [selectedIssueIndex, setSelectedIssueIndex] = useState(0); // 현재 선택된 이슈 인덱스
-  const [activePageIndex, setActivePageIndex] = useState(0); // 현재 선택된 페이지 인덱스
+  const [selectedIssueIndex, setSelectedIssueIndex] = useState(0);
+  const [activePageIndex, setActivePageIndex] = useState(0);
   const [filters, setFilters] = useState<Filters>({
     routing: true,
     interaction: true,
@@ -58,7 +58,13 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
     return <PageLoader />;
   }
   if (isError || !issueData) {
-    return <div className="py-20 text-center text-red-500">페이지 이슈 불러오기 실패</div>;
+    return (
+      <div className="py-20 text-center">
+        <div className="inline-block bg-red-50/80 backdrop-blur-lg ring-1 ring-red-200/50 rounded-2xl px-8 py-4 text-red-600 shadow-md">
+          페이지 이슈 불러오기 실패
+        </div>
+      </div>
+    );
   }
 
   if (tabMeta.length === 0) {
@@ -72,8 +78,8 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
           }}
         />
         <CheckBoxes filters={filters} onChange={setFilters} issueCounts={issueCounts} />
-        <section className="shadow-custom p-6 rounded-15">
-          <p className="border border-dashed border-typography-gray p-4 rounded-15 w-full min-h-[200px] h-full flex justify-center items-center">
+        <section className="bg-white/80 backdrop-blur-lg ring-1 ring-white/40 shadow-md p-6 rounded-2xl">
+          <p className="border-2 border-dashed border-gray-300 bg-gray-50/50 p-8 rounded-xl w-full min-h-[200px] h-full flex justify-center items-center text-neutral-600">
             해당 테스트에 대해 검출된 이슈가 없습니다.
           </p>
         </section>
@@ -92,14 +98,14 @@ export default function PageIssueSection({ testDetail }: PageIssueSectionProps) 
       />
       <CheckBoxes filters={filters} onChange={setFilters} issueCounts={issueCounts} />
 
-      <section className="shadow-custom rounded-15 pt-7 px-10 pb-4 space-y-4">
+      <section className="bg-white/80 backdrop-blur-lg ring-1 ring-white/40 shadow-md rounded-2xl pt-7 px-10 pb-4 space-y-4">
         <IssueDropdown
           tabMeta={tabMeta}
           selectedIssueIndex={selectedIssueIndex}
           onSelectIssue={(index: number) => setSelectedIssueIndex(index)}
           issueData={issueData}
         />
-        <GoToFigmaButton figmaUrl={projectDetail?.figmaUrl} />
+        <GoToFigmaButton figmaUrl={projectDetail?.figmaInfo?.figmaUrl} />
       </section>
     </div>
   );

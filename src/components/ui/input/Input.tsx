@@ -25,7 +25,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   return (
     <div>
       {label && (
-        <label htmlFor={inputId} className={`block mb-2 ml-2 font-bold text-14 text-typography-dark ${labelClassName}`}>
+        <label htmlFor={inputId} className={`block mb-2 ml-2 font-bold text-14 text-neutral-700 ${labelClassName}`}>
           {label}
           {required && <span> (*필수)</span>}
         </label>
@@ -34,7 +34,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         ref={ref}
         id={inputId}
         type="text"
-        className={`w-full bg-background border-[0.5px] border-typography-gray rounded-15 px-4 py-3 placeholder:text-typography-gray focus:border-none focus:shadow-custom focus:outline-none ${className}`}
+        className={`w-full bg-white/60 backdrop-blur-md ring-1 ring-gray-200/50 rounded-xl px-4 py-3 
+          text-neutral-800
+          placeholder:text-neutral-400
+          shadow-[0_2px_8px_rgba(0,0,0,0.08)]
+          hover:bg-white/75 hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)]
+          focus:bg-white/80 focus:ring-2 focus:ring-[#5CA585]/30 focus:outline-none focus:shadow-[0_4px_16px_rgba(0,0,0,0.12)]
+          transition-all duration-300
+          ${className}`}
         value={value || ''}
         name={name}
         onChange={onChange}

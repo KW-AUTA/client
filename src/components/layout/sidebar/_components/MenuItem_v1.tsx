@@ -21,22 +21,9 @@ export default function MenuItem({ item, fontSize = 'text-20', onClick }: MenuIt
     <button
       type="button"
       onClick={handleClick}
-      className={`
-        group
-        flex px-12 py-5 items-center gap-3 w-full text-left rounded-lg 
-        transition-colors duration-300 ease-out
-        ${
-          isActive
-            ? 'bg-white/85 text-[#5CA585] font-bold shadow-md'
-            : 'bg-white/0 hover:bg-white/50 text-typography-dark hover:shadow-sm'
-        }
-      `}>
-      <img
-        src={item.icon}
-        alt={item.alt}
-        className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-105'}`}
-      />
-      <span className={`font-bm ${fontSize} transition-colors duration-300`}>{item.title}</span>
+      className={`flex px-12 py-5 items-center gap-3 transition-colors w-full text-left ${isActive ? 'bg-button-default' : 'hover:bg-button-default'}`}>
+      <img src={item.icon} alt={item.alt} />
+      <span className={`font-bm ${fontSize}`}>{item.title}</span>
     </button>
   );
 }

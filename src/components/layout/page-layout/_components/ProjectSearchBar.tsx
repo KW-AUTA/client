@@ -8,6 +8,7 @@ import { useRef, useState } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useGetProjectList } from '@/store/queries/project/useProjectQueries';
 import { setProjectName } from '@/store/redux/reducers/project';
+
 export default function ProjectSearchBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,10 +30,10 @@ export default function ProjectSearchBar() {
     if (!searchWord.trim()) return;
     dispatch(setProjectName(searchWord));
     saveRecentSearch(searchWord);
-    setRecentSearches(getRecentSearches()); // 최근 검색어 즉시 갱신
+    setRecentSearches(getRecentSearches());
     navigate('/projects');
     setInputValue('');
-    setShowRecent(false); // 검색 시 드롭다운 닫기
+    setShowRecent(false);
   };
 
   const handleInputFocus = () => {
@@ -48,18 +49,22 @@ export default function ProjectSearchBar() {
 
   return (
     <div
-      className="relative flex-1 max-w-[760px] w-full bg-white ml-8 py-2 px-8 mx-2 rounded-full hidden md:flex"
+      className="relative flex-1 max-w-[760px] w-full bg-white/70 backdrop-blur-lg ring-1 ring-white/40 ml-8 py-2 px-8 mx-2 rounded-full hidden md:flex shadow-md transition-all duration-300 hover:bg-white/85 hover:ring-white/60 hover:shadow-md"
       tabIndex={-1}
       onFocus={() => setShowRecent(true)}
       onBlur={() => setShowRecent(false)}>
       <button type="button" onClick={() => handleSearch()}>
-        <img src={searchIcon} alt="search button" className="absolute left-4 top-2 w-6 h-6" />
+        <img
+          src={searchIcon}
+          alt="search button"
+          className="absolute left-4 top-2 w-6 h-6 transition-transform duration-300 hover:scale-110"
+        />
       </button>
       <input
         ref={inputRef}
         type="text"
         placeholder="프로젝트 검색"
-        className="w-full rounded-full pl-10 text-base"
+        className="w-full rounded-full pl-10 text-base bg-transparent outline-none placeholder:text-neutral-400"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyUp={(e) => {
@@ -71,36 +76,36 @@ export default function ProjectSearchBar() {
       />
       {showRecent && (
         <div
-          className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[360px] md:max-w-none bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-h-60 overflow-auto sm:w-full sm:left-0 sm:right-0 sm:mx-auto z-[99999]"
+          className="absolute left-0 top-full mt-2 w-full min-w-[180px] max-w-[360px] md:max-w-none bg-white/95 backdrop-blur-xl ring-1 ring-white/40 rounded-2xl shadow-2xl p-4 max-h-60 overflow-auto sm:w-full sm:left-0 sm:right-0 sm:mx-auto z-[99999]"
           style={{ minHeight: 48 }}>
           {inputValue.trim() ? (
             suggestedProjects.length > 0 ? (
               <>
-                <div className="text-xs text-blue-400 mb-1 mt-2">추천 프로젝트</div>
+                <div className="text-xs text-[#5CA585] font-semibold mb-2 mt-2">추천 프로젝트</div>
                 <ul>
                   {suggestedProjects.map((proj: ProjectListData) => (
                     <li
                       key={proj.projectName}
-                      className="flex items-center justify-between text-blue-700 text-sm py-1 px-2 hover:bg-blue-50 rounded cursor-pointer"
+                      className="flex items-center justify-between text-neutral-800 text-sm py-2 px-3 hover:bg-white/80 rounded-lg cursor-pointer transition-all duration-300 hover:shadow-sm"
                       onMouseDown={() => {
                         setInputValue(proj.projectName);
                         setTimeout(() => handleSearch(proj.projectName), 0);
                       }}>
-                      <span>{proj.projectName}</span>
+                      <span className="font-medium">{proj.projectName}</span>
                       <StatusBadge status={proj.projectStatus as ProjectStatusType} className="ml-2" />
                     </li>
                   ))}
                 </ul>
               </>
             ) : (
-              <p className="text-gray-400 text-sm text-center py-4">일치하는 프로젝트가 없습니다</p>
+              <p className="text-neutral-400 text-sm text-center py-4">일치하는 프로젝트가 없습니다</p>
             )
           ) : recentSearches.length === 0 ? (
-            <p className="text-gray-400 text-sm text-center py-4">최근 검색어가 없습니다</p>
+            <p className="text-neutral-400 text-sm text-center py-4">최근 검색어가 없습니다</p>
           ) : (
             <>
               <button
-                className="block w-full text-right text-xs text-gray-400 hover:text-red-400 mb-2"
+                className="block w-full text-right text-xs text-neutral-400 hover:text-red-400 mb-2 transition-colors duration-300"
                 onMouseDown={(e) => {
                   e.preventDefault();
                   clearRecentSearches();
@@ -108,7 +113,7 @@ export default function ProjectSearchBar() {
                 }}>
                 전체 삭제
               </button>
-              <div className="text-xs text-gray-400 mb-1">최근 검색어</div>
+              <div className="text-xs text-neutral-500 font-semibold mb-2">최근 검색어</div>
               <ul className="mb-2">
                 {recentSearches.map((item) => {
                   const matched = suggestedProjects.find(
@@ -117,9 +122,9 @@ export default function ProjectSearchBar() {
                   return (
                     <li
                       key={item}
-                      className="flex items-center text-gray-700 text-sm py-1 px-2 hover:bg-gray-100 rounded cursor-pointer group">
+                      className="flex items-center text-neutral-700 text-sm py-2 px-3 hover:bg-white/80 rounded-lg cursor-pointer group transition-all duration-300 hover:shadow-sm">
                       <span
-                        className="flex-1"
+                        className="flex-1 font-medium"
                         onMouseDown={() => {
                           setInputValue(item);
                           setTimeout(() => handleSearch(item), 0);
@@ -128,7 +133,7 @@ export default function ProjectSearchBar() {
                       </span>
                       {matched && <StatusBadge status={matched.projectStatus as ProjectStatusType} className="ml-2" />}
                       <button
-                        className="ml-2 text-gray-400 hover:text-red-400 opacity-70 group-hover:opacity-100 transition"
+                        className="ml-2 text-neutral-400 hover:text-red-400 opacity-70 group-hover:opacity-100 transition-all duration-300"
                         onMouseDown={(e) => {
                           e.stopPropagation();
                           removeRecentSearch(item);

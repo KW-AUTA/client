@@ -60,13 +60,13 @@ export default function SearchHeader({
         <img
           src={searchIcon}
           alt="search button"
-          className="absolute top-2.5 left-4 w-4 cursor-pointer"
+          className="absolute top-2.5 left-4 w-4 cursor-pointer z-10"
           onClick={onSearch}
         />
         <Input
           ref={inputRef}
           type="text"
-          placeholder="프로젝트 검색"
+          placeholder="테스트 검색"
           className="w-full max-h-[35px] rounded-20 pl-10 border-[0.5px] border-typography-gray max-md:placeholder:text-[12px]"
           value={inputValue}
           onChange={(e) => onInputChange(e.target.value)}

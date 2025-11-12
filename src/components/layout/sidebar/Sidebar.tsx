@@ -63,7 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-[998] transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 bg-[#5CA585]/15 backdrop-blur-sm z-[998] transition-opacity duration-300 lg:hidden ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={onClose}

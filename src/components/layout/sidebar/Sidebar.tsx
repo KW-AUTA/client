@@ -33,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onClose }) => {
   // 데스크탑: 고정 사이드바
   if (open === undefined && onClose === undefined) {
     return (
-      <aside className={`fixed left-0 top-0 max-w-[300px] w-full h-screen z-[999] ${sidebarStyles}`}>
+      <aside className={`fixed left-0 top-0 max-w-[350px] w-full h-screen z-[999] ${sidebarStyles}`}>
         <Link to="/" className="flex justify-center pt-8 pb-14">
           <img src={autaNewLogo} alt="logo" />
         </Link>

@@ -19,7 +19,10 @@ export default function TestResult({ projectDetail }: TestResultProps) {
         <Button
           text="테스트 리포트 바로가기"
           className="border-none bg-[#5CA585]/90 backdrop-blur-lg text-white hover:bg-[#5CA585] shadow-md h-9 px-6 rounded-lg transition-all duration-300"
-          onClick={() => navigate(ROUTES.TEST_DETAIL.replace(':projectId', String(projectId)))}
+          onClick={() => {
+            navigate(ROUTES.TEST_DETAIL.replace(':projectId', String(projectId)));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
         />
       </div>
       <div className="flex gap-8 mt-4 mb-6 h-72 children:shadow-custom children:rounded-15 children:bg-transparent">

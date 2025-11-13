@@ -75,7 +75,7 @@ export default function Layout() {
           </div>
         </>
       )}
-      <div className={`flex flex-col w-full ${shouldHideSidebarAndHeader ? '' : 'lg:ml-[280px]'}`}>
+      <div className={`flex flex-col w-full ${shouldHideSidebarAndHeader ? '' : 'lg:ml-[350px]'}`}>
         <div className="w-full">
           {!shouldHideSidebarAndHeader && <Header onMenuClick={() => setSidebarOpen((prev) => !prev)} />}
           <main className="flex-grow py-4 pt-[90px] lg:pt-0 max-md:pt-28">

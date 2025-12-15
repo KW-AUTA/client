@@ -158,19 +158,13 @@ front/
 
 <div align="center">
 
-<figure>
-  <img src="repo-images/image.png" alt="AUTA userflow" width="600"/>
-  <figcaption>AUTA userflow</figcaption>
-</figure>
+### AUTA userflow
+<img src="repo-images/image.png" alt="AUTA userflow" width="600"/>
 
-<figure>
-  <img src="repo-images/image-1.png" alt="로그인 flow" width="600"/>
-  <figcaption>로그인 flow</figcaption>
-</figure>
+### 로그인 flow
+<img src="repo-images/image-1.png" alt="로그인 flow" width="600"/>
 
-<figure>
-  <img src="repo-images/image-2.png" alt="대시보드 flow" width="600"/>
-  <figcaption>대시보드 flow</figcaption>
-</figure>
+### 대시보드 flow
+<img src="repo-images/image-2.png" alt="대시보드 flow" width="600"/>
 
 </div>

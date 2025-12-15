@@ -1,7 +1,7 @@
 # AUTA Frontend
 
 <div align="center">
-  <img src="repo-images/repo-thumbnail.png" alt="AUTA Frontend Thumbnail" width="600"/>
+  <img src="repo-images/repo-thumbnail.png" alt="AUTA Frontend Thumbnail" width="800"/>
 </div>
 
 ## 목차
@@ -25,7 +25,7 @@ AUTA는 Figma 기반 UI/UX를 "코드 구현 결과물"과 자동으로 대조·
 
 **프로젝트 구성원 (Frontend)**
 
-<div align="center">
+<div align="ㅣㄷㄹ">
 
 | Frontend | Frontend |
 | :---: | :---: |
@@ -159,17 +159,17 @@ front/
 <div align="center">
 
 <figure>
-  <img src="repo-images/image.png" alt="AUTA userflow" width="800"/>
+  <img src="repo-images/image.png" alt="AUTA userflow" width="600"/>
   <figcaption>AUTA userflow</figcaption>
 </figure>
 
 <figure>
-  <img src="repo-images/image-1.png" alt="로그인 flow" width="800"/>
+  <img src="repo-images/image-1.png" alt="로그인 flow" width="600"/>
   <figcaption>로그인 flow</figcaption>
 </figure>
 
 <figure>
-  <img src="repo-images/image-2.png" alt="대시보드 flow" width="800"/>
+  <img src="repo-images/image-2.png" alt="대시보드 flow" width="600"/>
   <figcaption>대시보드 flow</figcaption>
 </figure>
 

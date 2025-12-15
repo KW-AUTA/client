@@ -9,7 +9,7 @@ import translations from '@/locales/ko-v4.json';
 
 /**
  * AUTA v4 Landing Page (Lean Glass Startup · Evidence-Only)
- * 
+ *
  * 핵심 원칙:
  * - 거짓정보 금지 (AUTA 포스터 근거만)
  * - 6개 섹션만
@@ -21,7 +21,7 @@ const LandingPageV4 = () => {
   const neutralLight = '#e9f3ef';
 
   return (
-    <div 
+    <div
       className="min-h-screen relative"
       style={{
         background: `linear-gradient(135deg, ${neutralBg} 0%, ${neutralLight} 50%, ${neutralBg} 100%)`
@@ -44,22 +44,22 @@ const LandingPageV4 = () => {
         <HeaderNav />
       </div>
 
-              {/* Main Content */}
-              <main id="main-content" role="main" className="relative z-0">
-                {/* 1. Hero */}
-                <Hero />
+      {/* Main Content */}
+      <main id="main-content" role="main" className="relative z-0">
+        {/* 1. Hero */}
+        <Hero />
 
-                {/* 2. Intro Summary - 서론 요약 */}
-                <IntroSummary />
+        {/* 2. Intro Summary - 서론 요약 */}
+        <IntroSummary />
 
-                {/* 3. Technical Features - 기술적 특징 */}
-                <TechnicalFeatures />
+        {/* 3. Technical Features - 기술적 특징 */}
+        <TechnicalFeatures />
 
-                {/* 4. Operating Structure - 작동 구조 */}
-                <OperatingStructure />
+        {/* 4. Operating Structure - 작동 구조 */}
+        <OperatingStructure />
 
-                {/* 5. Tutorial */}
-                <Tutorial />
+        {/* 5. Tutorial */}
+        <Tutorial />
       </main>
 
       {/* 5 & 6. Final CTA + Footer */}
@@ -71,4 +71,3 @@ const LandingPageV4 = () => {
 };
 
 export default LandingPageV4;
-

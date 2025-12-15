@@ -10,12 +10,7 @@ interface BadgeProps {
 /**
  * Badge 컴포넌트 (v4 Glass 스타일)
  */
-export const Badge = ({ 
-  children, 
-  variant = 'default', 
-  size = 'md',
-  className = '' 
-}: BadgeProps) => {
+export const Badge = ({ children, variant = 'default', size = 'md', className = '' }: BadgeProps) => {
   const variantClasses = {
     default: 'bg-neutral-100 text-neutral-700',
     brand: 'bg-brand-blue/10 text-brand-blue ring-1 ring-brand-blue/20',
@@ -30,7 +25,7 @@ export const Badge = ({
   };
 
   return (
-    <span 
+    <span
       className={`inline-flex items-center font-medium rounded-full ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}>
       {children}
     </span>
@@ -38,4 +33,3 @@ export const Badge = ({
 };
 
 export default Badge;
-

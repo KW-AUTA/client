@@ -26,13 +26,10 @@ export const ProcessStep = ({ step, text, index, total }: ProcessStepProps) => {
         </div>
         <p className="text-sm text-neutral-700 flex-1">{text}</p>
       </GlassCard>
-      
-      {index < total - 1 && (
-        <ArrowRight className="w-5 h-5 text-neutral-300 mx-2 flex-shrink-0" />
-      )}
+
+      {index < total - 1 && <ArrowRight className="w-5 h-5 text-neutral-300 mx-2 flex-shrink-0" />}
     </div>
   );
 };
 
 export default ProcessStep;
-

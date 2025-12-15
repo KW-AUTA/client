@@ -31,7 +31,9 @@ export const HeaderNav = () => {
   // Body 스크롤 방지
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isMobileMenuOpen]);
 
   const navItems: Array<{ label: string; href: string; isRoute: boolean }> = [];
@@ -43,24 +45,26 @@ export const HeaderNav = () => {
           isScrolled ? 'bg-white/80 backdrop-blur-xl shadow-glass' : 'bg-transparent'
         }`}
         role="banner">
-        <nav className="max-w-[1120px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between" aria-label="메인 네비게이션">
+        <nav
+          className="max-w-[1120px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between"
+          aria-label="메인 네비게이션">
           <Link to={ROUTES.LANDING} aria-label="AUTA 홈" className="flex items-center">
             <img src={autaLogo} alt="AUTA" className="h-44 w-auto" />
           </Link>
 
           {/* 데스크톱 메뉴 */}
           <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item, idx) => 
+            {navItems.map((item, idx) =>
               item.isRoute ? (
-                <Link 
-                  key={idx} 
+                <Link
+                  key={idx}
                   to={item.href}
                   className="text-sm font-medium text-neutral-700 hover:text-brand-blue transition-colors">
                   {item.label}
                 </Link>
               ) : (
-                <a 
-                  key={idx} 
+                <a
+                  key={idx}
                   href={item.href}
                   className="text-sm font-medium text-neutral-700 hover:text-brand-blue transition-colors">
                   {item.label}
@@ -81,7 +85,7 @@ export const HeaderNav = () => {
                 {translations.nav.start}
               </button>
             </Link>
-            
+
             {/* 모바일 햄버거 */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
@@ -168,4 +172,3 @@ export const HeaderNav = () => {
 };
 
 export default HeaderNav;
-

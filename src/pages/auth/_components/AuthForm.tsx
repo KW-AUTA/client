@@ -44,10 +44,13 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
   return (
     <div className="flex items-center justify-center py-12 max-xl2:px-8 max-xl2:py-0">
       <div className="flex flex-col items-center">
-        <Link to={ROUTES.LANDING} className="block overflow-hidden mb-8 mx-auto mt-8" style={{ height: '140px', width: '420px', maxWidth: '90vw' }}>
-          <img 
-            src={autaNewLogo} 
-            alt="AUTA logo" 
+        <Link
+          to={ROUTES.LANDING}
+          className="block overflow-hidden mb-8 mx-auto mt-8"
+          style={{ height: '140px', width: '420px', maxWidth: '90vw' }}>
+          <img
+            src={autaNewLogo}
+            alt="AUTA logo"
             className="w-full h-full"
             style={{
               objectFit: 'cover',

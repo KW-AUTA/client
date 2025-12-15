@@ -26,10 +26,10 @@ export default {
       boxShadow: {
         ...shape.boxShadow,
         '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
-        'glass': '0 8px 30px rgba(17, 24, 39, 0.08)'
+        glass: '0 8px 30px rgba(17, 24, 39, 0.08)'
       },
       backdropBlur: {
-        'glass': '20px'
+        glass: '20px'
       },
       fontSize: typography.fontSize,
       screens: {

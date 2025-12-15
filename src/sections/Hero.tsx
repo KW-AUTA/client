@@ -60,10 +60,9 @@ export const Hero = () => {
   ];
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       className="relative min-h-screen flex flex-col items-center justify-start overflow-hidden pt-24 pb-32 md:pb-40">
-
       <div className="relative z-10 max-w-[1120px] mx-auto px-5 md:px-8 py-20 w-full">
         <div className="text-center max-w-4xl mx-auto relative w-full">
           {/* Badges (2개) */}
@@ -106,11 +105,10 @@ export const Hero = () => {
           </div>
 
           {/* 모델 성능 & 효율 비교 섹션 */}
-          <div 
+          <div
             className={`w-full max-w-6xl mx-auto mt-48 mb-32 transition-all duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
+            }`}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
               {/* 모델 성능 카드 (2/3 영역) */}
               <div className="lg:col-span-2 h-full">
@@ -125,12 +123,11 @@ export const Hero = () => {
           </div>
 
           {/* Glassmorphism 대시보드 캐러셀 */}
-          <div 
+          <div
             ref={dashboardRef}
             className={`relative w-full max-w-6xl mx-auto mt-48 mb-0 hidden md:block transition-all duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
+            }`}>
             {/* 커스텀 네비게이션 버튼 (카드 밖, 중앙) */}
             <button className="swiper-button-prev-custom absolute left-[-60px] top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-[#e9f3ef] flex items-center justify-center hover:bg-white transition-colors">
               <ChevronLeft className="w-6 h-6 text-[#5CA585]" />
@@ -158,12 +155,13 @@ export const Hero = () => {
               }}
               loop={true}
               className="dashboard-carousel"
-              style={{
-                '--swiper-navigation-color': '#5CA585',
-                '--swiper-pagination-color': '#5CA585',
-                '--swiper-pagination-bullet-size': '8px'
-              } as React.CSSProperties}
-            >
+              style={
+                {
+                  '--swiper-navigation-color': '#5CA585',
+                  '--swiper-pagination-color': '#5CA585',
+                  '--swiper-pagination-bullet-size': '8px'
+                } as React.CSSProperties
+              }>
               {/* 슬라이드 1: 대시보드 (이미지 1) */}
               <SwiperSlide>
                 <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
@@ -171,7 +169,8 @@ export const Hero = () => {
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">대시보드</h3>
                     <p className="text-sm text-neutral-600 mb-2">전체 프로젝트와 테스트 현황을 한눈에 확인하세요</p>
                     <p className="text-xs text-neutral-500 leading-relaxed max-w-2xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
-                      진행 중인 프로젝트, 완료된 테스트, 미완료 테스트를 실시간으로 모니터링하고, 프로젝트 관리와 테스트 관리를 통합적으로 관리할 수 있습니다.
+                      진행 중인 프로젝트, 완료된 테스트, 미완료 테스트를 실시간으로 모니터링하고, 프로젝트 관리와 테스트
+                      관리를 통합적으로 관리할 수 있습니다.
                     </p>
                   </div>
                   <div className="w-full space-y-2 flex-1 flex flex-col justify-center">
@@ -235,7 +234,9 @@ export const Hero = () => {
                           </div>
                           <div className="space-y-0">
                             <div className="grid grid-cols-4 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                              <div className="text-center font-medium text-neutral-900 truncate">AUTA 테스트 프로젝트</div>
+                              <div className="text-center font-medium text-neutral-900 truncate">
+                                AUTA 테스트 프로젝트
+                              </div>
                               <div className="text-center font-medium text-neutral-900">테스트유저</div>
                               <div className="text-center font-medium text-neutral-900">2025-11-29</div>
                               <div className="text-center font-medium text-neutral-900">
@@ -262,7 +263,9 @@ export const Hero = () => {
                               </div>
                             </div>
                             <div className="grid grid-cols-4 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                              <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지 프로젝트</div>
+                              <div className="text-center font-medium text-neutral-900 truncate">
+                                광운대 홈페이지 프로젝트
+                              </div>
                               <div className="text-center font-medium text-neutral-900">테스트유저</div>
                               <div className="text-center font-medium text-neutral-900">2025-11-08</div>
                               <div className="text-center font-medium text-neutral-900">
@@ -286,7 +289,9 @@ export const Hero = () => {
                           </div>
                           <div className="space-y-0">
                             <div className="grid grid-cols-4 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                              <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지 프로젝트</div>
+                              <div className="text-center font-medium text-neutral-900 truncate">
+                                광운대 홈페이지 프로젝트
+                              </div>
                               <div className="text-center font-medium text-neutral-900">
                                 <span className="inline-flex items-center font-bold">
                                   <span className="w-2 h-2 rounded-sm mr-1 bg-yellow-400"></span>
@@ -300,7 +305,9 @@ export const Hero = () => {
                               <div className="text-center font-medium text-neutral-900 truncate">산학협력단</div>
                             </div>
                             <div className="grid grid-cols-4 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                              <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지 프로젝트</div>
+                              <div className="text-center font-medium text-neutral-900 truncate">
+                                광운대 홈페이지 프로젝트
+                              </div>
                               <div className="text-center font-medium text-neutral-900">
                                 <span className="inline-flex items-center font-bold">
                                   <span className="w-2 h-2 rounded-sm mr-1 bg-yellow-400"></span>
@@ -314,7 +321,9 @@ export const Hero = () => {
                               <div className="text-center font-medium text-neutral-900 truncate">산학협력단</div>
                             </div>
                             <div className="grid grid-cols-4 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                              <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지 프로젝트</div>
+                              <div className="text-center font-medium text-neutral-900 truncate">
+                                광운대 홈페이지 프로젝트
+                              </div>
                               <div className="text-center font-medium text-neutral-900">
                                 <span className="inline-flex items-center font-bold">
                                   <span className="w-2 h-2 rounded-sm mr-1 bg-yellow-400"></span>
@@ -328,7 +337,9 @@ export const Hero = () => {
                               <div className="text-center font-medium text-neutral-900 truncate">산학협력단</div>
                             </div>
                             <div className="grid grid-cols-4 p-2 hover:bg-white/30 transition-colors border-t border-[#e9f3ef] text-xs">
-                              <div className="text-center font-medium text-neutral-900 truncate">광운대 홈페이지 프로젝트</div>
+                              <div className="text-center font-medium text-neutral-900 truncate">
+                                광운대 홈페이지 프로젝트
+                              </div>
                               <div className="text-center font-medium text-neutral-900">
                                 <span className="inline-flex items-center font-bold">
                                   <span className="w-2 h-2 rounded-sm mr-1 bg-yellow-400"></span>
@@ -354,9 +365,12 @@ export const Hero = () => {
                 <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
                   <div className="text-center w-full mb-1">
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">프로젝트 상세 페이지</h3>
-                    <p className="text-sm text-neutral-600 mb-2 whitespace-nowrap">LLM 평가 결과와 테스트 결과를 확인하세요</p>
+                    <p className="text-sm text-neutral-600 mb-2 whitespace-nowrap">
+                      LLM 평가 결과와 테스트 결과를 확인하세요
+                    </p>
                     <p className="text-xs text-neutral-500 leading-relaxed max-w-2xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
-                      LLM 기반 UX/UI 평가 점수와 상세 피드백을 확인하고, ROUTING, INTERACTION, COMPONENT 매칭 테스트 결과를 페이지별로 분석할 수 있습니다.
+                      LLM 기반 UX/UI 평가 점수와 상세 피드백을 확인하고, ROUTING, INTERACTION, COMPONENT 매칭 테스트
+                      결과를 페이지별로 분석할 수 있습니다.
                     </p>
                   </div>
                   <div className="w-full space-y-2 flex-1 flex flex-col justify-center overflow-hidden">
@@ -377,17 +391,21 @@ export const Hero = () => {
                           <div className="flex-1 flex flex-col gap-2">
                             {/* 웹페이지 미리보기 영역 */}
                             <div className="bg-gray-100 rounded-lg border border-gray-200 overflow-hidden h-[160px] flex items-center justify-center">
-                              <img 
-                                src={sampleKwImage} 
-                                alt="웹페이지 미리보기" 
+                              <img
+                                src={sampleKwImage}
+                                alt="웹페이지 미리보기"
                                 className="max-w-full max-h-full object-contain"
                               />
                             </div>
                             {/* 피드백 */}
                             <div className="bg-gray-50/80 rounded-lg p-2 border border-gray-200">
                               <div className="flex items-center gap-1.5 text-[9px]">
-                                <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-green-500 text-white font-bold flex-shrink-0 text-[12px]">1</span>
-                                <span className="text-neutral-700 text-[12px]">화면은 정보가 많고 시각적 흐름이 부족하여 사용자 경험이 다소 복잡할 수 있습니다.</span>
+                                <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-green-500 text-white font-bold flex-shrink-0 text-[12px]">
+                                  1
+                                </span>
+                                <span className="text-neutral-700 text-[12px]">
+                                  화면은 정보가 많고 시각적 흐름이 부족하여 사용자 경험이 다소 복잡할 수 있습니다.
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -483,9 +501,12 @@ export const Hero = () => {
                 <div className="flex flex-col items-center gap-2 h-[600px] justify-center">
                   <div className="text-center w-full mb-1">
                     <h3 className="text-2xl font-bold text-neutral-900 mb-1">테스트 상세 페이지</h3>
-                    <p className="text-sm text-neutral-600 mb-2 whitespace-nowrap">테스트 통계와 상세 이슈 정보를 확인하세요</p>
+                    <p className="text-sm text-neutral-600 mb-2 whitespace-nowrap">
+                      테스트 통계와 상세 이슈 정보를 확인하세요
+                    </p>
                     <p className="text-xs text-neutral-500 leading-relaxed max-w-2xl mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
-                      TOTAL, ROUTING, INTERACTION, COMPONENT 테스트 통계를 원형 그래프로 확인하고, 컴포넌트 매핑 이슈의 상세 내용과 위치를 정확히 파악할 수 있습니다.
+                      TOTAL, ROUTING, INTERACTION, COMPONENT 테스트 통계를 원형 그래프로 확인하고, 컴포넌트 매핑 이슈의
+                      상세 내용과 위치를 정확히 파악할 수 있습니다.
                     </p>
                   </div>
                   <div className="w-full space-y-2 flex-1 flex flex-col justify-center">

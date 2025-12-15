@@ -48,12 +48,8 @@ export const MetricCards = () => {
   return (
     <div ref={containerRef} className="h-full flex flex-col">
       <div className="mb-4 flex-shrink-0">
-        <h3 className="text-2xl font-bold text-neutral-900 mb-2 text-center">
-          모델 성능
-        </h3>
-        <p className="text-sm text-neutral-600 text-center leading-relaxed">
-          {metrics.note}
-        </p>
+        <h3 className="text-2xl font-bold text-neutral-900 mb-2 text-center">모델 성능</h3>
+        <p className="text-sm text-neutral-600 text-center leading-relaxed">{metrics.note}</p>
         <p className="text-sm text-neutral-600 text-center leading-relaxed mt-1">
           높은 정밀도와 재현율로 디자인과 구현 간의 불일치를 신뢰성 있게 탐지합니다.
         </p>
@@ -65,7 +61,7 @@ export const MetricCards = () => {
           const maxValue = 100;
           const percentage = (value / maxValue) * 100;
           const isFlipped = flippedCards.has(idx);
-          
+
           // 색상 결정 (값에 따라)
           const getBarColor = () => {
             if (value >= 70) return 'bg-[#5CA585]'; // 진한 녹색
@@ -92,8 +88,7 @@ export const MetricCards = () => {
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transition: `opacity 0.6s ease-out ${idx * 0.1}s, transform 0.6s ease-out ${idx * 0.1}s`,
                 perspective: '1000px'
-              }}
-            >
+              }}>
               <div
                 className="relative w-full h-full cursor-pointer"
                 style={{
@@ -101,26 +96,20 @@ export const MetricCards = () => {
                   transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
                   transition: 'transform 0.6s ease-in-out'
                 }}
-                onClick={() => handleCardClick(idx)}
-              >
+                onClick={() => handleCardClick(idx)}>
                 {/* 앞면 */}
                 <div
                   className="absolute inset-0 w-full h-full backface-hidden"
                   style={{
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden'
-                  }}
-                >
+                  }}>
                   <GlassCard className="p-6 hoverEffect h-full relative">
                     <div className="flex items-center justify-between mb-3">
-                      <div className="text-sm font-bold text-neutral-900">
-                        {metric.label}
-                      </div>
-                      <div className="text-2xl font-bold text-brand-blue">
-                        {value}
-                      </div>
+                      <div className="text-sm font-bold text-neutral-900">{metric.label}</div>
+                      <div className="text-2xl font-bold text-brand-blue">{value}</div>
                     </div>
-                    
+
                     {/* 막대그래프 */}
                     <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden relative">
                       <div
@@ -131,13 +120,11 @@ export const MetricCards = () => {
                         }}
                       />
                     </div>
-                    
+
                     <div className="flex items-center justify-between mt-2">
-                      <div className="text-xs text-neutral-500">
-                        {metric.desc}
-                      </div>
+                      <div className="text-xs text-neutral-500">{metric.desc}</div>
                     </div>
-                    
+
                     {/* 우측 하단 안내 텍스트 */}
                     <div className="absolute bottom-4 right-4">
                       <span className="text-[10px] text-neutral-400">클릭하여 설명 보기</span>
@@ -152,38 +139,32 @@ export const MetricCards = () => {
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)'
-                  }}
-                >
+                  }}>
                   <GlassCard className="p-3 hoverEffect h-full flex flex-col relative">
                     {/* 상단: 지표명과 수치 */}
                     <div className="flex items-start justify-between mb-1 flex-shrink-0">
-                      <div className="text-sm font-bold text-neutral-900">
-                        {metric.label}
-                      </div>
+                      <div className="text-sm font-bold text-neutral-900">{metric.label}</div>
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${performanceTag.color}`}>
                           {performanceTag.text}
                         </span>
-                        <div className="text-base font-bold text-brand-blue">
-                          {value}
-                        </div>
+                        <div className="text-base font-bold text-brand-blue">{value}</div>
                       </div>
                     </div>
-                    
+
                     {/* 중앙: 설명 내용 */}
                     <div className="flex-1 flex items-center justify-center min-h-0">
-                      <p 
+                      <p
                         className="text-xs text-neutral-600 leading-tight text-center break-keep px-1"
                         style={{
                           wordBreak: 'keep-all',
                           overflowWrap: 'break-word',
                           textWrap: 'balance'
-                        }}
-                      >
+                        }}>
                         {metric.description || metric.desc}
                       </p>
                     </div>
-                    
+
                     {/* 우측 하단 안내 텍스트 */}
                     <div className="absolute bottom-2 right-2 flex-shrink-0">
                       <span className="text-[10px] text-neutral-400">클릭하여 뒤로 가기</span>

@@ -12,7 +12,7 @@ const ProductPage = () => {
   const neutralLight = '#e9f3ef';
 
   return (
-    <div 
+    <div
       className="min-h-screen relative"
       style={{
         background: `linear-gradient(135deg, ${neutralBg} 0%, ${neutralLight} 50%, ${neutralBg} 100%)`
@@ -23,7 +23,7 @@ const ProductPage = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#5CA585]/10 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#5CA585]/10 rounded-full blur-3xl" />
       </div>
-      
+
       {/* Skip to Content (접근성) */}
       <a
         href="#main-content"
@@ -51,4 +51,3 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-

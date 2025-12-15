@@ -29,4 +29,3 @@ export const StatWidget = ({ label, value, icon, note, className = '' }: StatWid
 };
 
 export default StatWidget;
-

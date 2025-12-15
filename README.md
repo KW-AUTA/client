@@ -4,61 +4,23 @@
 
 ## 목차
 - [프로젝트 개요](#프로젝트-개요)
-- [프로젝트 구성원 (Frontend)](#프로젝트-구성원-frontend)
-- [개발 기간](#개발-기간)
+- [기술 스택](#기술-스택)
 - [설치 및 실행](#설치-및-실행)
 - [주요 기능](#주요-기능)
-- [기술 스택](#기술-스택)
 - [폴더 구조](#폴더-구조)
-- [User Flow & Sitemap](#user-flow--sitemap)
 - [코딩 & Git 컨벤션](#코딩--git-컨벤션)
-- [회고](#회고)
+- [프로젝트 구성원](#프로젝트-구성원)
+- [User Flow & Sitemap](#user-flow--sitemap)
 
 ---
 
 ## 프로젝트 개요
-AUTA는 Figma 기반 UI/UX를 “코드 구현 결과물”과 자동으로 대조·검증해 주는 AI UI 테스트 자동화 플랫폼입니다.
+AUTA는 Figma 기반 UI/UX를 "코드 구현 결과물"과 자동으로 대조·검증해 주는 AI UI 테스트 자동화 플랫폼입니다.
 디자인 시안과 실제 화면(웹/앱)의 스크린샷을 비교해 레이아웃/컴포넌트 불일치, 스타일 편차, 반응형 깨짐 같은 문제를 빠르게 탐지하고, 결과를 리포트·대시보드 형태로 정리해 QA 시간을 줄이고 디자인 준수 품질을 표준화하는 것을 목표로 합니다.
----
 
-## 프로젝트 구성원 (Frontend)
-| Frontend | Frontend |
-| :---: | :---: |
-| **최현준** | **홍유진** |
-| [<img src="https://github.com/hywznn.png" width="150" style="display: block; margin: 0 auto;"> <br/> @hywznn](https://github.com/hywznn) | [<img src="https://github.com/youjin-hong.png" width="150" style="display: block; margin: 0 auto;"> <br/> @youjin-hong](https://github.com/youjin-hong) | 
----
-
-## 개발 기간
+**개발 기간**
 - 기획: `2025.1~2025.4`
 - 개발: `2025.4~2025.9`
-
----
-
-## 설치 및 실행
-
-**1. 설치: 저장소 복제하기**
-```
-https://github.com/KW-AUTA/client.git
-```
-
-**2. 종속성 설치**
-```
-npm install
-```
-
-**3. Git Hooks 설정**
-```
-npm run prepare  // husky 명시적으로 실행하기 위한 추가적인 명령어
-```
-
-**3. 개발 서버 실행**
-```
-npm run dev
-```
----
-
-## 주요 기능
-<!-- gif, 이미지, 기능 설명 -->
 
 ---
 
@@ -81,13 +43,39 @@ npm run dev
 
 </div>
 
-
 🔗 [Backend Repository 바로가기](https://github.com/KW-AUTA/server)
 
 🔗 [AI Repository 바로가기](https://github.com/KW-AUTA/AI)
 
+---
 
+## 설치 및 실행
 
+**1. 저장소 복제**
+```bash
+git clone https://github.com/KW-AUTA/client.git
+cd client
+```
+
+**2. 종속성 설치**
+```bash
+npm install
+```
+
+**3. Git Hooks 설정**
+```bash
+npm run prepare  # husky 명시적으로 실행하기 위한 추가적인 명령어
+```
+
+**4. 개발 서버 실행**
+```bash
+npm run dev
+```
+
+---
+
+## 주요 기능
+<!-- gif, 이미지, 기능 설명 -->
 
 ---
 
@@ -114,40 +102,29 @@ front/
 
 ---
 
-## User Flow & Sitemap
-![AUTA userflow](image.png)
-
-![로그인 flow](image-1.png)
-
-![대시보드 flow](image-2.png)
----
-
 ## 코딩 & Git 컨벤션
 
 🔗 [코딩 컨벤션 바로가기](https://lovely-juniper-c4d.notion.site/1811c6afab8c80fcb7dfd49c974d5836)
 
 🔗 [Git 컨벤션 바로가기](https://lovely-juniper-c4d.notion.site/Git-Github-flow-1811c6afab8c809d951ed06288f0009f?pvs=73)
 
-
 ---
 
-## 회고
+## 프로젝트 구성원
 
-<details>
-  <summary>최현준</summary>
-    <div markdown="1">
-    <ul>
-      <li>작성 예정</li>
-      <li></li>
-    </ul>
-  </div>
-</details>
-<details>
-  <summary>홍유진</summary>
-    <div markdown="2">
-    <ul>
-      <li>작성 예정</li>
-      <li></li>
-    </ul>
-  </div>
-</details>
+<div align="center">
+
+| Frontend | Frontend |
+| :---: | :---: |
+| **최현준** | **홍유진** |
+| [<img src="https://github.com/hywznn.png" width="150" style="display: block; margin: 0 auto;"> <br/> @hywznn](https://github.com/hywznn) | [<img src="https://github.com/youjin-hong.png" width="150" style="display: block; margin: 0 auto;"> <br/> @youjin-hong](https://github.com/youjin-hong) |
+
+</div> 
+
+
+## User Flow & Sitemap
+![AUTA userflow](image.png)
+
+![로그인 flow](image-1.png)
+
+![대시보드 flow](image-2.png)

@@ -9,7 +9,6 @@
 - [주요 기능](#주요-기능)
 - [폴더 구조](#폴더-구조)
 - [코딩 & Git 컨벤션](#코딩--git-컨벤션)
-- [프로젝트 구성원](#프로젝트-구성원)
 - [User Flow & Sitemap](#user-flow--sitemap)
 
 ---
@@ -20,7 +19,18 @@ AUTA는 Figma 기반 UI/UX를 "코드 구현 결과물"과 자동으로 대조·
 
 **개발 기간**
 - 기획: `2025.1~2025.4`
-- 개발: `2025.4~2025.9`
+- 개발: `2025.4~2025.10`
+
+**프로젝트 구성원 (Frontend)**
+
+<div align="center">
+
+| Frontend | Frontend |
+| :---: | :---: |
+| **최현준** | **홍유진** |
+| [<img src="https://github.com/hywznn.png" width="150" style="display: block; margin: 0 auto;"> <br/> @hywznn](https://github.com/hywznn) | [<img src="https://github.com/youjin-hong.png" width="150" style="display: block; margin: 0 auto;"> <br/> @youjin-hong](https://github.com/youjin-hong) |
+
+</div>
 
 ---
 
@@ -109,18 +119,6 @@ front/
 🔗 [Git 컨벤션 바로가기](https://lovely-juniper-c4d.notion.site/Git-Github-flow-1811c6afab8c809d951ed06288f0009f?pvs=73)
 
 ---
-
-## 프로젝트 구성원
-
-<div align="center">
-
-| Frontend | Frontend |
-| :---: | :---: |
-| **최현준** | **홍유진** |
-| [<img src="https://github.com/hywznn.png" width="150" style="display: block; margin: 0 auto;"> <br/> @hywznn](https://github.com/hywznn) | [<img src="https://github.com/youjin-hong.png" width="150" style="display: block; margin: 0 auto;"> <br/> @youjin-hong](https://github.com/youjin-hong) |
-
-</div> 
-
 
 ## User Flow & Sitemap
 ![AUTA userflow](image.png)

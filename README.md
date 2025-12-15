@@ -17,15 +17,15 @@
 ---
 
 ## 프로젝트 개요
-<!-- 프로젝트의 목표, 개요, 주요 기능 요약 -->
-
+AUTA는 Figma 기반 UI/UX를 “코드 구현 결과물”과 자동으로 대조·검증해 주는 AI UI 테스트 자동화 플랫폼입니다.
+디자인 시안과 실제 화면(웹/앱)의 스크린샷을 비교해 레이아웃/컴포넌트 불일치, 스타일 편차, 반응형 깨짐 같은 문제를 빠르게 탐지하고, 결과를 리포트·대시보드 형태로 정리해 QA 시간을 줄이고 디자인 준수 품질을 표준화하는 것을 목표로 합니다.
 ---
 
 ## 프로젝트 구성원 (Frontend)
-|                                                                                              Frontend                                                   |                                                  Frontend                                                   |
-| :-----------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
-|                                                  **최현준**                                                   |                                                **홍유진**                                                 |                                                
-| [<img src="https://github.com/hywznn.png" width="300"> <br/> @hywznn](https://github.com/hywznn) | [<img src="https://github.com/youjin-hong.png" width="300"> <br/> @youjin-hong](https://github.com/youjin-hong) | 
+| Frontend | Frontend |
+| :---: | :---: |
+| **최현준** | **홍유진** |
+| [<img src="https://github.com/hywznn.png" width="150" style="display: block; margin: 0 auto;"> <br/> @hywznn](https://github.com/hywznn) | [<img src="https://github.com/youjin-hong.png" width="150" style="display: block; margin: 0 auto;"> <br/> @youjin-hong](https://github.com/youjin-hong) | 
 ---
 
 ## 개발 기간
@@ -64,6 +64,8 @@ npm run dev
 
 ## 기술 스택
 
+<div align="center">
+
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white)
@@ -76,6 +78,8 @@ npm run dev
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white)
 ![Swiper](https://img.shields.io/badge/Swiper-6332F6?style=for-the-badge&logo=Swiper&logoColor=white)
 ![Husky](https://img.shields.io/badge/Husky-181717?style=for-the-badge&logo=Git&logoColor=white)
+
+</div>
 
 
 🔗 [Backend Repository 바로가기](https://github.com/KW-AUTA/server)

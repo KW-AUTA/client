@@ -1,6 +1,8 @@
 # AUTA Frontend
 
-
+<div align="center">
+  <img src="repo-images/repo-thumbnail.png" alt="AUTA Frontend Thumbnail" width="600"/>
+</div>
 
 ## 목차
 - [프로젝트 개요](#프로젝트-개요)
@@ -86,8 +88,6 @@ npm run dev
 
 ## 주요 기능
 
-AUTA Frontend는 다음 기능을 제공합니다.
-
 **사용자 인증 및 세션 관리**
 - OAuth 기반 로그인을 통해 안전하게 서비스에 접근할 수 있습니다.
 - React Router와 Redux Toolkit을 활용한 전역 인증 상태 관리 및 보호된 라우팅을 구현했습니다.
@@ -155,8 +155,22 @@ front/
 ---
 
 ## User Flow & Sitemap
-![AUTA userflow](repo-images/image.png)
 
-![로그인 flow](repo-images/image-1.png)
+<div align="center">
 
-![대시보드 flow](repo-images/image-2.png)
+<figure>
+  <img src="repo-images/image.png" alt="AUTA userflow" width="800"/>
+  <figcaption>AUTA userflow</figcaption>
+</figure>
+
+<figure>
+  <img src="repo-images/image-1.png" alt="로그인 flow" width="800"/>
+  <figcaption>로그인 flow</figcaption>
+</figure>
+
+<figure>
+  <img src="repo-images/image-2.png" alt="대시보드 flow" width="800"/>
+  <figcaption>대시보드 flow</figcaption>
+</figure>
+
+</div>
